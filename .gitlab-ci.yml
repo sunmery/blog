@@ -16,8 +16,8 @@ cache:
 # 初始化运行时的工作, 用于创建基本的环境, 后续环境不再需要时, 把FIRST开关设为非true即可
 job_first_run:
   stage: first_run
-  tags:
-    - did2
+#  tags:
+#    - did2
   image: ccr.ccs.tencentyun.com/lisa/alpine:latest
   script:
     - |
