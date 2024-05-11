@@ -1,0 +1,105 @@
+stages:
+  #- check
+  - first_run
+  - web
+  - deploy
+
+variables:
+  FIRST: "true"
+  DOMAIN: "lookeke.com"
+  NGINX_DIR: "/home/nginx"
+  WEB_DIR: "/home/nginx/html"
+  CONF_DIR: "/home/nginx/conf"
+  SSL_DIR: "/home/nginx/ssl"
+
+# 适用于整个管道，并将确定是否创建管道
+#workflow:
+#  rules:
+#    - if: '$FIRST == "true"'
+#      when: always
+#    - when: never#
+
+cache:
+  key: nginx-quic
+  paths:
+    - ./node_modules
+
+# 初始化运行时的工作, 用于创建基本的环境, 后续环境不再需要时, 把FIRST开关设为非true即可
+job_first_run:
+  stage: first_run
+#  tags:
+#    - shell
+  image: ccr.ccs.tencentyun.com/lisa/alpine:latest
+  script:
+    - echo "fitst run "
+    - echo '#!/usr/bin/bash' > env_vars.sh
+    - echo 'export DOMAIN=${DOMAIN}' >> env_vars.sh
+    - echo 'export NGINX_DIR=${NGINX_DIR}' >> env_vars.sh
+    - echo 'export WEB_DIR=${WEB_DIR}' >> env_vars.sh
+    - echo 'export CONF_DIR=${CONF_DIR}' >> env_vars.sh
+    - echo 'export SSL_DIR=${SSL_DIR}' >> env_vars.sh
+    - chmod +x ./env_vars.sh
+    - ./env_vars.sh
+    - cat env_vars.sh
+    - sshpass -e scp -o stricthostkeychecking=no first.sh env_vars.sh ${s_user}@${s_host1}:/tmp
+    - sshpass -e ssh -o stricthostkeychecking=no ${s_user}@${s_host1} '
+      rm -rf /tmp/env_vars.sh 
+      ; chmod +x /tmp/env_vars.sh 
+      ; /tmp/env_vars.sh 
+      ; echo ${NGINX_DIR} 
+      ; mkdir -p ${NGINX_DIR} 
+      ; cd ${NGINX_DIR} 
+      ; /tmp/first.sh
+      '
+  only:
+    variables:
+      - $FIRST == "true"
+
+# 防止变量没有定义就被执行
+#job_check:
+#  stage: check
+#  image: alpine:latest
+#  tags:
+#    - did
+#  script:
+#    - if [ -z "${SSHPASS}" ] || [ -z "${s_user}" ] || [ -z "${s_host1}" ]; then echo "至少一个变量未定义"; exit 1; fi
+#    - rm -rf build
+
+job_web:
+  stage: web
+  image: node:18-alpine
+  tags:
+    - node
+  script:
+    - npm install pnpm -g
+    - pnpm install
+    - pnpm build
+  only:
+    - main
+  artifacts:
+    paths:
+      - ./build
+
+job_deploy:
+  stage: deploy
+  image: ccr.ccs.tencentyun.com/lisa/alpine:latest
+  only:
+    - main
+  tags:
+    - did
+  script:
+    - tar -czf dist.tar.gz -C build .
+    - ls
+
+    - sshpass -e scp -o stricthostkeychecking=no dist.tar.gz ${s_user}@${s_host2}:/home/nginx
+    - sshpass -e ssh -o stricthostkeychecking=no ${s_user}@${s_host2} '
+      cd /home/nginx 
+      ; tar -xzvf dist.tar.gz -C html 
+      ; docker restart nginx-quic
+      '
+
+#    - sshpass -e scp -o stricthostkeychecking=no dist.tar.gz ${s_user}@${s_host3}:/home/nginx
+#    - sshpass -e ssh -o stricthostkeychecking=no ${s_user}@${s_host3} 'cd /home/nginx && tar -xzvf dist.tar.gz -C html && docker restart nginx-quic'
+#
+#    - sshpass -e scp -o stricthostkeychecking=no dist.tar.gz ${s_user}@${s_host4}:/home/nginx
+#    - sshpass -e ssh -o stricthostkeychecking=no ${s_user}@${s_host4} 'cd /home/nginx && tar -xzvf dist.tar.gz -C html && docker restart nginx-quic'

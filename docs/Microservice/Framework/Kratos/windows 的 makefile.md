@@ -1,0 +1,2 @@
+- 选 gitbash 为IDE的首选终端
+- 安装 makefile到git\mingw64 目录中,并选择合并

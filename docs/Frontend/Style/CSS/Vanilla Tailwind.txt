@@ -1,0 +1,14 @@
+安装: 三个依赖
+yarn add -D tailwindcss postcss-cli autoprefixer
+
+tailwindcss css框架 需要postcss支持
+postcss-cli  处理css输出的插件/工具
+autoprefixer 浏览器支持
+
+配置:
+初始化package.json: npm init 
+初始化tailwindcss: npx tailwindcss init -p
+
+tailwindcss配置 style.css -> @tailwind base; @tailwind components; @tailwind utilities;
+
+查看源文件: packag.js scripts -> "watch" : "运行插件postcss 选择的目录 / 样式文件.css -o 输出到 指定的目录 dist/style.css  热更新 --watch"

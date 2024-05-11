@@ -1,0 +1,1 @@
+https://lainbo.com/article/clash-config

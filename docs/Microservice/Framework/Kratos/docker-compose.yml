@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  tiktok:
+    image: registry.cn-hangzhou.aliyuncs.com/imooc/tiktok:latest
+    container_name: tiktok
+    restart: always
+    ports:
+      - "8080:8080"
+      - "4000:4000"
+    volumes:
+      - ./configs:/data/conf
+    environment:
+      - TZ=Asia/Shanghai
+    command: ["/app/tiktok", "-conf", "/data/conf"]

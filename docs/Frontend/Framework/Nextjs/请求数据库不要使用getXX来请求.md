@@ -1,0 +1,1 @@
+直接使用React钩子`useEffect`或者`swr` 
