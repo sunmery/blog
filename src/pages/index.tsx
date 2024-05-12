@@ -7,6 +7,8 @@ import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
 
+import Construction from "@site/src/pages/construction";
+
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
@@ -29,15 +31,19 @@ function HomepageHeader() {
 }
 
 export default function Home(): JSX.Element {
+
   const {siteConfig} = useDocusaurusContext();
   return (
-    <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
-      <HomepageHeader />
-      <main>
-        <HomepageFeatures />
-      </main>
-    </Layout>
+    <div>
+      <Layout
+          title={`Hello from ${siteConfig.title}`}
+          description="Description will go into a meta tag in <head />">
+        <HomepageHeader />
+        <main>
+            <Construction/>
+          <HomepageFeatures/>
+        </main>
+      </Layout>
+    </div>
   );
 }

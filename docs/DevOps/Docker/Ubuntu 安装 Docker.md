@@ -1,5 +1,10 @@
 https://docs.docker.com/engine/install/ubuntu/
 
+删除未使用
+```shell
+docker image prune -a
+```
+
 不包含containerd
 ```shell
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker; do sudo apt-get remove $pkg; done

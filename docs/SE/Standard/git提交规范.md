@@ -8,15 +8,6 @@
 - :rocket: 项目部署
 - :tada: 开始/发布项目
 
-## chore
-**构建流程, 辅助工具的更改, 例如修改webpack配置, env环境变量**
-- :closed_lock_with_key: 添加env密钥参数
-- :construction_worker: CI工具的修改
-- :construction_worker: 添加更新CI构建 
-- :green_heart: 修复CI打包
-- :wrench: 添加或更新env配置文件
-- :hammer: 添加scripts脚本指令
-
 ## docs
 **文档修改**
 - :memo: 添加更新文档
@@ -70,8 +61,8 @@
 - :safety_vest: 优化与验证相关的代码
 - :ambulance: 关键的修复
 
-## refactor 
-**代码重构的更改**
+## refactor
+**即不是新增功能，也不是修改bug的代码变动`**
 
 - :building_construction: 架构更改
 - :recycle: 重构
@@ -92,7 +83,14 @@
 - :white_check_mark: 添加成功的测试
 - :test_tube: 添加更新失败的测试
 
-## 不方便分类
+## chore
+**构建过程或辅助工具的变动构建流程, 辅助工具的更改, 例如修改webpack配置, env环境变量**
+- :closed_lock_with_key: 添加env密钥参数
+- :construction_worker: CI工具的修改
+- :construction_worker: 添加更新CI构建 
+- :green_heart: 修复CI打包
+- :wrench: 添加或更新env配置文件
+- :hammer: 添加scripts脚本指令
 - :construction: 页面维护中
 - :see_no_evil: `.gitignore`添加不提交的文件/目录 
 - :twisted_rightwards_arrows: 合并分支
