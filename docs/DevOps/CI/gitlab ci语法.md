@@ -26,10 +26,7 @@ script:
 ```
 
 ## [预定义的变量](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html)
-|                       |          |      |     |                                                                               |
-| --------------------- | -------- | ---- | --- | ----------------------------------------------------------------------------- |
-| `CI_COMMIT_SHA`       | Pipeline | 9.0  | all | The commit revision the project is built for.  <br>构建项目的提交修订版。                |
-| `CI_COMMIT_SHORT_SHA` | Pipeline | 11.7 | all | The first eight characters of `CI_COMMIT_SHA`.  <br>的前 `CI_COMMIT_SHA` 8 个字符。 |
+
 
 ## 使用did时需要注意(Docker in Docker):
 参考[官网教程](https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-the-docker-executor-with-docker-socket-binding)

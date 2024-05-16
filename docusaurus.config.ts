@@ -146,10 +146,10 @@ const config: Config = {
         }
       ],
       style: 'dark',
-      copyright: `
-      Copyright © ${new Date().getFullYear()} Mandala日记本, Inc.
-      <a href="https://beian.miit.gov.cn/" target="_blank">桂ICP备2022004535号-3</a>
-      `,
+      // copyright: `
+      // Copyright © ${new Date().getFullYear()} Mandala日记本, Inc.
+      // <a href="https://beian.miit.gov.cn/" target="_blank">桂ICP备2022004535号-3</a>
+      // `,
     },
     prism: {
       theme: prismThemes.github,
