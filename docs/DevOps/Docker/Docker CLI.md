@@ -73,5 +73,5 @@ docker rmi $(docker images -q)
 
 `docker inspect 容器名`
 
-docker commit <contID>
+`docker commit <contID>`
 

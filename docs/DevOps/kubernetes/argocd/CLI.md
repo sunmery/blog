@@ -54,6 +54,11 @@ argocd proj add-source <PROJECT> <REPO>
 argocd proj add-source frontend https://gitlab.com/lookeke/full-stack-engineering.git
 ```
 
+查看proj的信息
+```shell
+argocd proj get frontend
+```
+
 删除
 ```
 argocd proj remove-source <PROJECT> <REPO>

@@ -27,6 +27,9 @@ RUN --mount=type=cache,target=/go/pkg/mod/ \
 
 FROM alpine:latest AS final
 
+# 修改镜像源为中国科技大学的镜像源
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
+
 # 安装应用运行必需的系统证书和时区数据包
 RUN --mount=type=cache,target=/var/cache/apk \
     apk --update add ca-certificates tzdata && update-ca-certificates

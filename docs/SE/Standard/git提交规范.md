@@ -1,3 +1,6 @@
+## 标准流程
+1. https://zhuanlan.zhihu.com/p/689467888
+
 ## build
 **影响构建组件的修改, 如增加了依赖,删除依赖,项目版本迭代**
 - :heavy_plus_sign: 添加依赖
@@ -11,6 +14,7 @@
 ## docs
 **文档修改**
 - :memo: 添加更新文档
+
 ## feat
 **添加了新功能/特性**
 - :sparkles: 新特性 
@@ -76,7 +80,6 @@
 - :lipstick: UI页面添加或更新 
 - :iphone: CSS响应式设计
 - :dizzy: 添加更新动画
-
 ## test
 **添加,修改现有测试代码**
 

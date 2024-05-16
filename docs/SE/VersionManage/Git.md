@@ -3,35 +3,18 @@
 
 #Git #命令
 
-## 入门
-
-本地创建仓库并且提交到远程仓库
-
-1. 创建仓库
-   ```git
-   git init
-   ```
-2. **忽略提交内容**
-项目根目录创建 `.gitignore`, 在`.gitignore` 文件添加需要忽略的内容, 直接添加目录路径,以换行区分目录
-
-3. 链接到仓库
-   ```git
-   git remote add origin `你的仓库地址`
-   ```
-4. 提交文件
-   ```git
-   git add `file`
-   ```
-5. 提交注释
-```git
-   git commit -m `message`  
+## 基本配置
+配置用户和邮件
+```shell
+git config --global user.name "Your Name Comes Here"
+git config --global user.email you@yourdomain.example.com
 ```
 
-6. 推送
-```git
-   git push
+彩色输出
+```shell
+git config --global color.ui true
+git config --global core.pager more
 ```
-## 进阶
 
 ### 克隆
 拉取指定分支
