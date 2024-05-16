@@ -4,17 +4,6 @@ sidebar_position: 1
 
 # Mandala Blog
 
-## 历程
-1. 2018年开始接触计算机, 启蒙语言是Java, 后面开始跟老师学前端(HTML + CSS + Javascript)
-2. 同年报名计算机融媒体技术比赛团体赛, 正式学习HTML + CSS + Javascript, 比赛时主要负责移动端的H5作品CSS的绘制(CSS原生动画animations).
-3. 比赛结束后开始学习Vue生态.
-4. 后毕业, 进入新学校学习, 技术是Java基础/Spring MVC基础/Python深度学习/Oracle数据库设计/Linux基础, 开始对React感兴趣, 对React生态感到满意, 然后断断续续学习React, 期间学习了Next.js的React上层框架与前端工程化, 并编写与维护自己的博客网站并在各平台维护编写自己的文章.
-5. 在做一次作业时, 发现没有系统地学习任何后端, 后开始尝试Golang, 并开始喜欢它的性能(与Java/Python对比)与其语言的简洁性.
-6. 在了解Golang之后, 并对它开始深入了解, 并学习云原生运维技术(Docker/Kubernetes)与Linux命令式编程, 从0搭建Kubernetes, 并对前端与后端应用进行编排.
-7. 在学习完Golang基本知识后走向微服务,使用微服务框架Kratos, 并与MongoDB/Redis/Postgres等关系型与NoSQL数据库结合使用, 使用MinIO存储静态文件
-8. 利用后端技术与运维技术相结合完成了两套: (Gitlab CI + Gitlab Runner) 与 (Gitlab CI + Jenkins + ArgoCD)的DevOps工程化, 接触微服务的组件, 研究可观测性, 并对微服务中的服务治理(Consul), 日志监控(EFK), 容器编排(Kubernetes/Docker), 远程过程调用(gRPC), 集成了身份认证与授权(Casbin), 镜像管理(Harbor)
-9. 研究可观测性工具OpenTelemetry, 对Golang服务端应用进行监控HTTP/gRPC请求, 日志追踪, 应用指标,通过Kafka接收数据,使用kiali/Jaeger/Prometheus/Grafana等组件进行采集/可视化应用与数据库的指标/日志/链路
-
 ## 介绍
 <!-------------self-introduction start------------->
 
