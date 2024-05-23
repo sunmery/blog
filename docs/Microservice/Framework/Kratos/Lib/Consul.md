@@ -97,6 +97,24 @@ func newApp(
 		kratos.Registrar(reg), // 注册到Consul
 	)
 }
+
+func main(){
+    // 添加配置信息
+	var rc conf.Registry
+	if err := c.Scan(&rc); err != nil {
+		panic(err)
+	}
+	
+	// 注入到wire
+	app, cleanup, err := wireApp(bc.Server,&rc, bc.Data, logger)
+}
+```
+
+6. wire
+```go
+func wireApp(*conf.Server, *conf.Registry, *conf.Data, log.Logger) (*kratos.App, func(), error) {
+	panic(wire.Build(server.ProviderSet, data.ProviderSet, biz.ProviderSet, service.ProviderSet, newApp))
+}
 ```
 
 ## 参考
