@@ -1,3 +1,12 @@
+## 先前准备
+```shell
+vi /etc/ssh/sshd_config
+
+RSAAuthentication yes
+
+PubkeyAuthentication yes
+```
+
 ## 原理
 利用ssh的RSA加密算法的公钥与私钥进行加密与解密, 则不再需要密码作为key即可进行免密登录
 

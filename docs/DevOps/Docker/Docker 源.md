@@ -6,8 +6,10 @@ vim /etc/docker/daemon.json
 ```json
 {
 	"registry-mirrors": [
-			"https://mirror.ccs.tencentyun.com",
-	        "http://hub-mirror.c.163.com"
+		"https://reg-mirror.qiniu.com/",
+		"https://mirror.ccs.tencentyun.com",
+	    "http://hub-mirror.c.163.com",
+	        
 	    ]
 }
 ```

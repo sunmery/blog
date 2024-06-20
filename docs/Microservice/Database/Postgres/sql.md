@@ -220,6 +220,36 @@ CREATE TABLE photos(
 - macaddr mac地址
 ## 使用
 
+### 分页
+LIMIT `n`: 获取n行数据
+OFFSET `n`: 跳过n行数据
+
+示例: 跳过前10条, 获取第11到第20条记录
+```sql
+SELECT *
+FROM users
+LIMIT 10
+OFFSET 10
+```
+### 排序
+1. 名为`employees`的表，你想按`last_name`列的字母顺序对员工进行排序:
+ASC: 升序, 默认
+DESC: 降序
+```sql
+
+SELECT * 
+FROM employees 
+ORDER BY last_name 
+ASC;
+```
+
+2.按多个列排序，例如先按`last_name`排序，再按`first_name`排序:
+```sql
+SELECT *
+FROM users
+ORDER BY last_name, first_name,
+```
+
 ### 列操作
 - ALTER 对表添加新列
 ```sql

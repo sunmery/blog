@@ -1,3 +1,6 @@
+## CLI命令
+https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#config
+
 ## 缩写
 |名称|缩写|Kind|
 | ------- | ---- | ---- |

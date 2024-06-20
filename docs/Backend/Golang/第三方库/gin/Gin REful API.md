@@ -6,6 +6,13 @@
 前端可能会把数字类型的包装为字符串, 可以使用`encoding/json`的`json.Number`,
 > 本质是遍历JSON的类型
 
+
+## 响应头
+
+```go
+c.Header("Content-Type", "application/json")
+```
+
 ## Date
 
 `time.Time` 定义日期

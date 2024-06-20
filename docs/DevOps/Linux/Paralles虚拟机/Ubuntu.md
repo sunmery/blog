@@ -5,10 +5,10 @@ sudo passwd root
 
 sudo sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 ```
-## 静态
+## 静态IP
 1. 将虚拟机软件设置为桥接
 2. 查看mac的路由器的信息
-3. 在`/etc/netplan/00-installer-config.yaml`文件修改
+3. 在`/etc/netplan/00-installer-config.yaml`或者`50-cloud-init.yaml` 或类似名称
 ```shell
 cp /etc/netplan/00-installer-config.yaml{,.back}
 cat > /etc/netplan/00-installer-config.yaml <<EOF
@@ -52,20 +52,13 @@ prlctl unregister 14182a5e-8a9e-4bfe-94cd-ac807bb40fa4
 4. 重新注册生成新的UUID. 在mac主机上的终端执行以下命令:
 把`/Users/lisa/Public/Linux/Ubuntu/master/master1.pvm/`替换为你要更改的UUID虚拟机的pvm路径
 ```shell
-prlctl register --regenerate-src-uuid /Users/lisa/Public/Linux/Ubuntu/master/master1.pvm/
+prlctl register --regenerate-src-uuid /Users/lisa/Public/Linux/Ubuntu/node2.pvm/
 ```
 
 ## clash代理
 
 ### 设置代理
 #### HTTP(S)
-当前会话:
-
-```shell
-export MAC_IP="192.168.3.101"
-export http_proxy="http://$MAC_IP:7890"
-export https_proxy="https://$MAC_IP:7890"
-```
 
 别名
 ```shell
@@ -73,47 +66,12 @@ USER_PATH="/root"
 SHELL_FILE="${USER_PATH}/.bashrc"
 #export SHELL_FILE="~/.zshrc"
 #MAC_IP="192.168.3.220"
-MAC_IP="192.168.3.111"
+MAC_IP="192.168.3.220"
 
 sudo cat >> $SHELL_FILE <<EOF
 alias vpnon="export http_proxy='http://$MAC_IP:7890';export https_proxy='https://$MAC_IP:7890'"
-EOF
 
-source $SHELL_FILE
-cat $SHELL_FILE
-```
-
-## 设置使用代理
-alias setproxy="export http_proxy=http://127.0.0.1:1087; export https_proxy=$http_proxy; export all_proxy=socks5://127.0.0.1:1080; echo 'Set proxy successfully'"
-## 设置取消使用代理
-alias unsetproxy="unset http_proxy; unset https_proxy; unset all_proxy; echo 'Unset proxy successfully'"
-#### socket5协议
-
-```shell
-export MAC_IP="192.168.3.220"
-
-cat >> ~/.bashrc <<EOF
-export http_proxy="socks5://$MAC_IP:7890"
-export https_proxy="socks5://$MAC_IP:7890"
-EOF
-
-source ~/.bashrc
-cat ~/.bashrc
-```
-
-### 取消代理
-当前会话取消代理:
-```shell
-unset http_proxy
-unset https_proxy
-```
-
-别名:
-```shell
-USER_PATH="/root"
-SHELL_FILE="${USER_PATH}/.bashrc"
-cat >> $SHELL_FILE <<EOF
-alias vpnoff="unset http_proxy;unset https_proxy"
+alias vpnoff="unset http_proxy; unset https_proxy; unset all_proxy; echo 'Unset proxy successfully'"
 EOF
 
 source $SHELL_FILE
