@@ -63,7 +63,7 @@ const config: Config = {
       logo: {
         alt: 'My Site Logo',
         src: 'img/ico.png',
-        href: 'https://www.lookeke.com',
+        href: 'https://www.lookeke.top',
       },
       items: [
         {
@@ -147,10 +147,10 @@ const config: Config = {
         }
       ],
       style: 'dark',
-      // copyright: `
-      // Copyright © ${new Date().getFullYear()} Mandala日记本, Inc.
-      // <a href="https://beian.miit.gov.cn/" target="_blank">桂ICP备2022004535号-3</a>
-      // `,
+      copyright: `
+      Copyright © ${new Date().getFullYear()} Mandala日记本, Inc.
+      <a href="https://beian.miit.gov.cn/" target="_blank">桂ICP备2022004535号-4</a>
+      `,
     },
     prism: {
       theme: prismThemes.github,

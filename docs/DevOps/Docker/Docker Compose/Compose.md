@@ -1,9 +1,12 @@
+## 文件参考
+https://docs.docker.com/reference/compose-file
+## 命令参考
+https://docs.docker.com/reference/cli/docker/compose/
+
 > docker-compose不在需要docker-前缀
 
 包含Dockerfile的指令
 ```yml
-version: '3'
-
 services:
   tiktok:
 	# 打包时使用关键字build即可

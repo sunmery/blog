@@ -15,10 +15,10 @@ go get github.com/jackc/pgx/v5
 目录结构:
 ```
 db
-  gen: sqlc生成的go
+  gen: sqlc生成的go文件
   migrate: 用于存放迁移sql文件
-  query: 查询
-  schema.sql: 模型映射
+  query: 查询,sqlc的格式
+  schema: 数据库的sql语句, 例如创建数据库
   sqlc.yml: 配置文件
 ```
 
@@ -39,6 +39,25 @@ DROP INDEX idx_to_account_id;
 DROP INDEX idx_from_to_account_id;
 ```
 
+shema:
+```sql
+-- CREATE DATABASE demo;
+
+CREATE TABLE accounts
+(
+    id         bigserial primary key,
+    name      varchar     not null,
+    password varchar not null,
+    email varchar,
+    created_at timestamptz not null default now()
+);
+
+CREATE TABLE site_list
+(
+    id bigserial primary key,
+    name varchar
+);
+```
 - query目录的`account.sql`: 
 ```sql
 -- name: GetAccount :one
@@ -78,13 +97,13 @@ version: "2"
 sql:
   - engine: "postgresql" # postgresql, mysql or sqlite
     database:
-      uri: postgresql://user:pass@11.171.169.244:5432/bank
-    queries: "query" # SQL 查询的目录或单个 SQL 文件的路径;或路径列表
-    schema: "schema.sql" # SQL 迁移目录或单个 SQL 文件的路径;或路径列表
+      uri: postgresql://user:pass@host:5432/demo
+    queries: "db/query" # SQL 查询的目录或单个 SQL 文件的路径;或路径列表
+    schema: "db/schema" # SQL 迁移目录或单个 SQL 文件的路径;或路径列表
     gen: # 用于配置内置代码生成器的映射
       go:
-        out: "gen" # 生成代码的输出目录
-        package: "migrate" # 要用于生成的代码的包名称。默认为 out
+        out: "db/gen" # 生成代码的输出目录
+        package: "db" # 要用于生成的代码的包名称。默认为 out
         sql_package: "pgx/v5" # 数据库的驱动: pgx/v4 pgx/v5 database/sql 。默认值为 database/sql
         emit_db_tags: false # 如果为 true，则将 DB 标记添加到生成的结构中。默认值为 false
         emit_prepared_queries: true # 如果为 true，则包括对准备好的查询的支持。默认值为 false
@@ -114,6 +133,20 @@ sql:
         # rename:# 自定义生成的结构字段的名称。有关使用信息，请参阅重命名字段。
         # overrides: #它是定义的集合，用于指示使用哪些类型来映射数据库类型
 
+```
+
+这样的配置文件生成的目录结构就是:
+```
+db
+	query
+		account.sql
+	schema
+		demo.sql
+	gen:
+		...
+		db.go
+		modules.go
+		...
 ```
 
 生成sql映射:

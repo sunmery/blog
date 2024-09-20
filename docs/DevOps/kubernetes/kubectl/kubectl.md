@@ -1,17 +1,18 @@
 ## CLI命令
 https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#config
 
+
 ## 缩写
-|名称|缩写|Kind|
-| ------- | ---- | ---- |
-|namespaces|ns|Namespace|
-| deployments| deploy| Deployment
-| scrvices| svc| Service
-| nodes| no| Node
-| pods| po|Pod
-| replicasets| rs| ReplicaSets
-| statefulsets| sts| StatefulSet
-|ConfMap|cm|ConfMap
+| 名称           | 缩写     | Kind        |
+| ------------ | ------ | ----------- |
+| namespaces   | ns     | Namespace   |
+| deployments  | deploy | Deployment  |
+| scrvices     | svc    | Service     |
+| nodes        | no     | Node        |
+| pods         | po     | Pod         |
+| replicasets  | rs     | ReplicaSets |
+| statefulsets | sts    | StatefulSet |
+| ConfMap      | cm     | ConfMap     |
 
 ## 查看证书
 包含证书和DNS地址
@@ -25,6 +26,13 @@ openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text
 - -A 列出资源的全部信息
 - -owide 列出当前资源的详细信息
 
+### patch
+
+替换字段或字段值, 例如:
+将`spec.type`的值修改为: `NodePort`
+```shell
+kubectl patch svc simple-prod-query -n observability -p '{"spec":{"type":"NodePort"}}'
+```
 ### uncordon 调度
 将Pod变为可调度, 与污点/容忍度相关
 语法:

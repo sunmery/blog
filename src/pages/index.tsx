@@ -8,6 +8,7 @@ import Heading from '@theme/Heading';
 import styles from './index.module.css';
 
 import Construction from "@site/src/pages/construction";
+import SiteList from "@site/src/components/SiteList";
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -30,6 +31,7 @@ function HomepageHeader() {
   );
 }
 
+
 export default function Home(): JSX.Element {
 
   const {siteConfig} = useDocusaurusContext();
@@ -41,6 +43,7 @@ export default function Home(): JSX.Element {
         <HomepageHeader />
         <main>
             <Construction/>
+            <SiteList/>
           <HomepageFeatures/>
         </main>
       </Layout>
