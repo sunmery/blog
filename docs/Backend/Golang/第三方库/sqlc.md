@@ -12,6 +12,32 @@ go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
 go get github.com/jackc/pgx/v5
 ```
 
+
+## 使用
+### 编写
+
+修改生成的字段: `sqlc.arg(value)`
+将影响生成的字段, 原本的字段为:
+```go
+type AccountParms struct {
+  Balancer int
+}
+```
+
+修改后则为:
+```go
+type AccountParms struct {
+  Amount int
+}
+```
+
+```sql
+UPDATE account 
+SET balanacer = balancer + sqlc.arg(amount)
+WHERE id = $1
+```
+## 配置
+
 目录结构:
 ```
 db
@@ -95,21 +121,21 @@ VALUES ($1,
 ```yaml
 version: "2"
 sql:
-  - engine: "postgresql" # postgresql, mysql or sqlite
+  - schema: "db/migrate"
+    queries: "db/query"
+    engine: "postgresql"
     database:
       uri: postgresql://postgres:${PG_PASSWORD}@localhost:5432/simple_bank?sslmode=disable
-    queries: "db/query" # SQL 查询的目录或单个 SQL 文件的路径;或路径列表
-    schema: "db/migrate" # SQL 迁移目录或单个 SQL 文件的路径;或路径列表
-    gen: # 用于配置内置代码生成器的映射
+    gen:
       go:
-        out: "db/gen" # 生成代码的输出目录
-        package: "db" # 要用于生成的代码的包名称。默认为 out
-        sql_package: "pgx/v5" # 数据库的驱动: pgx/v4 pgx/v5 database/sql 。默认值为 database/sql
+        package: "db"
+        out: "db/sqlc"
+        sql_package: "pgx/v5"
         emit_db_tags: false # 如果为 true，则将 DB 标记添加到生成的结构中。默认值为 false
         emit_prepared_queries: true # 如果为 true，则包括对准备好的查询的支持。默认值为 false
         emit_interface: true # 如果为 true，则在生成的包中输出接口 Querier 。默认值为 false
         emit_exact_table_names: true # 如果为 true，则结构名称将使用复数表名称。否则，sqlc 会尝试单数化复数表名。默认值为 false 。
-        emit_empty_slices: false # 如果为 true， :many 则查询返回的切片将为空，而不是 nil 。默认值为 false 。
+        emit_empty_slices: true # 如果为 true， :many 则查询返回的切片将为空，而不是 nil 。默认值为 false 。
         emit_exported_queries: true # 如果为 true，则可以导出自动生成的 SQL 语句以供其他包访问。
         emit_json_tags: true # 如果为 true，则将 JSON 标记添加到生成的结构中。默认值为 false 。
         emit_result_struct_pointers: false # 如果为 true，则查询结果将作为指向结构的指针返回。返回多个结果的查询将作为指针切片返回。默认值为 false 。
@@ -132,6 +158,12 @@ sql:
         query_parameter_limit: 1 # 将为 Go 函数生成的位置参数数。若要始终发出参数结构，请将其设置为 0 。默认值为 1 。
         # rename:# 自定义生成的结构字段的名称。有关使用信息，请参阅重命名字段。
         # overrides: #它是定义的集合，用于指示使用哪些类型来映射数据库类型
+        overrides:
+          - db_type: "timestamptz"
+            go_type: "time.Time"
+          - db_type: "uuid"
+            go_type: "github.com/google/uuid.UUID"
+
 ```
 
 这样的配置文件生成的目录结构就是:
