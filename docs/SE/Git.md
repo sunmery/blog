@@ -20,6 +20,16 @@ git config --global core.autocrlf input
 git config --global core.autocrlf false
 ```
 
+## 最佳实践
+不要直接把代码推送到主分支, 先创建一个新的分支, 在经过review之后, 确认无误之后在合并代码到主分支
+```bash
+git checkout -b beta
+
+git add .
+git commit -m "feat: "
+git push main beta
+```
+
 git commit 模板
 
 > 提交时显示 commit 模板
