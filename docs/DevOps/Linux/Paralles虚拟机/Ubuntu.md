@@ -1,9 +1,37 @@
+## 增加超时时间
 
-## Root
+客户机:
+ `~/.ssh/config`
+```
+Host *
+  ServerAliveInterval 60
+  ServerAliveCountMax 3
+```
+
+服务器:
+```bash
+cat >> /etc/ssh/sshd_config <<EOF
+ClientAliveInterval 60
+ClientAliveCountMax 3
+EOF
+
+sudo systemctl restart ssh
+```
+## 修改密码
 ```
 sudo passwd root
-
+```
+## 允许Root用户登录
+```
 sudo sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+```
+
+## 设置密钥登录
+
+```bash
+sudo sed -i 's/PubkeyAuthentication no/PubkeyAuthentication yes/g' /etc/ssh/sshd_config
+
+cat /etc/ssh/sshd_config | grep PubkeyAuthentication
 ```
 ## 静态IP
 1. 将虚拟机软件设置为桥接
