@@ -1,0 +1,33 @@
+## [COMMANDS](https://github.com/kubernetes-sigs/cri-tools/blob/master/docs/crictl.md)
+
+- `attach`:附加到正在运行的容器
+- `create`: 创建新容器
+- `exec`: 在正在运行的容器中运行命令
+- `version`:显示运行时版本信息
+- `images, image, img`: 列出镜像
+- `inspect`: 显示一个或多个容器的状态
+- `inspecti`: 返回一张或多张图片的状态
+- `imagefsinfo`:返回镜像文件系统信息
+- `inspectp`: 显示一个或多个 Pod 的状态
+- `logs`: 获取容器的日志
+- `port-forward`: 将本地端口转发到 Pod
+- `ps`: 列出容器
+- `pull`: 注册表中拉去镜像
+- `run`: 在沙盒中运行新容器
+- `runp`: 运行新 pod
+- `rm`: 移除一个或多个容器
+- `rmi`: 删除一张或多张镜像
+- `rmp`: 删除一个或多个 Pod
+- `pods`: 列出default的镜像列表
+- `start`: 启动一个或多个已创建的容器
+- `info`: 显示容器运行时的信息
+- `stop`: 停止一个或多个正在运行的容器
+- `stopp`: 停止一个或多个正在运行的 Pod
+- `update`: 更新一个或多个正在运行的容器
+- `config`: 获取和设置 `crictl` 客户端配置选项
+- `stats`: 列出容器资源使用情况统计信息
+- `statsp`: 列出 Pod 资源使用情况统计信息
+- `completion`: 输出 bash shell 完成代码
+- `checkpoint`: 检查一个或多个正在运行的容器
+- `events, event`: 流式传输容器的事件
+- `help, h`: 显示一个命令的命令列表或帮助

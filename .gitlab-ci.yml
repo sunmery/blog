@@ -1,0 +1,76 @@
+stages:
+  - build
+  - first_run
+  - update
+  - deploy
+
+variables:
+  FIRST: "true"
+  NGINX_DIR: /home/nginx
+
+cache:
+  key: nginx-quic
+  paths:
+    - node_modules
+
+# 初始化运行时的工作, 用于创建基本的环境, 后续环境不再需要时, 把FIRST开关设为非true即可
+job_first_run:
+  stage: first_run
+#  tags:
+#    - did2
+  image: ccr.ccs.tencentyun.com/lisa/alpine:latest
+  script:
+    - |
+      cat > env_vars.sh <<EOF
+       #!/usr/bin/bash
+       export DOMAIN=${DOMAIN}
+       export NGINX_DIR=${NGINX_DIR}
+       export HTML_DIR=${NGINX_DIR}/html
+       export CONF_DIR=${NGINX_DIR}/conf
+       export SSL_DIR=${NGINX_DIR}/ssl
+      EOF
+    - chmod +x ./env_vars.sh
+    - ./env_vars.sh
+    - cat env_vars.sh
+    - ls
+    - tar -czf dist.tar.gz -C build .
+    - sshpass -e scp -o stricthostkeychecking=no docker/nginx/first.sh env_vars.sh dist.tar.gz ${s_user}@${s_host2}:/tmp/
+    - sshpass -e ssh -o stricthostkeychecking=no ${s_user}@${s_host2} '
+      chmod +x /tmp/env_vars.sh
+      ; source /tmp/env_vars.sh
+      ; echo ${HTML_DIR}
+      ; tar -zxvf /tmp/dist.tar.gz -C ${HTML_DIR}
+      ; chmod +x /tmp/first.sh
+      ; source /tmp/first.sh
+      ; rm -rf /tmp/env_vars.sh
+      ; rm -rf /tmp/first.sh
+      ; rm -rf /tmp/dist.tar.gz
+      '
+  only:
+    variables:
+      - $FIRST == "true"
+
+job_web:
+  stage: build
+  image: node:18-alpine
+  tags:
+    - node
+  script:
+    - npm install pnpm -g
+    - rm -rf node_modules
+    - pnpm install
+    - pnpm build
+  only:
+    - main
+  artifacts:
+    paths:
+      - build
+
+job_web_update:
+  stage: build
+  image: node:18-alpine
+  script:
+    - sshpass -e ssh -o stricthostkeychecking=no ${s_user}@${s_host2} 'docker exec -it nginx-quic nginx -s reload'
+  only:
+    variables:
+      - $FIRST == "false"
