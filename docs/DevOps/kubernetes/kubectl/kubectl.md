@@ -26,6 +26,11 @@ openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text
 - -A 列出资源的全部信息
 - -owide 列出当前资源的详细信息
 
+### endpoints 地址
+```
+k get endpoints <namespace>
+```
+
 ### 获取Pod名字
 
 ```bash
