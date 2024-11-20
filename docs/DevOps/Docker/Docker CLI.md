@@ -4,6 +4,17 @@
 ## CLI
 https://docs.docker.com/reference/cli/docker/
 
+docker inspect 查看网络信息**
+```
+docker inspect <container_id_or_name>
+```
+
+查看特定的网络
+```
+docker network ls
+docker network inspect <network name>
+```
+
 推送正在运行的容器
 ```shell
 old_image="lisa/lib:nginx-http3"
