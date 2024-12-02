@@ -1,9 +1,14 @@
 
 https://dns.icoa.cn/#china
 
-字节DNS
+腾讯云DNS
 ```
-180.184.1.1
+119.29.29.29
+```
 
-180.184.2.2
+DoH
+
+https://github.com/bamf2077/secure-dns
+```
+https://doh.pub/dns-query
 ```
