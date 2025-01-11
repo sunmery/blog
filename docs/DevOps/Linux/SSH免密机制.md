@@ -17,7 +17,8 @@ PubkeyAuthentication yes
 ```shell
 export user="root"
 export host="192.168.2.101"
-scp ~/.ssh/id_rsa.pub $user@$host:~/.ssh/authorized_keys
+#scp ~/.ssh/id_rsa.pub $user@$host:~/.ssh/authorized_keys
+scp ~/.ssh/id_ed25519.pub $user@$host:~/.ssh/authorized_keys
 ```
 ### 第三方库:
 

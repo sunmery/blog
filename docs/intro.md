@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 ## About me
 <!-------------self-introduction start------------->
 
@@ -11,14 +7,10 @@ sidebar_position: 1
 </h3>
 
 - 😄 Read more about my [Blog](https://blog-gamma-two-81.vercel.app/)
-- 👯 Follow me on [Juejin](https://juejin.cn/user/2172290708810744)
 - 🌱 I’m currently learning Golang
 - 🔭 I’m currently working on Microservices and Cloud Native 
-- 📫 How to reach me: xiconz@qq.com
 
 <!-- https://readme-typing-svg.demolab.com/demo/ -->
-
-[//]: # (![Typing SVG]&#40;https://readme-typing-svg.herokuapp.com?font=DynaPuff&size=20&pause=1000&color=9999FF&center=true&vCenter=true&width=500&height=22&lines=The+dream+is+indie+dever+based+in+MACAO.++%F0%9F%91%8B&#41;)
 
 <!--------------self-introduction end-------------->
 
@@ -26,8 +18,6 @@ sidebar_position: 1
 
 <!-------------https://simpleicons.org------------->
 <!-------------https://img.shields.io-------------->
-
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=lookeke&layout=compact&theme=buefy)](https://juejin.cn/user/2172290708810744/posts)
 
 ## Tech stack
 
