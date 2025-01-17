@@ -3,6 +3,15 @@
 vim /etc/docker/daemon.json
 ```
 
+使用宿主机代理:
+```
+"proxies" : {
+    "http-proxy": "http://127.0.0.1:7890",
+    "no-proxy": "localhost,127.0.0.0/8",
+    "https-proxy": "http://127.0.0.1:7890"
+  },
+```
+
 ```json
 {
   "registry-mirrors": [

@@ -1,11 +1,6 @@
 ## About me
 <!-------------self-introduction start------------->
 
-<h3>
-  Hi~ <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25" alt="手势"/>
-  <img src="https://emojis.slackmojis.com/emojis/images/1588866973/8934/hellokittydance.gif?1588866973" alt="Hi" width="30" />
-</h3>
-
 - 😄 Read more about my [Blog](https://blog-gamma-two-81.vercel.app/)
 - 🌱 I’m currently learning Golang
 - 🔭 I’m currently working on Microservices and Cloud Native 
@@ -33,7 +28,6 @@
 
 ### Application Definition & Image Build
 - helm
-- krew
 - kustomize
 - Docker + Docker-compose
 
@@ -84,5 +78,5 @@
 
 ### Continuous Integration & Delivery
 - Gitlab CI
-- Github Action
+- GitHub Action
 - Argocd
