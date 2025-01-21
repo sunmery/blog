@@ -3,6 +3,17 @@
 vim /etc/docker/daemon.json
 ```
 
+```bash
+cp /etc/docker/daemon.json{,back}
+cat > /etc/docker/daemon.json <<EOF
+{  
+  "registry-mirrors": [
+    "https://646f636b6572.boown.com"
+  ]
+}
+EOF
+```
+
 使用宿主机代理:
 ```
 "proxies" : {
@@ -15,6 +26,7 @@ vim /etc/docker/daemon.json
 ```json
 {
   "registry-mirrors": [
+    "https://646f636b6572.boown.com",
     "https://docker.rainbond.cc",
     "https://dockerproxy.cn",
     "https://docker.udayun.com",

@@ -26,6 +26,10 @@ sudo passwd root
 sudo sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 ```
 
+## 使用国内源
+```bash
+sudo sed -i 's/ports.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list.d/ubuntu.sources && sudo apt update && sudo apt upgrade -y
+```
 ## 设置密钥登录
 
 ```bash
