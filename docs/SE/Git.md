@@ -1,6 +1,22 @@
 #工程化
 
 ## 推荐配置
+
+全局配置：
+- 默认的主分支名称为main, 统一
+```bash
+git config --global init.defaultBranch main 
+```
+- 提交时转换为 LF，检出时不转换
+```bash
+git config --global core.autocrlf input
+```
+
+- 避免不必要的合并提交
+当你执行 `git pull` 时，Git 默认会执行 `fetch` 和 `merge` 操作，这可能会导致本地分支的合并冲突或其他变化
+```bash
+git config pull.rebase true
+```
 ### Git 的 `core.autocrlf` 配置
 
 - `true`： 提交时转换为 `LF`，检出时转换为 `CRLF`
@@ -19,13 +35,6 @@ git config --global core.autocrlf input
 
 ```shell
 git config --global core.autocrlf false
-```
-
-### 避免不必要的合并提交
-当你执行 `git pull` 时，Git 默认会执行 `fetch` 和 `merge` 操作，这可能会导致本地分支的合并冲突或其他变化
-
-```bash
-git config pull.rebase true
 ```
 
 验证设置
