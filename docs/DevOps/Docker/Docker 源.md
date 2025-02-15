@@ -12,6 +12,7 @@ cat > /etc/docker/daemon.json <<EOF
   ]
 }
 EOF
+systemctl restart docker
 ```
 
 使用宿主机代理:
