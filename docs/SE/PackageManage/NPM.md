@@ -91,17 +91,46 @@ npm -v
 npm get registry
 ```
 
-切换到npm淘宝源(淘宝源亲测不是总是最新的)
+切换到最新的淘宝源：
 
-```shell
-npm config set registryhttps://registry.npm.taobao.org/
+```
+npm config set registry https://registry.npmmirror.com
 ```
 
-切换回npm默认源
-
-```shell
-npm config set registryhttps://registry.npmjs.org
+使用**阿里云** 镜像源加速 NPM
 ```
+npm config set registry https://npm.aliyun.com
+```
+
+使用**腾讯云**镜像源加速 NPM
+
+```
+npm config set registry http://mirrors.cloud.tencent.com/npm/
+```
+
+使用**华为云** 镜像源加速 NPM
+
+```
+npm config set registry https://mirrors.huaweicloud.com/repository/npm/
+```
+
+返回**npm** 官方原始镜像
+
+```
+npm config set registry https://registry.npmjs.org/
+```
+
+ **使用那个镜像，只需要 npm config set registry + 对应的镜像网址就好了**
+
+```
+npm config set registry 
+```
+
+**查看当前的镜像源**
+
+```
+npm config get registry
+``````
 
 ## 安装方式:
 
