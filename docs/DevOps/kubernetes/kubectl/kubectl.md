@@ -98,6 +98,12 @@ serviceaccount `<服务账号名>` 创建一个服务账号
 ### config 
 config current-context 查看当前上下文
 config set-context $(ct config current-context) --namespace=`<ns>` 切换命名空间
+
+查看kubeconf证书
+```bash
+kubectl config view --minify --raw
+```
+
 切换到`dev`命名空间
 ```sh
 kubectl config set-context $(kubectl config current-context) --namespace=dev
