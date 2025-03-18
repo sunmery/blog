@@ -14,6 +14,17 @@ https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#config
 | statefulsets | sts    | StatefulSet |
 | ConfMap      | cm     | ConfMap     |
 
+## 更新证书
+```bash
+#kubeadm 部署换证书方法
+kubeadm certs check-expiration #查看什么时候过期
+kubeadm certs renew all #更新
+docker ps | grep -v pause | grep -E "etcd|scheduler|controller|apiserver" | awk '{print $1}' | awk '{print "docker","restart",$1}' | bash #重启
+
+kubeadm certs check-expiration #查看有没有增加时长，此时还是用不了
+
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config #结束，能用了
+```
 ## 查看证书
 包含证书和DNS地址
 ```shell
