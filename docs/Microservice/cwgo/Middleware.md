@@ -1,5 +1,7 @@
 ## 示例
+
 - 请求的处理时间函数:
+
 ```go
 package middleware
 
@@ -22,13 +24,17 @@ func ApiRequestTimingMiddleware(next endpoint.Endpoint) endpoint.Endpoint {
 ```
 
 ## 使用
+
 ### server
+
 main.go
+
 ```go
 opts = append(opts, server.WithServiceAddr(addr),server.WithMiddleware(middleware.ApiRequestTimingMiddleware))
 ```
 
 ### Client
+
 ```go
 cli, err3 := demoservice.NewClient(
 		"demo",

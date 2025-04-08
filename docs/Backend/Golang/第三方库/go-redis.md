@@ -3,6 +3,7 @@
 ## 错误处理
 
 redis.Nil 空值
+
 ```go
 
 val, err := rdb.Get(ctx, "key").Result()
@@ -11,9 +12,10 @@ switch err{
 }
 ```
 
-
 ### 有序列表/有序集合
+
 添加
+
 ```go
 redis.ZAdd()
 ```
@@ -26,6 +28,7 @@ go get github.com/go-redis/redis
 ```
 
 ## Test
+
 ```go
 package test
 
@@ -60,4 +63,5 @@ func TestRedisDB(t *testing.T) {
 ```
 
 ## 工具类
+
 [参考](https://blog.csdn.net/qq_44237719/article/details/128920821)

@@ -1,4 +1,3 @@
-
 ```text
 vim /etc/docker/daemon.json
 ```
@@ -16,6 +15,7 @@ systemctl restart docker
 ```
 
 使用宿主机代理:
+
 ```
 "proxies" : {
     "http-proxy": "http://127.0.0.1:7890",
@@ -49,7 +49,6 @@ systemctl restart docker
 }
 ```
 
-
 ```bash
 cat > /etc/docker/daemon.json <<EOF
 {
@@ -79,4 +78,5 @@ systemctl restart docker
 ```
 
 ## 资料
+
 https://cloud.tencent.com/document/product/1207/45596

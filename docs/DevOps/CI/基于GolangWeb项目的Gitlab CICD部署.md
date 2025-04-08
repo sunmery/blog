@@ -135,7 +135,8 @@ port: 端口, 默认为`22`
 ssh <user>@<host> -p <port>
 ```
 
-1. 通过`Docker`安装[GitLab-Runner](https://juejin.cn/post/7205954522722828344),查阅该文章的三级标题**注册 Gitlab-Runner**部分
+1. 通过`Docker`安装[GitLab-Runner](https://juejin.cn/post/7205954522722828344),查阅该文章的三级标题**注册 Gitlab-Runner
+   **部分
 
 2. 创建一个名为`runner1`的 Gitlab-Runner
 
@@ -173,7 +174,8 @@ gitlab/gitlab-runner:latest register
 
 ### 编写自动化脚本
 
-从本地 git push 提交触发 git hook 钩子时, gitlab-runner CI 管道监听触发事件, 然后进行处理, 那么就需要编写 gitlab 的 CI 自动化流程
+从本地 git push 提交触发 git hook 钩子时, gitlab-runner CI 管道监听触发事件, 然后进行处理, 那么就需要编写 gitlab 的 CI
+自动化流程
 如何编写自动化流程脚本?
 
 1. 思考以前手动的方式

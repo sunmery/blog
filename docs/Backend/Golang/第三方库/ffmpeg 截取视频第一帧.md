@@ -78,6 +78,7 @@ func GetSnapshot(videoPath, snapshotPath string, frameNum int) (snapshotName str
 > `alpine `的环境变量通过`docker exec -it <容器> echo $PATH`得到, 挂载到它返回的任意一个目录即可, 例如`/usr/local/bin`
 
 示例输出:
+
 ```shell
 docker exec -it tiktok echo $PATH
 
@@ -105,6 +106,7 @@ services:
 ```
 
 ## 参考
+
 1. https://github.com/u2takey/ffmpeg-go
 2. https://juejin.cn/post/7107959471355199495
 3. http://ffmpeg.org/

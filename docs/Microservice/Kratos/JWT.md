@@ -1,6 +1,8 @@
 ## RSA + SHA256
+
 编写实际配置:
 `configs/auth.yml`
+
 ```yml
 jwt:
   service_key: service_key
@@ -38,6 +40,7 @@ jwt:
 
 添加配置:
 `conf/conf.proto`
+
 ```proto
 message Auth {
   message JWT {
@@ -50,6 +53,7 @@ message Auth {
 
 注入配置:
 cmd/server.go:
+
 ```go
 ...
     var ac conf.Auth
@@ -63,6 +67,7 @@ cmd/server.go:
 
 注入依赖:
 `wire.go`
+
 ```go
 // wireApp init kratos application.
 func wireApp(*conf.Server, *conf.Data, *conf.Auth, log.Logger) (*kratos.App, func(), error) {
@@ -72,6 +77,7 @@ func wireApp(*conf.Server, *conf.Data, *conf.Auth, log.Logger) (*kratos.App, fun
 ```
 
 HTTP中间件: `server/http.go`
+
 ```go
 package server
 
@@ -157,8 +163,8 @@ func NewHTTPServer(c *conf.Server, ac *conf.Auth, creditCards *service.CreditCar
 
 ```
 
-
 将jwt负载转换成业务字段, 例如`Payload`结构:
+
 ```go
 type Payload struct {
 	ID    string `json:"id"`
@@ -200,6 +206,7 @@ func ExtractPayload(ctx context.Context) (*Payload, error) {
 
 使用jwt的payload:
 data/example.go:
+
 ```go
 func (c *creditCardsRepo) GetCreditCard(ctx context.Context, req *biz.GetCreditCardsRequest) ([]*biz.CreditCards, error) {
     // 通过jwt.FromContext(ctx)获取token的payload内容

@@ -1,12 +1,15 @@
 ## 普通版本
+
 参考官网[例子](https://swiperjs.com/get-started)即可
 
 ## React
+
 1. 使用`swiper`提供的`react`组件版本
 2. swipt组件从`swiper`获取
 3. HTML组件从`swiper/react`组件获取
 
 例子:
+
 ```jsx
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';

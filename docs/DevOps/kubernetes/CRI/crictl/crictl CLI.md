@@ -24,7 +24,7 @@
 - `stop`: 停止一个或多个正在运行的容器
 - `stopp`: 停止一个或多个正在运行的 Pod
 - `update`: 更新一个或多个正在运行的容器
-- `config`: 获取和设置 `crictl` 客户端配置选项
+- `config`: 获取和设置`crictl`客户端配置选项
 - `stats`: 列出容器资源使用情况统计信息
 - `statsp`: 列出 Pod 资源使用情况统计信息
 - `completion`: 输出 bash shell 完成代码

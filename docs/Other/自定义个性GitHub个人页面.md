@@ -11,7 +11,8 @@
        color: 右边文本背景颜色
        图片图标需要填写`message`文本即可，点击`Make badge`生成：下图是`message`为`as`,`color`选择`yellow`的结果
        ![[Pasted image 20221026132937.png]]
-2. 阅读[DenverCoder1](https://github.com/DenverCoder1/custom-icon-badges/blob/main/README.md)的`GitHub`博客, 将刚刚的生成图片地址复制下来,
+2. 阅读[DenverCoder1](https://github.com/DenverCoder1/custom-icon-badges/blob/main/README.md)的`GitHub`博客,
+   将刚刚的生成图片地址复制下来,
    将`img.shields.io`替换成`custom-icon-badges.demolab.com`, 填写图标`MarkDown`地址， 语法:
    `<message>` ： 图像的描述
    `<URI>`： 图标地址

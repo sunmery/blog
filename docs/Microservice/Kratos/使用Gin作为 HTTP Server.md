@@ -1,4 +1,5 @@
 ## 各自优点
+
 选择使用 `Kratos` 的 HTTP 服务还是使用 `Gin` 作为 HTTP 服务取决于项目需求和偏好。这两种方法都有各自的优势和适用场景。
 
 使用 `Kratos` 官方的 HTTP 服务：
@@ -13,11 +14,12 @@
 2. **生态系统**: 拥有丰富的第三方插件和库，可以方便地扩展功能，例如验证、API文档生成等。
 3. **开发速度**: Gin 通常被认为是一个开发速度较快的框架，适用于快速构建原型和小规模项目。
 
-**如何选择?** 
+**如何选择?**
 
 考虑团队熟悉度、项目规模、性能要求、扩展性等。如果已经使用了 Kratos 的其他组件，使用它的官方HTTP服务可能会更加方便。
 
 如果更倾向于手动控制和定制，或者需要使用其他Gin提供的特性，那么使用Gin是一个不错的选择。
+
 ## 用法
 
 > 由于使用了 gin 作为路由处理,那么就不需要在`protobuf`定义`google.api.http`这个`option`了
@@ -28,11 +30,13 @@
 4. 注入`gin`路由用例到`wire`中
 
 ### 规范分层, 编写服务
+
 1. 在`internal`添加`interfaces`目录, 编写`gin`服务
 2. 定义 `gin` 服务
 3. 定义路由
 4. 返回 `gin` 服务
-routes.go
+   routes.go
+
 ```go
 package interfaces
 
@@ -44,13 +48,14 @@ func RegisterHTTPServer () *gin.Engine{
 }
 ```
 
-###  编写路由用例, 响应与处理
+### 编写路由用例, 响应与处理
 
 1. 定义一个路由用例的结构体,与`Service`层交互
 2. 编写该路由的用例, 实现该路由用例的结构体
 3. 编写路由
 
 `interfaces/sayhi.go`
+
 ```go
 package interfaces
 
@@ -74,6 +79,7 @@ func SayHi (c *gin.Context){
 ```
 
 ### 与 Kratos 集成
+
 1. 在`service/http.go`中注册路由
 2. 在函数`NewHTTPServer`中添加在`interfaces`用户接口层编写的路由用例参数
 3. 调用`interfaces`用户接口层的注册方法`RegisterHTTPServer`注入到 `srv`中
@@ -119,9 +125,11 @@ func NewHTTPServer(c *conf.Server, userRouter *interfaces.UserUseCase, user *ser
 ```
 
 ### 编写ProviderSet
+
 在`interfaces`用户接口层编写`ProviderSet`
 
 `interfaces/interface.go`
+
 ```go
 package interfaces
 
@@ -134,6 +142,7 @@ var ProviderSet = wire.NewSet(NewUserUseCase)
 ### 注入到 wire 中
 
 `cmd/<project>/wire.go`
+
 ```go
 //go:build wireinject
 // +build wireinject
@@ -160,7 +169,9 @@ func wireApp(*conf.Server, *conf.Database, log.Logger) (*kratos.App, func(), err
 }
 
 ```
+
 ### 测试
+
 1. 进入到`cmd/<project>`目录
 2. 在该目录使用终端执行`wire`
 3. 启动项目, 测试接口是否正常

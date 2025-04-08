@@ -376,7 +376,8 @@ source ~/.bashrc
 
 ## Q&A
 
-Q: `[ERROR FileContent--proc-sys-net-ipv4-ip_forward]: /proc/sys/net/ipv4/ip_forward contents are not set to 1`  因为之前初始化过
+Q: `[ERROR FileContent--proc-sys-net-ipv4-ip_forward]: /proc/sys/net/ipv4/ip_forward contents are not set to 1`
+因为之前初始化过
 A: 修改内核
 
 ```sh
@@ -402,7 +403,8 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-Q:`networkPlugin cni failed to set up pod "test-k8s-68bb74d654-mc6b9_default" network: open /run/flannel/subnet.env: no such file or directory`
+Q:
+`networkPlugin cni failed to set up pod "test-k8s-68bb74d654-mc6b9_default" network: open /run/flannel/subnet.env: no such file or directory`
 
 A:
 在每个节点创建文件`/run/flannel/subnet.env`写入以下内容，配置后等待一会就好了
@@ -414,6 +416,5 @@ FLANNEL_SUBNET=10.244.0.1/24
 FLANNEL_MTU=1450
 FLANNEL_IPMASQ=true"
 ```
-
 
 ![[II74`B0FZ0AJLEX[0O3_(`B.jpg]]

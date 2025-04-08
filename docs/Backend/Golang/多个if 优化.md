@@ -1,5 +1,5 @@
-
 没优化之前: 嵌套if, 检查是否有中文字段值, 否则去查找英文值, 都没有则返回默认值
+
 ```go
 if record.City.Names["zh-CN"] == "" {
 	city = record.City.Names["en"]
@@ -12,6 +12,7 @@ if record.City.Names["zh-CN"] == "" {
 ```
 
 优化后: 平级if..else代替嵌套if
+
 ```go
 if name, ok := record.City.Names["zh-CN"]; ok {
 	city = name
@@ -37,6 +38,7 @@ if name, ok := record.City.Names["zh-CN"]; ok {
 ```
 
 使用switch代替多个if分支: 根据成绩的分数段给出对应的等级
+
 ```go
 func calculateGrade(score int) string {
 	var grade string
@@ -59,7 +61,9 @@ func calculateGrade(score int) string {
 }
 ```
 
-优化后: 使代码更加简洁，并且避免了多个嵌套的 `if-else` 语句。同时，使用 `switch` 语句还能够处理默认情况，即当 `score` 不满足任何一个分支条件时，默认返回 "Invalid Score"
+优化后: 使代码更加简洁，并且避免了多个嵌套的 `if-else` 语句。同时，使用 `switch` 语句还能够处理默认情况，即当 `score`
+不满足任何一个分支条件时，默认返回 "Invalid Score"
+
 ```go
 func calculateGrade(score int) string {
 	var grade string
@@ -86,6 +90,7 @@ func calculateGrade(score int) string {
 错误检查
 
 首先看`etcd`github官网的错误处理[例子](https://github.com/etcd-io/etcd/tree/main/client/v3#error-handling):
+
 ```go
 resp, err := cli.Put(ctx, "", "")
 if err != nil {
@@ -102,7 +107,8 @@ if err != nil {
 }
 ```
 
-我们可以进一步优化, 使用`go`自带的包`errors`对错误类型进行更加健壮的检查, 但是对开发者的要求较高, 需要预定义正确的错误类型, 来保证正确的比较错误
+我们可以进一步优化, 使用`go`自带的包`errors`对错误类型进行更加健壮的检查, 但是对开发者的要求较高, 需要预定义正确的错误类型,
+来保证正确的比较错误
 
 ```go
 resp, err := cli.Put(ctx, "", "")

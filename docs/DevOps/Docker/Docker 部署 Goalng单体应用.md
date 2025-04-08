@@ -1,4 +1,5 @@
 示例 1: 纯 Golang 项目的部署, 如果需要排除某个文件/目录, 编写`.dockerignore`文件即可, 与`.gitignore`文件格式相同
+
 ```Dockerfile
 FROM golang:1.21 AS builder
 MAINTAINER Lookeke
@@ -37,8 +38,8 @@ EXPOSE 4000
 ENTRYPOINT ["/app/myapp"]
 ```
 
-
 `docker-compose.yml`
+
 ```yml
 version: '3'
 
@@ -62,15 +63,18 @@ services:
 > 将`image`: `web`  # 这里需要替换成你使用 `Docker build`的名字
 
 语法:
+
 ```shell
 docker build [--progress=plain] [--no-cache] -t <image_name> <path>
 ```
 
 例: 在当前目录构建所有文件, 镜像名为`web`, 不使用`Docker`缓存, 显示构建过程的详细信息
+
 - --progress=plain: 构建过程中显示的详细信息的格式
 - --no-cache : 不使用缓存
 - web : 构建的镜像名
 - . : 当前目录所有文件
+
 ```shell
 docker build --progress=plain --no-cache -t goapp .
 ```
@@ -78,12 +82,13 @@ docker build --progress=plain --no-cache -t goapp .
 > 如果不在当前目录, 使用选项`-f`
 
 例:
+
 ```shell
 docker-compose -f ./build/ci/frontent/docker-compose.yml up -d
 ```
 
-
 `.dockerignore`
+
 ```shell
 # Reference https://github.com/github/gitignore/blob/master/Go.gitignore
 # Binaries for programs and plugins
@@ -129,15 +134,21 @@ bin/
 ## 延伸
 
 1. 查看镜像大小, 继续缩小容器大小
+
 ```shell
 docker image history <image_id>
 ```
 
 2. 尝试使用更极致大小的镜像
+
 - `scratch`, a completely empty base image.  
-    `scratch` ，则为完全空的基础映像。
-- `[distroless/static-debian](https://github.com/GoogleContainerTools/distroless)`, built on top of scratch, about 2MB in size, including `CA`, `root user`, etc. It is only half the size of `alpine`, and is used by many as the Go base image.  
-    `[distroless/static-debian](https://github.com/GoogleContainerTools/distroless)` ，建立在零开始之上，大小约为 2MB，包括 `CA` 、 `root user` 等。它只有 的 `alpine` 一半大小，被许多人用作 Go 基础映像。
+  `scratch`，则为完全空的基础映像。
+- `[distroless/static-debian](https://github.com/GoogleContainerTools/distroless)`, built on top of scratch, about 2MB
+  in size, including`CA`,`root user`, etc. It is only half the size of`alpine`, and is used by many as the Go base
+  image.  
+  `[distroless/static-debian](https://github.com/GoogleContainerTools/distroless)`，建立在零开始之上，大小约为 2MB，包括
+  `CA`、`root user`等。它只有 的`alpine`一半大小，被许多人用作 Go 基础映像。
 
 ## 参考
+
 1. https://betterprogramming.pub/path-to-a-perfect-go-dockerfile-f7fe54b5c78c

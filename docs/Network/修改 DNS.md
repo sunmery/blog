@@ -1,4 +1,5 @@
 出现这种情况时候
+
 ```
 # This is /run/systemd/resolve/resolv.conf managed by man:systemd-resolved(8).
 # Do not edit.
@@ -26,6 +27,7 @@ vi /etc/systemd/resolved.conf
 ```
 
 示例:
+
 ```
 [Resolve]
 DNS=8.8.8.8 8.8.4.4  # 替换为你需要的 DNS 服务器

@@ -3,7 +3,8 @@
 ## standard-version
 
 自动推送版本
-封装`npm version`: `npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease | from-git]`
+封装`npm version`:
+`npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease | from-git]`
 
 ### 下载
 
@@ -40,7 +41,8 @@ module.exports = {
 
 - `standard-version` 按照默认的规则提交, `changelog.md`只显示 feat 内容
 - `standard-version -- --first-release` 第一次提交
-- `standard-version -- --no-verify` 推送时不需要调用 githooks, 在`husky`这种 commit 时就检查的库就需要跳过,以免被再次检查,默认升级`patch`
+- `standard-version -- --no-verify` 推送时不需要调用 githooks, 在`husky`这种 commit 时就检查的库就需要跳过,以免被再次检查,默认升级
+  `patch`
 - `standard-version --release-as major` 大版本更新,例如`v1.0.0` -> `v2.0.0`
 - `standard-version --release-as minor` 大版本更新,例如`v1.1.0` -> `v1.2.0`
 - `standard-version --release-as patch` 大版本更新,例如`v1.0.0` -> `v2.0.0`
@@ -59,11 +61,13 @@ module.exports = {
 ## ESLint
 
 语法:
+
 - `eslint <file>` 检测文件是否符合规范
 - `eslint <file> --fix` 尝试对文件进行修复
 - `--ext ts,tsx`：表示只对扩展名为 `.ts` 和 `.tsx` 的文件进行分析。
 - `--report-unused-disable-directives`：表示报告未使用的 ESLint 禁用指令（注释中的 `eslint-disable`）。
 - `--max-warnings 0`：表示如果发现任何警告，不会停止分析，但退出状态码将为非零，以表示有问题。
+
 ```json
 "scripts": {
 	 "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",

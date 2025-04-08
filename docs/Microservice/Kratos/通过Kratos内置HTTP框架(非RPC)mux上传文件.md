@@ -24,6 +24,7 @@ func uploadFile(ctx http.Context) error {
 ```
 
 2. 在server层的http.go添加mux的上传文件函数:
+
 ```go
 func NewHTTPServer(c *conf.Server, greeter *service.GreeterService, logger log.Logger) *http.Server {
 	var opts = []http.ServerOption{

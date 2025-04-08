@@ -3,6 +3,7 @@
 `XxxUseCase`业务场景集合, 对应 DDD 的领域
 
 例如: `userUseCase` 用户的业务场景: 操作数据库, 日志服务
+
 ```go
 type UserUseCase struct {
 	repo UserRepo

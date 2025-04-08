@@ -1,11 +1,15 @@
 ## 文件参考
+
 https://docs.docker.com/reference/compose-file
+
 ## 命令参考
+
 https://docs.docker.com/reference/cli/docker/compose/
 
 > docker-compose不在需要docker-前缀
 
 包含Dockerfile的指令
+
 ```yml
 services:
   tiktok:
@@ -30,8 +34,10 @@ services:
     command: ["/app/tiktok", "-conf", "/data/conf/production.yaml"]
 
 ```
+
 同一个服务器的容器内部访问宿主机的端口, 或者称为一个容器与另外一个容器的通信
 参考:[links](https://blog.csdn.net/gold0523/article/details/102467102)
+
 ```yml
 version: '3'
 services:
@@ -77,7 +83,9 @@ services:
 ```shell
 scp -i <pem-file> <docker-compose-file> <user>@host/usr/local/bin/docker-compose
 ```
+
 3. 授权
+
 ```shell
 sudo chmod +x /usr/local/bin/docker-compose
 ```

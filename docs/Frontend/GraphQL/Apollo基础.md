@@ -1,6 +1,7 @@
 # 基于Node+React的Apollo基础
 
-Apollo 是一个用于构建[**超图**](https://www.apollographql.com/docs/intro/platform)的平台，这是一个由连接到应用程序客户端（如 Web
+Apollo 是一个用于构建[**超图**](https://www.apollographql.com/docs/intro/platform)的平台，这是一个由连接到应用程序客户端（如
+Web
 和本机应用程序）的所有数据、服务和功能组成的统一网络。超图的核心是一种名为**GraphQL**的查询语言。
 
 ## Node

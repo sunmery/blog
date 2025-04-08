@@ -45,4 +45,5 @@ class App extends React.Component {
 }
 
 ```
+
 注意点: `Consumer` 组件能在`{}`插值外部添加内容, 必须在`{}`插值表达式书写`JSX`

@@ -1,4 +1,5 @@
 .mockery.yaml
+
 ```yaml
 with-expecter: true
 config: "./"

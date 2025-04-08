@@ -1,5 +1,7 @@
 ## 无界面Kafka
+
 https://hub.docker.com/r/bitnami/kafka
+
 ```yml
 version: "3.5"  
 services:  
@@ -33,7 +35,9 @@ services:
 volumes:  
   kafka1_data: /home/data/kafka
 ```
+
 测试kafka Docker
+
 0. 进入容器
 
 ```shell
@@ -47,22 +51,25 @@ docker exec -it <imagename> /bin/bash
 ```shell
 /opt/bitnami/kafka/bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --topic test-topic --partitions 1 --replication-factor 1
 ```
+
 - `--bootstrap-server` 参数指定了 Kafka 服务器的地址和端口。在本地启动的情况下，通常是 `localhost:9092`。
 - `--topic` 参数指定了要创建的主题的名称。
- - `--partitions` 参数指定主题的分区数。这里设置为 1。
+- `--partitions` 参数指定主题的分区数。这里设置为 1。
 - `--replication-factor` 参数指定主题的复制因子。这里设置为 1，表示只有一个副本。
 
 1. 发送测试消息
 
 使用以下命令可以发送一条测试消息到刚刚创建的主题：
+
 ```shell
 echo "This is a test message" | bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test-topic
 ```
 
-这个命令使用 `bin/kafka-console-producer.sh` 工具将消息发送到指定的主题。确保替换 `localhost:9092` 和 `test-topic` 为你的 Kafka 服务器地址和主题名称。
+这个命令使用 `bin/kafka-console-producer.sh` 工具将消息发送到指定的主题。确保替换 `localhost:9092` 和 `test-topic` 为你的
+Kafka 服务器地址和主题名称。
 
 3. 消费测试消息
-使用以下命令可以从刚刚创建的主题中消费消息：
+   使用以下命令可以从刚刚创建的主题中消费消息：
 
 ```shell
 bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test-topic --from-beginning
@@ -71,6 +78,7 @@ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test-top
 这个命令使用 `bin/kafka-console-consumer.sh` 工具从指定的主题中消费消息，并且使用 `--from-beginning` 参数从最早的消息开始消费。
 
 ## 有界面kafka
+
 [详细文档](https://docs.kafka-ui.provectus.io/overview/getting-started)
 
 ```yml
@@ -119,6 +127,7 @@ services:
 ```
 
 简单测试
+
 ```shell
 docker run -it --rm -p 8082:8080 -e DYNAMIC_CONFIG_ENABLED=true provectuslabs/kafka-ui
 ```

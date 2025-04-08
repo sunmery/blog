@@ -1,13 +1,16 @@
 ## 前置条件
+
 1. 拥有一个正常运行的Kubernetes集群
 2. 服务端已安装Prometheus, 并与Kubernetes集群正常通信
 3. 服务端已安装Jaeger, 并与Kubernetes集群正常通信
 4. 客户端go 版本>=1.13
 
 ## 说明
+
 - ct: 即`kubectl`的简写形式, 个人爱好, 图片里使用`ct`简写代替了`kubectl`
 
 ## 架构
+
 ```mermaid
 graph LR
 
@@ -19,10 +22,13 @@ OpenTelemetryCollector --> Prometheus
 ```
 
 ## OpenTelemetry服务端环境搭建
+
 OpenTelemetry服务端分为Daemonset和Sidecar模式
 
 ### Daemonset
-Daemonset是在集群中的每一个节点运行一个OpenTelemetry Collector Pod,遥测数据需要导出到worknode的OpenTelemetry Collector Pod上, 通常需要一个网关Collector
+
+Daemonset是在集群中的每一个节点运行一个OpenTelemetry Collector Pod,遥测数据需要导出到worknode的OpenTelemetry Collector
+Pod上, 通常需要一个网关Collector
 
 ```mermaid
 graph TB
@@ -41,10 +47,10 @@ Application3-2 --> OpenTelemetryCollectorPod3
 end
 ```
 
-
-
 ### Sidecar
+
 Sidecar 是一个pod运行一个OpenTelemetryCollector实例
+
 ```mermaid
 graph TB
 
@@ -58,27 +64,35 @@ subgraph pod3
 Application3 --> OpenTelemetryCollector3
 end
 ```
+
 ```
 
 它们会去安装cert-manager和创建CRD,用于管理OpenTelemetry的和instrumentations.opentelemetry.io自动埋点
 ```shell
 ct get crd | grep openTelemetry
 ```
+
 ![[images/Pasted image 20231114103025.png]]
 
 # [OpenTelemetry Operator Helm Chart](https://github.com/open-telemetry/opentelemetry-helm-charts/tree/main/charts/opentelemetry-operator#opentelemetry-operator-helm-chart)
+
 > 如果你已经安装了cert-manager, 则可以跳过安装cert-manager的阶段, 使用 --set admissionWebhooks.certManager.enable=false
 
-Helm 图表在 Kubernetes 集群中安装 OpenTelemetry Operator。OpenTelemetry Operator 是 Kubernetes Operator 的实现。此时，它将 OpenTelemetry Collector 作为唯一的托管组件
+Helm 图表在 Kubernetes 集群中安装 OpenTelemetry Operator。OpenTelemetry Operator 是 Kubernetes Operator 的实现。此时，它将
+OpenTelemetry Collector 作为唯一的托管组件
 
 希望 helm 创建自动生成的自签名证书，请确保在安装图表时设置适当的值:
+
 ```shell
 helm install  --set admissionWebhooks.certManager.enabled=false --set admissionWebhooks.certManager.autoGenerateCert=true \
   opentelemetry-operator open-telemetry/opentelemetry-operator
 ```
 
 ### Yaml创建OpenTelemetry Collector(otelcol)实例
-创建一个名为`simplest`的 OpenTelemetry Collector 实例，公开一个`jaeger-grpc`端口以使用检测应用程序中的跨度，并通过`debug`导出这些跨度，从而将跨度写入接收跨度的 OpenTelemetry Collector 实例的控制台 （`stdout`）
+
+创建一个名为`simplest`的 OpenTelemetry Collector 实例，公开一个`jaeger-grpc`端口以使用检测应用程序中的跨度，并通过`debug`
+导出这些跨度，从而将跨度写入接收跨度的 OpenTelemetry Collector 实例的控制台 （`stdout`）
+
 ```bash
 kubectl apply -f - <<EOF
 apiVersion: opentelemetry.io/v1alpha1
@@ -112,12 +126,15 @@ spec:
           exporters: [debug]
 EOF
 ```
+
 在集群查询**OpenTelemetry Collector**的端口, 这里为`30080`
 ![[images/Pasted image 20231113172147.png]]
 
 ## OpenTelemetry客户端环境搭建
+
 该示例模拟一个应用程序，计算 10 秒钟，然后完成.
-编写go主程序[1], 把`192.168.0.152:30080`替换为**OpenTelemetry Collector**实际的地址. 
+编写go主程序[1], 把`192.168.0.152:30080`替换为**OpenTelemetry Collector**实际的地址.
+
 ```go
 // Copyright The OpenTelemetry Authors
 //
@@ -256,16 +273,24 @@ func main() {
 	log.Printf("Done!")
 }
 ```
+
 初始化安装模块依赖与运行
+
 ```bash
 go mod init dice
 go mod tidy
 go run .
 ```
-输出如下: 
+
+输出如下:
 ![[images/Pasted image 20231106143945.png]]
+
 ## 配置
-创建otel-collector的配置文件[2], 根据你的实际情况修改`jaeger`的gGRPC的端点, 使用集群内部的服务名, 格式为`[svc服务名称].[命名空间].svc.cluster.local:port`, 例如本例为`jaeger-collector.istio-system.svc.cluster.local:14250`和`Prometheus Exporter`导出器的端点:暴露的prometheus export的url, 为自定义端口 
+
+创建otel-collector的配置文件[2], 根据你的实际情况修改`jaeger`的gGRPC的端点, 使用集群内部的服务名, 格式为
+`[svc服务名称].[命名空间].svc.cluster.local:port`, 例如本例为`jaeger-collector.istio-system.svc.cluster.local:14250`和
+`Prometheus Exporter`导出器的端点:暴露的prometheus export的url, 为自定义端口
+
 ```yaml
 # otel-collector-config.yaml
 apiVersion: v1
@@ -406,6 +431,7 @@ spec:
 ## 访问Jaeger与Prometheus的Web UI地址查看数据
 
 Jaeger: 找出安装Jaeger时的命名空间的sevice
+
 ```bash
 kubectl get svc -n istio-system
 ```
@@ -414,14 +440,17 @@ kubectl get svc -n istio-system
 
 找到Web UI端口地址为`30976`, 浏览器访问即可
 
-Prometheus: 
+Prometheus:
+
 ```bash
 kubectl get svc -n monitoring
 ```
+
 ![[images/Pasted image 20231106143401.png]]
 找到Web UI端口地址为`30099`, 浏览器访问即可
 
 ## 资料
+
 1. [example](https://github.com/open-telemetry/opentelemetry-go/tree/main/example/otel-collector)
 2. [otel-collector.yaml](https://github.com/open-telemetry/opentelemetry-go/blob/main/example/otel-collector/k8s/otel-collector.yaml)
 3. 

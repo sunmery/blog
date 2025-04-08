@@ -1,9 +1,11 @@
 ## 安装
+
 ```shell
 docker pull nginx
 ```
 
 ## 配置
+
 ```shell
 mkdir -p /home/nginx/conf
 mkdir -p /home/nginx/conf/ssl
@@ -12,7 +14,9 @@ mkdir -p /home/nginx/html
 ```
 
 ### SSL
+
 [腾讯云](https://cloud.tencent.com/document/product/400/35244)
+
 ```conf
 # HTTPS www.lookeke.cn
     server {
@@ -48,16 +52,19 @@ nginx -t
 ```
 
 重启读取配置
+
 ```shell
 docker restart nginx
 ```
 
 ## 运行
---restart: 
--   `no`：不自动重启容器，默认值。
--   `on-failure[:max-retries]`：只有在容器以非0状态（即失败）退出时才会重启，可指定最大重试次数。
--   `always`：不管容器是以什么状态退出，都将尝试重启容器。
--   `unless-stopped`：除非手动停止了容器，否则总是尝试自动重启容器。
+
+--restart:
+
+- `no`：不自动重启容器，默认值。
+- `on-failure[:max-retries]`：只有在容器以非0状态（即失败）退出时才会重启，可指定最大重试次数。
+- `always`：不管容器是以什么状态退出，都将尝试重启容器。
+- `unless-stopped`：除非手动停止了容器，否则总是尝试自动重启容器。
 
 ```shell
 docker run \
@@ -78,6 +85,7 @@ IP限速:
 [NGINX(]http://nginx.org/en/docs/http/ngx_http_core_module.html#limit_rate)
 `limit_rate`:  `1k` 限制单个IP的速率, 这里为`1k`流量
 `limit_rate_after`: `50m`, 50m之后限速为`limit_rate`定义的值
+
 ```
 location / { 
 	limit_rate_after 50m;
@@ -218,7 +226,8 @@ http {
 ```
 
 - 服务器有多个CPU核心，使用`reuseport`可以提高性能
-调整流和并发连接的数量:
+  调整流和并发连接的数量:
+
 ```conf
 http {
     ...
@@ -230,5 +239,7 @@ http {
 }
 
 ```
+
 ## 参考
+
 [TX](https://cloud.tencent.com/developer/article/1395059)

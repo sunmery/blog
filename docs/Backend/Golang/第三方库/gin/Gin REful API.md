@@ -1,11 +1,12 @@
 ## 默认值
+
 `DefaultXXX()`设置默认值
 `XXXArray("name")`对传入的多个name值存储为数组
 
 ## Number
+
 前端可能会把数字类型的包装为字符串, 可以使用`encoding/json`的`json.Number`,
 > 本质是遍历JSON的类型
-
 
 ## 响应头
 
@@ -18,11 +19,13 @@ c.Header("Content-Type", "application/json")
 `time.Time` 定义日期
 
 前端: 将日期转为JSON格式
+
 ```js
 new Date(<Date>).toJSON()
 ```
 
 GO: 定义日期
+
 ```go
 type Person struct {
 	Name       string      `json:"username" binding:"required,min=3,max=20"`
@@ -36,11 +39,13 @@ type Person struct {
 ```
 
 ## 动态参数
+
 `Param()`
 
 ## POST
 
 前端代码
+
 ```js
 var myHeaders = new Headers();
 myHeaders.append("User-Agent", "Apifox/1.0.0 (https://www.apifox.cn)");
@@ -64,9 +69,11 @@ fetch("http://localhost:4000/pet/upload", requestOptions)
 ```
 
 ### multipart/form-data
-接收File: `content.FormFile("key")` 
+
+接收File: `content.FormFile("key")`
 接受全部参数(key, file): `context.MultipartForm()`
 示例:
+
 ```go
 petGroup.POST("/upload", func(context *gin.Context) {
 	file1, err := context.FormFile("file")

@@ -16,7 +16,7 @@
 - 👯 Follow me on [掘金](https://juejin.cn/user/)
 - 🌱 I’m currently learning React
 - 🔭 I’m currently working on <a href="https://github.com/"></a>, this is student topic
-- 📫 How to reach me: 
+- 📫 How to reach me:
 
 <!-- https://readme-typing-svg.demolab.com/demo/ -->
 

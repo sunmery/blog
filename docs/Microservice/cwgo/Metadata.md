@@ -1,4 +1,5 @@
 为了传grpc的meta, 需要添加
+
 ```go
 // 为了传grpc的meta, 需要添加
 	// Header: client.WithMetaHandler(transmeta.ClientHTTP2Handler),
@@ -19,8 +20,10 @@
 ```
 
 传递:
+
 - metainfo.WithPersistentValue: 会一直存在与 metadata 中
 - metainfo.WithValue: 只会传递到下一个服务
+
 ```go
 ctx := metainfo.WithPersistentValue(context.Background(), "CLIENT_NAME", "demo")
 	res, err2 := cli.Hello(ctx, &v1.Req{Name: "error"})
@@ -28,8 +31,10 @@ ctx := metainfo.WithPersistentValue(context.Background(), "CLIENT_NAME", "demo")
 ```
 
 接收:
--  metainfo.GetPersistentValue: 会一直存在与 metadata 中
+
+- metainfo.GetPersistentValue: 会一直存在与 metadata 中
 - metainfo.GetValue: 只会传递到下一个服务
+
 ```go
 
 clientName, ok := metainfo.GetPersistentValue(s.ctx, "CLIENT_NAME")
@@ -39,12 +44,14 @@ clientName, ok := metainfo.GetPersistentValue(s.ctx, "CLIENT_NAME")
 ```
 
 传递错误:
-环境错误: 
+环境错误:
+
 - 网络错误
-业务错误:
+  业务错误:
 - 参数异常, 服务端模拟一个参数异常:
-	- 1004001: 业务错误码
-	- "client params error": 异常消息
+    - 1004001: 业务错误码
+    - "client params error": 异常消息
+
 ```go
 if req.Name =="error" {
 		fmt.Printf("name:%s,err:%v\n",req.Name)
@@ -53,6 +60,7 @@ if req.Name =="error" {
 ```
 
 客户端接收并处理异常:
+
 ```go
 var bizErr *kerrors.GRPCBizStatusError
 	if err2 != nil {

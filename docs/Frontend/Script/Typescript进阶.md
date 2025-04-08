@@ -5,6 +5,7 @@
 ```
 
 ts对象的类型为枚举中的类型
+
 ```ts
 enmu EnhanceKeyValue = {
 	key1 = 'key'

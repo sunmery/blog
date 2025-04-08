@@ -1,18 +1,22 @@
 ## 介绍
+
 Buf CLI 是现代、快速和高效的 Protobuf API 管理的终极工具。Buf 具有格式化、linting、中断更改检测和代码生成等功能
 
 ## 安装
+
 ```
 brew install bufbuild/buf/buf
 buf --version
 ```
 
 ### 生成代码
+
 ```
 buf generate <dir>
 ```
 
 `buf.yaml`:
+
 ```yaml
 version: v1
 breaking:
@@ -24,6 +28,7 @@ lint:
 ```
 
 `buf.gen.yaml`:
+
 ```yaml
 version: v1
 managed:
@@ -41,6 +46,7 @@ plugins:
 ```
 
 example:
+
 ```
 proto
     ├── buf.yaml
@@ -57,10 +63,13 @@ buf generate proto
 ```
 
 ## Lint
+
 ### 规则
+
 全部规则: https://buf.build/docs/lint/rules
 
 使用默认规则:
+
 ```yaml
 version: v1
 breaking:
@@ -72,19 +81,23 @@ lint:
 ```
 
 使用最小规则集:
+
 ```shell
 buf lint --error-format=config-ignore-yaml
 ```
 
 lint:
+
 ```shell
 buf lint <dir>
 ```
 
 ### 忽略
+
 要忽略的文件的路径是以`buf.gen.yaml`为根目录
 
 `buf.gen.yaml`
+
 ```yaml
 lint:
   use:
@@ -94,7 +107,9 @@ lint:
 ```
 
 ## 类型检查
-验证这是否是针对本地 `main` 分支的重大更改
+
+验证这是否是针对本地`main`分支的重大更改
+
 ```shell
 buf breaking proto --against "../../.git#subdir=start/getting-started-with-buf-cli/proto"
 ```
@@ -102,6 +117,7 @@ buf breaking proto --against "../../.git#subdir=start/getting-started-with-buf-c
 ## 调试RPC
 
 server:
+
 ```go
 package main
 
@@ -152,6 +168,7 @@ func (s *petStoreServiceServer) PutPet(
 ```
 
 访问proto:
+
 ```shell
 buf curl \
   --schema proto \

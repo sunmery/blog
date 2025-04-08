@@ -6,6 +6,7 @@
 [个人博客,不严谨](https://www.cnblogs.com/yang37/p/14464674.html)
 
 ## RockyLinux
+
 ```sh
 sudo sed -i.bak -e "s|^mirrorlist=|#mirrorlist=|" -e "s|^#baseurl=|baseurl=|" -e "s|dl.rockylinux.org/\$contentdir|$MIRROR|" /etc/yum.repos.d/rocky-*.repo
 ```
@@ -37,7 +38,8 @@ https://download.docker.com/linux/centos/docker-ce.repo
 
 ## **可选**：启用**夜间**或**测试**存储库。
 
-这些存储库包含在上述文件中，但默认情况下处于禁用状态。您可以与稳定存储库一起启用它们。以下命令启用**夜间**存储库。`docker.repo`
+这些存储库包含在上述文件中，但默认情况下处于禁用状态。您可以与稳定存储库一起启用它们。以下命令启用**夜间**存储库。
+`docker.repo`
 
 ```Shell
 sudo yum-config-manager --enable docker-ce-nightly
@@ -67,12 +69,15 @@ sudo yum-config-manager --disable docker-ce-nightly
    ```
 
 或安装特定版本：
+
 1. 搜索docker-ce版本
+
 ```sh
 sudo yum list docker-ce --showduplicates | sort -r
 ```
 
 2. 安装: 例如安装`3:20.10.9-3.el8`
+
 ```
 sudo yum install -y docker-ce:1:20.10.8-3.el8 docker-ce-cli:1:20.10.8-3.el8 containerd.io
 ```
@@ -93,6 +98,7 @@ sudo yum install -y docker-ce:1:20.10.8-3.el8 docker-ce-cli:1:20.10.8-3.el8 cont
 配置国内源
 `vi /etc/docker/daemon.json`
 添加如下
+
 ```json
 "registry-mirrors": [
     "https://docker.mirrors.sjtug.sjtu.edu.cn"
@@ -101,7 +107,9 @@ sudo yum install -y docker-ce:1:20.10.8-3.el8 docker-ce-cli:1:20.10.8-3.el8 cont
 
 #### 升级 Docker 引擎
 
-要升级 Docker 引擎，请下载较新的包文件并重复[安装过程](https://docs.docker.com/engine/install/centos/#install-from-a-package)，使用 代替 ，然后指向新文件。
+要升级 Docker
+引擎，请下载较新的包文件并重复[安装过程](https://docs.docker.com/engine/install/centos/#install-from-a-package)，使用 代替
+，然后指向新文件。
 
 ```Shell
 yum -y upgrade

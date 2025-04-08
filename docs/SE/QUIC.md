@@ -1,4 +1,3 @@
-
 # 后端
 
 ```go
@@ -9,6 +8,7 @@ go run server.go
 ```
 
 新开一个 终端运行客户端
+
 ```bash
 go run client.go
 ```
@@ -16,10 +16,13 @@ go run client.go
 使用 QUIC+HTTP3 的 curl来查看详细的网络请求和测试:
 
 查看当前 curl 版本:
+
 ```
 curl --version
 ```
+
 输出包含`HTTP3`则代表该 curl支持
+
 ```
 curl 8.13.0-DEV (aarch64-apple-darwin24.3.0) libcurl/8.13.0-DEV quictls/3.1.4 zlib/1.2.12 libidn2/2.3.7 libpsl/0.21.5 ngtcp2/1.12.0-DEV nghttp3/1.9
 Release-Date: [unreleased]
@@ -28,13 +31,15 @@ Features: alt-svc AsynchDNS HSTS HTTP3 HTTPS-proxy IDN IPv6 Largefile libz NTLM 
 ```
 
 测试服务
+
 1. 仅 HTTP3
+
 ```bash
 curl --http3-only -kv https://localhost:443
 ```
 
-
 正确则输出:
+
 ```
 * Host localhost:443 was resolved.
 * IPv6: ::1
@@ -72,35 +77,47 @@ curl --http3-only -kv https://localhost:443
 ```
 
 2. 测试:
+
 ```bash
 curl --http3 https://localhost:443 \
   --resolve https://localhost:443:127.0.0.1 \
   -kIv
 ```
+
 预期:
+
 ```
 *  SSL connection using TLSv1.3
 *  ALPN: server accepted h3
 *  HTTP/3 200
 ```
 
- ## 网站测试:
- 访问 [HTTP/3 QUIC 在线测试](https://http3.wcode.net)
+## 网站测试:
+
+访问 [HTTP/3 QUIC 在线测试](https://http3.wcode.net)
+
 ```
 https://http3.wcode.net
 ```
 
 查看支持 HTTP3 的[网站]( https://bagder.github.io/HTTP3-test/), 例如`h2o.examp1e.net`
+
 ```
 https://http3.wcode.net/?q=h2o.examp1e.net
 ```
+
 # 浏览器
 
 ## 火狐 QUIC 设置
+
 https://sites.google.com/view/a-bit-better-privacy/http3-hypertext-transfer-protocol
+
 # curl
+
 ## 编译
+
 第 4 步可以禁用 libpsl：大多数场景下，libpsl 是可选的依赖，禁用后不影响 HTTP/3 的核心功能:
+
 ```bash
 ./configure \
   LDFLAGS="-Wl,-rpath,$HOME/quictls/lib" \
@@ -155,7 +172,9 @@ autoreconf -fi
 make -j$(sysctl -n hw.logicalcpu)
 sudo make install  # 需要管理员权限
 ```
+
 # 参考
+
 1. https://curl.se/docs/http3.html
 2. https://segmentfault.com/a/1190000045557760
 

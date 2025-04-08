@@ -1,13 +1,18 @@
 ## 安装
-1. 添加helm repo 
+
+1. 添加helm repo
+
 - mode: \<daemonset|deployment|statefulset\>
+
 ```sh
 helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
 ```
 
-2. 下载helm repo [包](https://github.com/open-telemetry/opentelemetry-helm-charts/tree/main/charts/opentelemetry-collector)
+2. 下载helm
+   repo [包](https://github.com/open-telemetry/opentelemetry-helm-charts/tree/main/charts/opentelemetry-collector)
 3. 修改yaml内容, 替换为你的JAEGER, Prometheus端点
-otel-collector-config.yaml
+   otel-collector-config.yaml
+
 ```yaml
 # Default values for opentelemetry-collector.
 # This is a YAML-formatted file.
@@ -606,11 +611,13 @@ useGOMEMLIMIT: false
 ```
 
 4. 安装
+
 - kubectl create ns opentelemetry 创建opentelemetry命名空间
 - test: opentelemetry-collector的名,
 - opentelemetry-collector/ 要安装的路径
 - --set mode=daemonset 安装的模式, 这里是daemonset
 - --namespace opentelemetry 安装在opentelemetry命名空间
+
 ```shell
 kubectl create ns opentelemetry
 
@@ -620,7 +627,9 @@ opentelemetry-collector/ \
 --set mode=daemonset \
 --namespace opentelemetry
 ```
+
 ## 资料
+
 1. https://opentelemetry.io/docs/kubernetes/helm/collector/
 2. https://github.com/open-telemetry/opentelemetry-helm-charts/tree/main/charts/opentelemetry-collector
 3. https://opentelemetry.io/docs/kubernetes/helm/collector/

@@ -1,11 +1,14 @@
 ## 安装
+
 Ubuntu:
+
 ```shell
 apt-get install tsung
 
 ```
 
 mac:
+
 ```shell
 brew install tsung
 ```
@@ -13,10 +16,13 @@ brew install tsung
 其他: http://tsung.erlang-projects.org/user_manual/installation.html
 
 ## 配置
+
 https://juejin.cn/post/7290485046128508940
 
 编写一个简单的go web程序:
+
 1. 初始化
+
 ```shell
 go mod init example
 ```
@@ -76,8 +82,11 @@ func main() {
 ```
 
 部署到Docker或者Kubernetes
+
 #### Docker部署
+
 Dockerfile:
+
 ```yml
 FROM golang:alpine AS builder
 MAINTAINER Lookeke
@@ -114,6 +123,7 @@ ENTRYPOINT ["/app/example"]
 ```
 
 docker-compose.yml:
+
 ```yml
 version: '3'
 services:
@@ -128,12 +138,15 @@ services:
 ```
 
 运行:
+
 ```shell
 docker-compose up -d
 ```
 
 ### Kubernetes
+
 将`image`替换为容器的URL
+
 ```yml
 apiVersion: apps/v1
 kind: Deployment
@@ -164,6 +177,7 @@ spec:
 ```
 
 示例配置:
+
 ```xml
 <?xml version="1.0"?>
 <!DOCTYPE tsung SYSTEM "/usr/share/tsung/tsung-1.0.dtd">
@@ -239,7 +253,9 @@ spec:
 </tsung>
 
 ```
+
 ## 使用
+
 选项:
 -f file：用于设置配置文件的路径，指定测试用例和配置信息的文件。默认情况下，配置文件是 ~/.tsung/tsung.xml。
 -l logdir：指定日志文件存储的目录。Tsung 将在该目录下创建以日期和时间命名的子目录来存储日志文件。默认目录是 ~/.tsung/log/。
@@ -262,8 +278,10 @@ spec:
 -h：显示帮助信息。
 
 运行示例
+
 ```shell
 tsung -f http.xml start -k
 ```
+
 查看Web GUI的状态
 浏览器访问: `<IP>:8091` 即可查看

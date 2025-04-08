@@ -1,5 +1,5 @@
-
 https://www.jenkins.io/doc/book/installing/war-file/
+
 ```shell
 # --config
 JENKINS_HOME="/mnt/data/158-jenkins"
@@ -19,6 +19,7 @@ jenkins.war
 ```
 
 基本:
+
 ```shell
 nohup sh -c \
 'JENKINS_HOME="/mnt/data/158-jenkins" \

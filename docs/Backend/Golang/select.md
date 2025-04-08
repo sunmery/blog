@@ -1,9 +1,12 @@
 ## 作用
+
 操作`channel`管道专用, 与`Switch`语法差不多, 但有区别:
+
 1. case 参数语句必须是`IO`操作, 不能是`=`赋值
 2. secect是随机选择`IO`操作执行(一般选择执行时间最短的case)
 
 语法:
+
 ```go
 select {
 	case case1: // code 
@@ -13,6 +16,7 @@ select {
 ```
 
 例子: 随机对某个`channel`管道执行
+
 ```go
 package main
 

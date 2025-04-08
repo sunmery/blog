@@ -1,21 +1,24 @@
-
 #Docker #教程 #指令
 
 ## CLI
+
 https://docs.docker.com/reference/cli/docker/
 
 docker inspect 查看网络信息**
+
 ```
 docker inspect <container_id_or_name>
 ```
 
 查看特定的网络
+
 ```
 docker network ls
 docker network inspect <network name>
 ```
 
 推送正在运行的容器
+
 ```shell
 old_image="lisa/lib:nginx-http3"
 new_image="ccr.ccs.tencentyun.com/lisa/lib:nginx-http3"
@@ -25,17 +28,21 @@ docker push ${new_image}
 ```
 
 镜像清理
-`-a` 或 `--all`: 清理所有的tag 为none镜像，包括未被任何容器引用的镜像。如果不使用 `-a` 选项，只会清理那些没有被任何容器引用的"悬空"镜像，而被正在运行的容器引用的镜像将不受影响。
+`-a` 或 `--all`: 清理所有的tag 为none镜像，包括未被任何容器引用的镜像。如果不使用 `-a`
+选项，只会清理那些没有被任何容器引用的"悬空"镜像，而被正在运行的容器引用的镜像将不受影响。
+
 ```shell
 docker image prune [option]
 ```
 
 查看容器大小占用
+
 ```shell
 docker image history <image_id>
 ```
 
 打包镜像
+
 ```
 docker build [--no-cache] -t <image-name> .
 ```
@@ -46,6 +53,7 @@ docker run -itd --privileged=true eeb6ee3f44bd /usr/sbin/init
 
 将Docker的镜像加入到系统自启
 语法:
+
 ```go
 docker update --restart=always <image>
 ```
@@ -81,6 +89,7 @@ docker rm $(docker ps -a -q)
 
 删除所有镜像：
 docker rmi $(docker images -q)
+
 ```
 
 ## 查看容器相关信息

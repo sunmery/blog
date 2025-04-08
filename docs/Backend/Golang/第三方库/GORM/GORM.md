@@ -1,22 +1,27 @@
-
 接收postgres的json数组:
+
 ```shell
 go get github.com/lib/pq
 ```
+
 1. 定义
+
 ```go
 type Video struct { 
 	LikeList pq.StringArray `gorm:"type:varchar[]" json:"like_list"`
 }
 ```
+
 - `varchar[]`类型: pg.StringArray
 
 字段一致：
+
 ```shell
 Code  string `gorm:"column:product_code"`
 ```
 
 表名一致：
+
 ```shell
 type Product{}
 
@@ -27,13 +32,17 @@ func (p Product) TableName() string {
 ```
 
 Create
+
 ```shell
 if err := db.Create(&struct).Error; err !=nil{
 	
 } 
 ```
+
 FirstOrCreate:
-如果存在, 条件由`Where`控制条件, 如果满足`Where`的条件:表示数据库已存在相关条目, `RowsAffected`此时为0,反之不存在则创建, 由`FirstOrCreate`的第一个参数控制创建的结构
+如果存在, 条件由`Where`控制条件, 如果满足`Where`的条件:表示数据库已存在相关条目, `RowsAffected`此时为0,反之不存在则创建,
+由`FirstOrCreate`的第一个参数控制创建的结构
+
 ```go
 // 查询或创建用户
 	// 当name不存在时创建用户

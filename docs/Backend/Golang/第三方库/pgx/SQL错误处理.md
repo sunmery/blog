@@ -17,6 +17,7 @@ if err != nil {
 ```
 
 示例:
+
 ```go
 account, err := s.store.CreateAccount(ctx, arg)
 	if err != nil {

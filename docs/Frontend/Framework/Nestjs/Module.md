@@ -1,7 +1,9 @@
 使用其他模块的`Service`提供者:
+
 1. **再本模块导入所需要提供者的模块**
-使用关键字`imports`导入所需`service`的`module`模块
-例子: 
+   使用关键字`imports`导入所需`service`的`module`模块
+   例子:
+
 ```ts
 import { Module } from '@nestjs/common'
 import { ProfileService } from './profile.service'
@@ -20,7 +22,8 @@ export class ProfileModule {}
 ```
 
 2. 使用其他模块的`Service`
-**使用`constructor`导入其他模块的`Service`**
+   **使用`constructor`导入其他模块的`Service`**
+
 ```ts
 import { Injectable } from '@nestjs/common'
 

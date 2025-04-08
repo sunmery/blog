@@ -5,12 +5,15 @@ sudo systemctl stop docker
 ```
 
 ### 2、迁移或者备份
-- 备份当前的 Docker 数据存储目录 `/var/lib/docker`
+
+- 备份当前的 Docker 数据存储目录`/var/lib/docker`
 
 ```bash
 sudo mv /var/lib/docker /var/lib/docker.bak
 ```
+
 - 迁移到新的存储库
+
 ```shell
 sudo mv /var/lib/docker <newPath>
 ```
@@ -23,13 +26,13 @@ sudo mkdir /data/docker
 
 ### 4、修改 Docker 配置文件
 
-      修改 Docker 配置文件 `/etc/docker/daemon.json`，如果该文件不存在，则创建它：
+修改 Docker 配置文件`/etc/docker/daemon.json`，如果该文件不存在，则创建它：
 
 ```bash
 sudo nano /etc/docker/daemon.json
 ```
 
-将以下内容复制粘贴到文件中，并将其中的 `/data/docker` 替换为实际的数据存储路径： 
+将以下内容复制粘贴到文件中，并将其中的`/data/docker`替换为实际的数据存储路径：
 
 ```bash
 {"data-root": "/data/docker"

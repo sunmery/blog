@@ -1,9 +1,10 @@
 ## About me
+
 <!-------------self-introduction start------------->
 
 - 😄 Read more about my [Blog](https://blog-gamma-two-81.vercel.app/)
 - 🌱 I’m currently learning Golang
-- 🔭 I’m currently working on Microservices and Cloud Native 
+- 🔭 I’m currently working on Microservices and Cloud Native
 
 <!-- https://readme-typing-svg.demolab.com/demo/ -->
 
@@ -17,21 +18,25 @@
 ## Tech stack
 
 ### Language
+
 - Golang
 - TypeScript
 
 ### Storage
+
 - PostgresQL
 - ![MongoDB](https://custom-icon-badges.demolab.com/badge/-MongoDB-%2347A248?logo=MongoDB&logoColor=white)
 - Redis
 - minio
 
 ### Application Definition & Image Build
+
 - helm
 - kustomize
 - Docker + Docker-compose
 
-### Observability 
+### Observability
+
 - OpenTelemetry
 - kiali
 - Jaeger
@@ -39,44 +44,55 @@
 - Grafana
 
 ### Data Serialization Formats
+
 - protobuf
 - JSON
 - YAML
 
 ### Gateway
+
 - kubernetes-gateway-api
 - haproxy
 - higress
 
 ### Service Mesh
+
 - Consul
 - istio
 
 ### Logging
+
 - OTEL + rs/zerolog + Loki
 
 ### Container orchestration
+
 - Kubernetes
 - Docker
 
 ### Message queue
+
 - kafka
 
 ### RPC
+
 - gRPC
 - Kratos
 
-### safety 
+### safety
+
 #### Authentication
+
 - Paseto
 - JWT
 - Casdoor
 
 #### Authorization
+
 - Casbin
 - Casdoor
 
 ### Continuous Integration & Delivery
+
 - Gitlab CI
 - GitHub Action
 - Argocd

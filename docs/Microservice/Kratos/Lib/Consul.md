@@ -1,6 +1,8 @@
 ## 注册
+
 1. 定义Consul配置
-`configs/register.yaml`
+   `configs/register.yaml`
+
 ```yml
 consul:
   address: 192.168.0.158
@@ -10,7 +12,8 @@ consul:
 ```
 
 2. conf层添加consul配置之后重新生成conf配置:`make config`
-`conf/conf.proto`
+   `conf/conf.proto`
+
 ```proto
 message Server {
   message HTTP {
@@ -37,7 +40,8 @@ message Server {
 ```
 
 3. server层定义:
-`server/register.go`
+   `server/register.go`
+
 ```go
 package server
 
@@ -63,7 +67,8 @@ func NewRegistrar(conf *conf.Registry) registry.Registrar {
 ```
 
 4. 注入依赖之后重新生成wire: `make generate`
-`server/server.go`
+   `server/server.go`
+
 ```go
 package server
 
@@ -76,8 +81,9 @@ var ProviderSet = wire.NewSet(NewHTTPServer, NewRegistrar)
 
 ```
 
-5. 注入口添加配置, 添加Name为微服务名称,  Version, id 为唯一的, 用于标识该服务 
-`cmd/xxx/main.go`
+5. 注入口添加配置, 添加Name为微服务名称, Version, id 为唯一的, 用于标识该服务
+   `cmd/xxx/main.go`
+
 ```go
 var (
 	// Name is the name of the compiled software.
@@ -123,16 +129,17 @@ func main(){
 ```
 
 6. wire
+
 ```go
 func wireApp(*conf.Server, *conf.Registry, *conf.Data, log.Logger) (*kratos.App, func(), error) {
 	panic(wire.Build(server.ProviderSet, data.ProviderSet, biz.ProviderSet, service.ProviderSet, newApp))
 }
 ```
 
-
 ## 发现
 
 data.go
+
 ```go
 // NewDiscovery 配置服务发现功能
 func NewDiscovery(conf *conf.Registry) (registry.Discovery, error) {
@@ -150,6 +157,7 @@ func NewDiscovery(conf *conf.Registry) (registry.Discovery, error) {
 
 使用
 data.go
+
 ```go
 // NewProductServiceClient 购物车
 func NewProductServiceClient(d registry.Discovery, logger log.Logger) (protuctsV1.ProductCatalogServiceClient, error) {
@@ -173,6 +181,7 @@ func NewProductServiceClient(d registry.Discovery, logger log.Logger) (protuctsV
 
 wire:
 data.go
+
 ```go
 var ProviderSet = wire.NewSet(NewData, NewDB, NewCache, NewOrderRepo, NewDiscovery, NewCartServiceClient, NewProductServiceClient)
 
@@ -180,6 +189,7 @@ var ProviderSet = wire.NewSet(NewData, NewDB, NewCache, NewOrderRepo, NewDiscove
 
 开始调用
 order.go
+
 ```go
 func (o *orderRepo) PlaceOrder(ctx context.Context, req *biz.PlaceOrderReq) (*biz.PlaceOrderResp, error) {
 product, err := o.data.productClient.GetProduct(ctx, &productV1.GetProductReq{
@@ -191,6 +201,8 @@ product, err := o.data.productClient.GetProduct(ctx, &productV1.GetProductReq{
 	fmt.Printf("product: '%+v'", product)
 }
 ```
+
 ## 参考
+
 1. https://github.com/lisa-sum/kratos-consul
 2. https://go-kratos.dev/docs/component/registry/

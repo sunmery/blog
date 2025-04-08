@@ -3,11 +3,13 @@
 #PackageManage
 
 ## 换源
+
  ```shell
 npm config set registry http://registry.npmmirror.com
 ```
 
 检查是否替换成功
+
 ```sh
  npm config get registry
 ```
@@ -97,7 +99,8 @@ npm get registry
 npm config set registry https://registry.npmmirror.com
 ```
 
-使用**阿里云** 镜像源加速 NPM
+使用**阿里云**镜像源加速 NPM
+
 ```
 npm config set registry https://npm.aliyun.com
 ```
@@ -108,7 +111,7 @@ npm config set registry https://npm.aliyun.com
 npm config set registry http://mirrors.cloud.tencent.com/npm/
 ```
 
-使用**华为云** 镜像源加速 NPM
+使用**华为云**镜像源加速 NPM
 
 ```
 npm config set registry https://mirrors.huaweicloud.com/repository/npm/
@@ -120,7 +123,7 @@ npm config set registry https://mirrors.huaweicloud.com/repository/npm/
 npm config set registry https://registry.npmjs.org/
 ```
 
- **使用那个镜像，只需要 npm config set registry + 对应的镜像网址就好了**
+**使用那个镜像，只需要 npm config set registry + 对应的镜像网址就好了**
 
 ```
 npm config set registry 

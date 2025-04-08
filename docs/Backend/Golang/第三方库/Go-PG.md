@@ -1,7 +1,10 @@
 ## 前置
+
 ### 初始化
+
 数据库连接选项
 pg.Options有如下字段:
+
 - `Network`: 网络类型，例如 "tcp"，"unix" 或 "udp"。如果为空，将默认使用 "tcp"。
 - `Addr`: 数据库服务器地址，如 "localhost:5432"。
 - `Dialer`: 自定义拨号器，如果你想对连接进行更精细的控制，可以使用此选项。
@@ -30,6 +33,7 @@ pg.Options有如下字段:
 数据库服务器使用 SSL，提供 `TLSConfig`值
 
 默认只需要四个值:
+
 ```
 Addr:     "192.168.0.158:5432",
 User:     "user",
@@ -38,6 +42,7 @@ Database: "dbname",
 ```
 
 初始化示例:
+
 ```go
 package repository
 
@@ -59,6 +64,7 @@ func InitPostgresDB() {
 ## 类型
 
 ### 主键
+
 ```go
 type User struct {
 	Id   int64 `pg:",pk"`
@@ -71,12 +77,13 @@ type User struct {
 ## 插入
 
 ### 单行插入
+
 ```go
 book1 := &Book{ Title: "Example Book 1", Author: "Some Author", }
 ```
 
-
 ### 多行插入
+
 ```go
 book2 := &Book{ 
 	Title: "Example Book 2", 
@@ -91,7 +98,9 @@ if err != nil { panic(err) }
 ```
 
 ## 查询
+
 ### 单行查询
+
 ```go
 query = 1
 book := &Book{}
@@ -99,12 +108,14 @@ err := db.Model(book).Where("id = ?", query).Select()
 ```
 
 全部查询
+
 ```go
 var books []Book
 err := db.Model(&books).Select()
 ```
 
 ### 条件查询
+
 ```go
 book := &Book{}
 err := db.Model(book).Where("id = ?", query).Select()
@@ -114,12 +125,14 @@ err := db.Model(book).Where("id = ?", query).Order("title asc").Select()
 ## 删除
 
 单条删除
+
 ```go
 book := &Book{Id:"1"}
 err := db.Model(book).WherePK().Delete()
 ```
 
 删除表
+
 ```go
 import (
 	"github.com/go-pg/pg/v10" 
@@ -155,7 +168,8 @@ newBooks := []*Book[
 result,err:= db.Model(&newBooks).Update()
 ```
 
-### 删除单条数据 
+### 删除单条数据
+
 ```go
 _, err = db.Model(&user).WherePK().Delete()
 if err != nil {
@@ -163,7 +177,8 @@ if err != nil {
 } 
 ```
 
-### 删除全部 
+### 删除全部
+
 ```go
 _, err = db.Model((*User)(nil)).Where("TRUE").Delete() 
 if err != nil {
@@ -171,7 +186,8 @@ if err != nil {
 } 
 ```
 
-### 删除表 
+### 删除表
+
 ```go
 err := db.Model((*User)(nil)).DropTable(&orm.DropTableOptions{})
 if err != nil {
@@ -179,7 +195,8 @@ if err != nil {
 } 
 ```
 
-### 删除数据库(需要超级用户权限) 
+### 删除数据库(需要超级用户权限)
+
 ```go
 _, err = db.Exec("DROP DATABASE new_database") 
 if err != nil {

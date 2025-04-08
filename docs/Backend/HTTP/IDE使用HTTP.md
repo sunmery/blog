@@ -1,6 +1,7 @@
 ## 使用
 
 ### multipart/form-data
+
 ```http
 ### 注册
 
@@ -22,6 +23,7 @@ Text
 ```
 
 ### POST
+
 ```http
 ### 登录
 POST http://127.0.0.1:4000/login
@@ -40,9 +42,12 @@ Accept: application/json
 ### 重定向
 
 禁用重定向
+
 ```http
 // @no-redirect 
 example.com/status/301
 ```
+
 ## 参考
+
 [jetbrains](https://www.jetbrains.com/help/idea/exploring-http-syntax.html)

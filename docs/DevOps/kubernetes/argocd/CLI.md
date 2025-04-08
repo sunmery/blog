@@ -1,15 +1,18 @@
 ## [首次使用](https://argo-cd.readthedocs.io/en/stable/getting_started/)
 
 1. 获取密码
+
 ```shell
 pwd=$(kubectl -n argocd get secret example-argocd-cluster -o jsonpath='{.data.admin\.password}' | base64 -d)
 echo $pwd
 ```
 
 2. CLI登录
-可选:
+   可选:
+
 - --insecure: 忽略TLS验证
 - --grpc-web
+
 ```
 lb_ip=$(kubectl get service example-argocd-server -o=jsonpath='{.status.loadBalancer.ingress[0].ip}' -n argocd)
 argocd login \
@@ -20,56 +23,68 @@ $lb_ip \
 ```
 
 3. 修改密码
+
 ```
 argocd account update-password
 ```
 
 4. (可选)列出当前集群上下文
+
 ```
 kubectl config get-contexts -o name
 ```
 
 5. (可选)添加集群权限级别的RBAC,即可在任意ns创建/删除应用(需要注意安全性), 示例:
+
 ```
 argocd cluster add kubernetes-admin@kubernetes
 ```
+
 之后进入到快速使用来创建项目(project)和创建应用(application), 使用项目来管理应用
+
 ## 创建项目
 
 https://argo-cd.readthedocs.io/en/stable/user-guide/projects/#managing-projects
 
 1. 创建项目, 分配该项目权限
+
 ```
 argocd proj create frontend
 ```
 
 2. 添加仓库到项目
-语法
+   语法
+
 ```
 argocd proj add-source <PROJECT> <REPO>
 ```
 
 示例:
+
 ```
 argocd proj add-source frontend https://gitlab.com/lookeke/full-stack-engineering.git
 ```
 
 查看proj的信息
+
 ```shell
 argocd proj get frontend
 ```
 
 删除
+
 ```
 argocd proj remove-source <PROJECT> <REPO>
 ```
 
 排除项目
+
 ```
 argocd proj add-source <PROJECT> !<REPO>
 ```
 
 排除项目的yaml清单:
+
 ```yaml
 spec:
   sourceRepos:
@@ -82,30 +97,37 @@ spec:
 ```
 
 3. 添加/集群与命名空间
+
 ```
 argocd proj add-destination <PROJECT> <CLUSTER>,<NAMESPACE>
 ```
+
 示例:
+
 ```
 argocd proj add-destination frontend https://kubernetes.default.svc,frontend
 ```
 
 删除:
+
 ```
 argocd proj remove-destination <PROJECT> <CLUSTER>,<NAMESPACE>
 ```
 
 排除:
+
 ```
 argocd proj remove-destination <PROJECT> !<CLUSTER>,!<NAMESPACE>
 ```
 
 示例:
+
 ```
 argocd proj add-destination frontend https://192.168.2.160:6443 frontend
 ```
 
 yaml清单
+
 ```yml
 spec:
   destinations:
@@ -121,11 +143,13 @@ spec:
 ```
 
 5. 创建APP
+
 - --repo: 仓库URL
 - --path: k8s部署清单目录相对仓库路径的位置, 也可以是URL
 - --dest-server: 使用的Kubernetes集群
 - --dest-namespace default: 部署在什么命名空间
 - --sync-option CreateNamespace=true: 自动创建命名空间
+
 ```
 argocd app create <app> \
 --repo https://github.com/argoproj/argocd-example-apps.git \
@@ -136,6 +160,7 @@ argocd app create <app> \
 ```
 
 yaml清单:
+
 ```yaml
 apiVersion: argoproj.io/v1alpha1  # 指定 Argo CD API 版本
 kind: Application  # 定义资源类型为 Application
@@ -179,11 +204,13 @@ spec: # 规范部分
 ```
 
 4. 手动同步:
+
 ```
 argocd app sync <app>
 ```
 
 删除app
+
 ```
 argocd app delete guestbook
 ```
@@ -191,16 +218,19 @@ argocd app delete guestbook
 ## 常用命令
 
 列出已经创建的applications
+
 ```
 kubectl -n argocd get applications
 ```
 
 列出已经创建的Project
+
 ```
 kubectl get appproject -n argocd
 ```
 
 列出用户
+
 ```
 argocd account list
 ```
@@ -210,17 +240,21 @@ kubectl patch -n argocd cm argocd-cm --type='json' -p='[{"op": "remove", "path":
 ```
 
 获取特定用户信息
+
 ```
 argocd account get --account <username>
 ```
 
 生成token
+
 ```
 argocd account generate-token --account admin
 ```
 
 ## 权限设置
+
 RBAC权限示例:
+
 ```
 p, role:admin, applications, *, */*, allow
 p, role:admin, clusters, get, *, allow
@@ -238,27 +272,35 @@ g, admin, role:admin
 ```
 
 验证RBAC权限:
+
 - 验证包含rbac的yml或csv文件
+
 ```
 argocd admin settings rbac validate --policy-file argocd-rbac-cm.yml
 ```
+
 - 验证命名空间的argocd-rbac-cm.yml文件:
+
 ```
 argocd admin settings rbac validate --namespace argocd
 ```
 
 [测试策略](https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/#testing-a-policy)
+
 ```
 argocd admin settings rbac can role:org-admin get applications --policy-file argocd-rbac-cm.yaml
 ```
 
 ## 全部指令
+
 [语法](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd/):
+
 ```
 argocd [option]
 ```
 
 选项:
+
 ```shell
       --auth-token string               Authentication token
       --client-crt string               Client certificate file
@@ -286,35 +328,46 @@ argocd [option]
   --server-name string              Name of the Argo CD API server; set this or the ARGOCD_SERVER_NAME environment variable when the server's name label differs from the default, for example when installing via the Helm chart (default "argocd-server")
 ```
 
-- [argocd account](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_account/) - Manage account settings  
-    argocd account - 管理帐户设置
-- [argocd admin](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_admin/) - Contains a set of commands useful for Argo CD administrators and requires direct Kubernetes access  
-    argocd admin - 包含一组对 Argo CD 管理员有用的命令，需要直接访问 Kubernetes
-- [argocd app](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_app/) - Manage applications  
-    argocd app - 管理应用程序
-- [argocd appset](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_appset/) - Manage ApplicationSets  
-    argocd appset - 管理应用程序集
-- [argocd cert](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_cert/) - Manage repository certificates and SSH known hosts entries  
-    argocd cert - 管理存储库证书和 SSH 已知主机条目
-- [argocd cluster](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_cluster/) - Manage cluster credentials  
-    argocd cluster - 管理集群凭据
-- [argocd completion](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_completion/) - output shell completion code for the specified shell (bash or zsh)  
-    argocd completion - 指定 shell（bash 或 zsh）的输出 shell 完成代码
-- [argocd context](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_context/) - Switch between contexts  
-    argocd context - 在上下文之间切换
-- [argocd gpg](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_gpg/) - Manage GPG keys used for signature verification  
-    argocd gpg - 管理用于签名验证的 GPG 密钥
-- [argocd login](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_login/) - Log in to Argo CD  
-    argocd login - 登录 Argo CD
-- [argocd logout](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_logout/) - Log out from Argo CD  
-    argocd logout - 从 Argo CD 注销
-- [argocd proj](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_proj/) - Manage projects  
-    argocd proj - 管理项目
-- [argocd relogin](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_relogin/) - Refresh an expired authenticate token  
-    argocd relogin - 刷新过期的身份验证令牌
-- [argocd repo](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_repo/) - Manage repository connection parameters  
-    argocd repo - 管理仓库连接参数
-- [argocd repocreds](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_repocreds/) - Manage repository connection parameters  
-    argocd repocreds - 管理存储库连接参数
-- [argocd version](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_version/) - Print version information  
-    argocd version - 打印版本信息
+- [argocd account](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_account/)- Manage account
+  settings  
+  argocd account - 管理帐户设置
+- [argocd admin](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_admin/)- Contains a set of commands
+  useful for Argo CD administrators and requires direct Kubernetes access  
+  argocd admin - 包含一组对 Argo CD 管理员有用的命令，需要直接访问 Kubernetes
+- [argocd app](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_app/)- Manage applications  
+  argocd app - 管理应用程序
+- [argocd appset](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_appset/)- Manage ApplicationSets  
+  argocd appset - 管理应用程序集
+- [argocd cert](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_cert/)- Manage repository
+  certificates and SSH known hosts entries  
+  argocd cert - 管理存储库证书和 SSH 已知主机条目
+- [argocd cluster](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_cluster/)- Manage cluster
+  credentials  
+  argocd cluster - 管理集群凭据
+- [argocd completion](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_completion/)- output shell
+  completion code for the specified shell (bash or zsh)  
+  argocd completion - 指定 shell（bash 或 zsh）的输出 shell 完成代码
+- [argocd context](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_context/)- Switch between
+  contexts  
+  argocd context - 在上下文之间切换
+- [argocd gpg](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_gpg/)- Manage GPG keys used for
+  signature verification  
+  argocd gpg - 管理用于签名验证的 GPG 密钥
+- [argocd login](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_login/)- Log in to Argo CD  
+  argocd login - 登录 Argo CD
+- [argocd logout](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_logout/)- Log out from Argo CD  
+  argocd logout - 从 Argo CD 注销
+- [argocd proj](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_proj/)- Manage projects  
+  argocd proj - 管理项目
+- [argocd relogin](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_relogin/)- Refresh an expired
+  authenticate token  
+  argocd relogin - 刷新过期的身份验证令牌
+- [argocd repo](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_repo/)- Manage repository connection
+  parameters  
+  argocd repo - 管理仓库连接参数
+- [argocd repocreds](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_repocreds/)- Manage repository
+  connection parameters  
+  argocd repocreds - 管理存储库连接参数
+- [argocd version](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd_version/)- Print version
+  information  
+  argocd version - 打印版本信息

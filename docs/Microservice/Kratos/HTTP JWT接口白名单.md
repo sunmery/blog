@@ -1,6 +1,6 @@
-
 打开生成的`_http.pb.go`文件, 下拉到最后, 找到`xxx_proto_depIdxs`的变量
 它有类似的内容:
+
 ```go
 var file_shop_v1_shop_proto_depIdxs = []int32{
 	1, // 0: shop.v1.ShopService.Register:input_type -> shop.v1.RegisterReq
@@ -21,18 +21,23 @@ var file_shop_v1_shop_proto_depIdxs = []int32{
 
 其中, `shop.v1.ShopService.Xxx`就是你需要不需要经过JWT验证的接口, 复制它, 然后再`server/http.go`添加:
 
-把一个接口, 例如`shop.v1.ShopService.Register`, 在前面加上斜杠`/`, 然后把最后的`.接口字段`, 也就是你在proto定义的`rpc接口名称`, 换成斜杠, 例如`shop.v1.ShopService/Register`
+把一个接口, 例如`shop.v1.ShopService.Register`, 在前面加上斜杠`/`, 然后把最后的`.接口字段`, 也就是你在proto定义的
+`rpc接口名称`, 换成斜杠, 例如`shop.v1.ShopService/Register`
 
-示例: 
+示例:
+
 ```
 shop.v1.ShopService.Register
 ```
+
 在kratos中表示为:
+
 ```
 /shop.v1.ShopService/Register
 ```
 
 然后编写白名单
+
 ```go
 // NewWhiteListMatcher 设置白名单，不需要 token 验证的接口
 func NewWhiteListMatcher() selector.MatchFunc {
@@ -50,6 +55,7 @@ func NewWhiteListMatcher() selector.MatchFunc {
 ```
 
 最后在HTTP中间件添加:
+
 ```go
 http.Middleware(
 			selector.Server( // jwt 验证
@@ -61,6 +67,7 @@ http.Middleware(
 ```
 
 完整的`http.go`
+
 ```go
 package server
 

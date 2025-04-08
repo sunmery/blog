@@ -1,4 +1,5 @@
 编辑部署一个包含网络调试工具的yaml文件:
+
 ```shell
 cat <<EOF | kubectl apply -f -
 # Source: net-tools.yaml
@@ -44,11 +45,13 @@ EOF
 ```
 
 进入Pod调试:
+
 ```shell
 kubectl exec -it net-tools-gzn9z /bin/sh
 ```
 
 进行DNS调试:
+
 ```shell
 ping jaeger-collector.istio-system.svc.cluster.local
 ping: bad address 'bing.com'
@@ -56,15 +59,19 @@ ping: bad address 'bing.com'
 
 集群DNS用例:
 直接编辑
+
 ```shell
 kubectl edit cm coredns -n kube-system
 ```
+
 or 导出后修改
+
 ```shell
 kubectl get cm coredns -n kube-system -o > coredns.yaml
 ```
 
 改成如下内容:
+
 ```yaml
 apiVersion: v1
 kind: ConfigMap
@@ -98,10 +105,13 @@ data:
 ```
 
 删除coredns pod以达到重启DNS目的, 删除完成之后等待重建Pod
+
 ```shell
 kubectl delete cm/coredns-xx -n kube-system
 ```
 
 之后喝杯Java, 等待几分钟, 最后进入net-tool进行测试DNS
+
 ## 资料
+
 1. https://kubernetes.io/docs/tasks/administer-cluster/dns-custom-nameservers/

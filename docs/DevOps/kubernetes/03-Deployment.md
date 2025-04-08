@@ -1,4 +1,5 @@
 架构：
+
 ```mermaid
 flowchart LR
 	Node-->SVC
@@ -7,7 +8,9 @@ flowchart LR
 	Deployment-->Pod2
 	Deployment-->Pod3
 ```
+
 ## 作用
+
 方便部署更多的Pod副本在不同的Node节点上， 当一个Node出现故障时也可以把流量转到其他健康节点上以保证高可用性
 
 1. 高可用

@@ -4,15 +4,17 @@
 [DockerHub](https://hub.docker.com/r/bitnami/redis)
 
 参数:
-- bind            # 监听ip，多个ip用空格分隔，监听所有的IP地址
-- daemonize yes   # 允许后台启动
-- logfile         # 日志路径
-- dir             # 数据库备份文件存放目录
-- masterauth      # slave连接master密码，master可省略
-- requirepass     # 设置master连接密码，slave可省略
-- appendonly       yes # 在/opt/apache/redis/data目录生成appendonly.aof文件，将每一次写操作请求都- 追加到appendonly.aof 文件中
+
+- bind # 监听ip，多个ip用空格分隔，监听所有的IP地址
+- daemonize yes # 允许后台启动
+- logfile # 日志路径
+- dir # 数据库备份文件存放目录
+- masterauth # slave连接master密码，master可省略
+- requirepass # 设置master连接密码，slave可省略
+- appendonly yes # 在/opt/apache/redis/data目录生成appendonly.aof文件，将每一次写操作请求都- 追加到appendonly.aof 文件中
 
 常用:
+
 ```
 ## 安全
 ### 禁止特定命令

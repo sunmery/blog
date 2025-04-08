@@ -2,8 +2,10 @@
 
 Q: 为什么需要此库?
 A: React 给我们带来了`useEffect`这个函数钩子,为了处理`副作用`,然而在`nextjs`中,
-有时候我们不需要通过`getStaticProps`函数来通过浏览器发送获取数据库的数据,而是直接在服务端中直接请求数据库的数据来达到减少调用与性能优化的效果,`SWR`(
-客户端与服务端混合渲染),那么就必然要使用副作用函数`useEffect`, 而`useEffect`却缺少了一些状态,例如`错误时的处理`与`加载中的`状态,那么,`SWR`
+有时候我们不需要通过`getStaticProps`函数来通过浏览器发送获取数据库的数据,而是直接在服务端中直接请求数据库的数据来达到减少调用与性能优化的效果,
+`SWR`(
+客户端与服务端混合渲染),那么就必然要使用副作用函数`useEffect`, 而`useEffect`却缺少了一些状态,例如`错误时的处理`与`加载中的`
+状态,那么,`SWR`
 这个库就是为了解决这种情况产生的
 
 Q: 此库可以给我们带来什么?
@@ -32,8 +34,8 @@ pnpm i swr
 
 2. 封装
 
-    封装网络请求API,在任何地方都可以重复使用的
-    fetch示例
+   封装网络请求API,在任何地方都可以重复使用的
+   fetch示例
 
     ```tsx
     const fetcher = async(...args: [uri: string, fetchOptions: RequestInit]) => {
@@ -43,7 +45,7 @@ pnpm i swr
     }
     ```
 
-    `axios`与`apollo`的封装访问[这里](https://swr.vercel.app/docs/data-fetching)
+   `axios`与`apollo`的封装访问[这里](https://swr.vercel.app/docs/data-fetching)
 
 3. 使用
 

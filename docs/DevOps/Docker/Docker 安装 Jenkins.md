@@ -1,6 +1,7 @@
-
 ## Docker 安装Jenkins
+
 防火墙
+
 ```
 firewall-cmd --zone=public --add-port=8099/tcp --permanent
 systemctl restart firewalld
@@ -8,9 +9,11 @@ firewall-cmd --zone=public --list-ports
 ```
 
 安装`jenkinsci/blueocean`
+
 ```bash
 docker run  -u root -d -p 8080:8080 -p 50000:50000  -v /home/data/jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock  --name jenkins jenkinsci/blueocean
 ```
+
 ```yml
 version: '3'
 services:

@@ -1,4 +1,5 @@
 ## 安装
+
 1. 本地机器可改为NodePort, 根据实际需要
 
 ```yaml
@@ -80,16 +81,19 @@ subjects:
 
 ```
 
-2. 最佳实践是创建新的命名空间: 
+2. 最佳实践是创建新的命名空间:
+
 ```yaml
 kubectl create namespace istio-ingress
 ```
 
 3. 应用部署:
+
 ```shell
 kubectl apply -f ingress.yaml
 ```
 
 ## 资料
+
 1. https://istio.io/latest/zh/docs/setup/additional-setup/gateway/
 2. https://istio.io/latest/zh/docs/tasks/traffic-management/ingress/ingress-control/#determining-the-ingress-ip-and-ports

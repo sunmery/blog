@@ -29,11 +29,13 @@ const CompA = (props: IProps) => {
 
 **动态Props**
 语法:
+
 ```
 <泛型 extents Props类型>(props: 泛型)
 ```
 
 1. 箭头函数的类型为
+
 ```ts
 <泛型 extents 类型>(props: 泛型)
 ```
@@ -80,10 +82,12 @@ const changeHandler: ChangeEventHandler<HTMLELement> = (e)=>{
 - Required 必选
 
 - Pick
-语法 
+  语法
+
 ```ts
 Pick<T,K extends keyof T>
 ```
+
 从T的类型挑选部分属性作为K的类型
 
 ```ts
@@ -121,7 +125,8 @@ const xiaohong: XiaoHong = {
 Record
 将一个类型为另一个类型的属性
 
-语法 
+语法
+
 ```ts
 Record<属性,属性的值的类型>
 ```
@@ -150,7 +155,8 @@ const xiaoWang: Record<XiaoWang, IPerson2> = {
 ```
 
 Exclude
-语法 
+语法
+
 ```ts
 Exclue<类型A,从类型排除的类型>
 ```
@@ -165,6 +171,7 @@ const gender3: newGender = 'unknown' // error
 
 Omit
 语法
+
 ```ts
 Omit<类型A,从类型A去除的属性>
 ```
@@ -183,6 +190,7 @@ const xm:Xm = {
 ReturnType
 返回函数返回值的类型
 语法
+
 ```ts
 Return<typeof 函数>
 ```

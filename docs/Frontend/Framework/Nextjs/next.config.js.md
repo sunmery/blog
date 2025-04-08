@@ -1,4 +1,5 @@
-[next](https://nextjs.org/docs/api-reference/next.config.js/runtime-configuration)仅服务器运行时配置放在`serverRuntimeConfig`下。
+[next](https://nextjs.org/docs/api-reference/next.config.js/runtime-configuration)仅服务器运行时配置放在
+`serverRuntimeConfig`下。
 
 ```js
  publicRuntimeConfig: {

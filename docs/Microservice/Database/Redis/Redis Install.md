@@ -1,8 +1,11 @@
 ## Install
+
 ### Docker
+
 https://blog.csdn.net/weixin_45821811/article/details/116211724
 
 `docker-compose.yml`
+
 ```shell
 export DATA_DIR="/home/redis/data"
 export PORT="6379"
@@ -26,7 +29,9 @@ services:
 EOF
 docker-compose -f minio-docker-compose.yml up -d
 ```
+
 ## 测试
+
 ```shell
 docker exec -it redis redis-cli
 auth password 

@@ -1,5 +1,7 @@
 https://github.com/spf13/viper
+
 ## Install
+
 ```shell
 go get github.com/spf13/viper
 ```
@@ -7,16 +9,20 @@ go get github.com/spf13/viper
 ## Use
 
 ### ENV文件
+
 编写env文件的规范:
+
 1. 全大写的下划线命名法, 例如`DB_SOURCE`
 2. Key与Value使用`=`赋值, 中间没有任何空格
 3. Value值内容无需引号
+
 ```env
 DB_SOURCE=postgresql://postgres:postgres@localhost:5432/simple_bank?sslmode=disable
 SEVER_ADDRESS=localhost:8080
 ```
 
 go代码:
+
 ```go
 // 将struct的字段与env配置文件的Key通过mapstructure这个tag对应起来
 type Config struct {
@@ -67,47 +73,62 @@ func main() {
 ```
 
 环境变量的优先级是大于配置文件的. 测试环境变量是否可以覆盖env文件的值, 如果运行的结果是环境变量的值, 则viper正常工作
+
 ```bash
 SEVER_ADDRESS=localhost:8081 go run main
 ```
+
 ### Yaml
+
 1. 文件类型, viper支持多种文件类型
+
 ```go
 viper.SetConfigType("yaml")
 ```
+
 2. 文件路径
+
 ```go
 viper.SetConfigFile("./config.yaml")
 ```
 
 3. 读取
+
 ```go
 err := viper.ReadInConfig() // Find and read the config file
 if err != nil { // Handle errors reading the config file
 	panic(fmt.Errorf("fatal error config file: %w", err))
 }
 ```
+
 ### 获取
 
 1. GetString: 获取字段并转成字符串
+
 ```go
 httpAddr := viper.GetString("server.http.addr")
 ```
 
 ### 设置
-更新与添加是一样的方法, 区别在于, 
-如果源文件没有的字段会自动添加, 
+
+更新与添加是一样的方法, 区别在于,
+如果源文件没有的字段会自动添加,
 源文件有的字段会更新它的值
+
 1. 添加新字段与新值
+
 ```go
 viper.Set("new_field", "new_value")
 ```
+
 2. 更新新值
+
 ```go
 viper.Set("server.http.addr", "new_http_addr")
 ```
 
-示例1: 
+示例1:
+
 ```go
 func main() {
 	// 初始化Viper
@@ -145,6 +166,7 @@ func main() {
 ```
 
 示例2: 解析配置文件
+
 ```go
 
 func GetPath(file, dir string) string {

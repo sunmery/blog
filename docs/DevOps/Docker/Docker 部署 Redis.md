@@ -2,8 +2,8 @@
 
 ```
 
-
 `docker-compose.yml`
+
 ```yml
 version: '3'
 
@@ -24,6 +24,7 @@ services:
 ```
 
 `redis.conf`
+
 ```conf
 # 绑定的 IP 列表
 bind 0.0.0.0

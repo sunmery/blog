@@ -1,7 +1,8 @@
 ## 增加超时时间
 
 客户机:
- `~/.ssh/config`
+`~/.ssh/config`
+
 ```
 Host *
   ServerAliveInterval 60
@@ -9,6 +10,7 @@ Host *
 ```
 
 服务器:
+
 ```bash
 cat >> /etc/ssh/sshd_config <<EOF
 ClientAliveInterval 60
@@ -17,19 +19,25 @@ EOF
 
 sudo systemctl restart ssh
 ```
+
 ## 修改密码
+
 ```
 sudo passwd root
 ```
+
 ## 允许Root用户登录
+
 ```
 sudo sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 ```
 
 ## 使用国内源
+
 ```bash
 sudo sed -i 's/ports.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list.d/ubuntu.sources && sudo apt update && sudo apt upgrade -y
 ```
+
 ## 设置密钥登录
 
 ```bash
@@ -37,10 +45,13 @@ sudo sed -i 's/PubkeyAuthentication no/PubkeyAuthentication yes/g' /etc/ssh/sshd
 
 cat /etc/ssh/sshd_config | grep PubkeyAuthentication
 ```
+
 ## 静态IP
+
 1. 将虚拟机软件设置为桥接
 2. 查看mac的路由器的信息
-3. 在`/etc/netplan/00-installer-config.yaml`或者`50-cloud-init.yaml` 或类似名称
+3. 在`/etc/netplan/00-installer-config.yaml`或者`50-cloud-init.yaml`或类似名称
+
 ```shell
 cp /etc/netplan/00-installer-config.yaml{,.back}
 cat > /etc/netplan/00-installer-config.yaml <<EOF
@@ -74,15 +85,20 @@ kubernetes以UUID区分集群机器标识, 相同的UUID的虚拟机/机器不�
 
 1. 参考[CSDN](https://blog.csdn.net/weixin_41806245/article/details/114581018)
 2. 列出虚拟机:
+
 ```shell
 prlctl list -a
 ```
+
 3. 把重复的UUID的虚拟机的UUID取消注册
+
 ```shell
 prlctl unregister 14182a5e-8a9e-4bfe-94cd-ac807bb40fa4
 ```
+
 4. 重新注册生成新的UUID. 在mac主机上的终端执行以下命令:
-把`/Users/lisa/Public/Linux/Ubuntu/master/master1.pvm/`替换为你要更改的UUID虚拟机的pvm路径
+   把`/Users/lisa/Public/Linux/Ubuntu/master/master1.pvm/`替换为你要更改的UUID虚拟机的pvm路径
+
 ```shell
 prlctl register --regenerate-src-uuid /Users/lisa/Public/Linux/Ubuntu/node2.pvm/
 ```
@@ -90,9 +106,11 @@ prlctl register --regenerate-src-uuid /Users/lisa/Public/Linux/Ubuntu/node2.pvm/
 ## clash代理
 
 ### 设置代理
+
 #### HTTP(S)
 
 别名
+
 ```shell
 USER_PATH="/root"
 SHELL_FILE="${USER_PATH}/.bashrc"
@@ -113,6 +131,7 @@ cat $SHELL_FILE
 Clash的Tun模式 与 WireGuard冲突
 一份参考: `https://github.com/MetaCubeX/mihomo/blob/Alpha/docs/config.yaml`
 打开clash的配置文件`config.yaml`, 添加:
+
 ```yaml
 ...
 interface-name: en0

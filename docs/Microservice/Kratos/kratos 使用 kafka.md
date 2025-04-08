@@ -7,6 +7,7 @@ Kafka 有多种部署方式, 这里仅演示 Kubernetes 安装的方法
 Kubernetes跟着 https://strimzi.io/quickstarts/ 安装即可
 
 Kubernetes安装kafka脚本:
+
 ```bash
 set -o posix errexit -o pipefail
 
@@ -93,8 +94,9 @@ kubectl wait kafka/my-cluster --for=condition=Ready --timeout=300s -n kafka
 
 ### Kubernetes
 
-生产者: 
+生产者:
 复制粘贴等它启动好之后显示 `>` 时输入任意数据, 然后退出
+
 ```bash
 # 发送和接收消息
 # 在集群运行的情况下，运行一个简单的生产者向 Kafka 主题发送消息（该主题是自动创建的）：
@@ -105,18 +107,22 @@ kubectl -n kafka run kafka-producer -ti --image=quay.io/strimzi/kafka:0.43.0-kaf
 
 消费者:
 复制粘贴等它启动好之后显示你刚刚输入的数据, 如果没有显示, 那么安装没有成功
+
 ```bash
 # 测试接收
 # 要在不同的终端中接收它们，请运行：
 kubectl -n kafka run kafka-consumer -ti --image=quay.io/strimzi/kafka:0.43.0-kafka-3.8.0 --rm=true --restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server my-cluster-kafka-bootstrap:9092 --topic my-topic --from-beginning
 ```
+
 ### go 程序
+
 创建简单的 go 程序来测试Kafka
 
 > kafka 默认不允许隐式创建topic, 在测试时使用已有的 topic 即可, 例如`my-topic`
 
-生产者代码: 
+生产者代码:
 把`brokerAddress`替换成你的 kafka 服务地址
+
 ```go
 package main
 
@@ -164,6 +170,7 @@ func main() {
 
 消费者代码:
 把`brokerAddress`替换成你的 kafka 服务地址
+
 ```go
 package main
 
@@ -211,6 +218,7 @@ func main() {
 
 场景:
 用户注册的微服务, 生产者把用户数据传递给消费者进行创建用户
+
 ### 编写 API
 
 ```protobuf
@@ -252,7 +260,9 @@ message Reply {
 ```
 
 ### 配置 kafka 参数
+
 编写 proto
+
 ```protobuf
 
 message Data {
@@ -267,6 +277,7 @@ message Data {
 ```
 
 编写实际值
+
 ```yaml
 data:
   kafka:
@@ -278,6 +289,7 @@ data:
 ```
 
 ### biz层
+
 ```go
 package biz
 
@@ -365,6 +377,7 @@ func (uc *GreeterUsecase) CreateGreeter(ctx context.Context, g *Greeter) (*Greet
 ### data 层
 
 data.go
+
 ```go
 package data
 
@@ -486,6 +499,7 @@ func (u *greeterRepo) KafkaSendMessage(ctx context.Context, key []byte, value []
 ```
 
 ### Service层
+
 ```go
 package service
 
@@ -524,12 +538,14 @@ func (s *GreeterService) CreateUser(ctx context.Context, req *v1.Request) (*v1.R
 ```
 
 启动:
+
 ```bash
 make all
 kratos run
 ```
 
 访问:
+
 ```bash
 curl -H "Content-Type: application/json" \
 -X POST \
@@ -539,8 +555,10 @@ http://localhost:8000/v1/user/register
 
 查看生产者发来的数据:
 进入到Kubernetes控制平面:
+
 - --bootstrap-server: kafka地址, 如果是 LoadBalancer或NodePort 类型, 需要修改为 对应的 IP
 - --topic: 填写生产者的 topic
+
 ```bash
 kubectl -n kafka \
 run kafka-consumer \

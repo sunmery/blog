@@ -1,4 +1,3 @@
-
 使用`nhooyr.io/websocket`, 而不是`gorilla/websocket`
 nhooyr/websocket 支持gzip
 gorilla/websocket 已经停止维护了

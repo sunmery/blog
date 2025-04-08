@@ -1,10 +1,11 @@
-#Node 
+#Node
 
 使用`Node`的`crypto`库实现
 
 1. 生成RSA加密算法所需的`私钥`与`公钥`
 
 生成RSA密钥，加密方式指定为AES256，生成的RSA的密钥长度是2048位, 生成的文件在`C:\Users\<Username>`下
+
 ```bash
 openssl genrsa -aes256 -out rsa-key.pem 2048
 ```
@@ -26,6 +27,7 @@ openssl rsa -in rsa-key.pem -outform PEM -pubout -out rsa-pub.pem
 > `ts`文件的导入方式是 `import * as crypto form 'node:crypto'`
 
 - 使用私钥加密, 公钥解密
+
 ```js
 const
     fs = require('fs'),
@@ -52,6 +54,7 @@ console.log('decrypted by public key: ' + dec_by_pub.toString('utf8'));
 ```
 
 - 使用公钥加密，私钥解密：
+
 ```js
 // 使用公钥加密:
 let enc_by_pub = crypto.publicEncrypt(pubKey, Buffer.from(message, 'utf8'));

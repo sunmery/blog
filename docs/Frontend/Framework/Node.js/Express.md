@@ -163,6 +163,7 @@ node app.js
 
 ## 可选
 
-+ [antfu/esno： TypeScript / ESNext node runtime by esbuild (github.com)](https://github.com/antfu/esno) 在`Typescript`运行`Node`环境
++ [antfu/esno： TypeScript / ESNext node runtime by esbuild (github.com)](https://github.com/antfu/esno) 在`Typescript`运行
+  `Node`环境
 + [nodemon 保存时自动更新](https://www.npmjs.com/package/nodemon)
 + [pm2](https://www.npmjs.com/package/pm2)

@@ -1,6 +1,10 @@
 ## 注意事项
+
 ### 一个服务器分配多个许可证
-如果是多个客户端使用同一个服务器端的配置文件, 那么需要修改`[Interface]`下的`Address`字段的值与其他客户端的`CIDR`不同, 例如一个客户端是`11.1.6.2/32`, 另一个客户端就不能使用该CIDR段, 可以使用`10.10.10.2/32`这样的用于区分
+
+如果是多个客户端使用同一个服务器端的配置文件, 那么需要修改`[Interface]`下的`Address`字段的值与其他客户端的`CIDR`不同,
+例如一个客户端是`11.1.6.2/32`, 另一个客户端就不能使用该CIDR段, 可以使用`10.10.10.2/32`这样的用于区分
+
 ```
 [Interface]
 PrivateKey = PrivateKey
@@ -14,20 +18,24 @@ AllowedIPs = AllowedIPs
 Endpoint = Endpoint
 PersistentKeepalive = 25
 ```
+
 ## apt/apt-get
 
 检查是否内置
+
 ```shell
 wg -v
 ```
 
 默认自带, 如果没有安装请手动安装:
+
 ```
 apt install openresolv
 apt install wireguard-tools
 ```
 
 客户端样板代码:
+
 ```
 cat > /etc/wireguard/wg0.conf <<EOF
 [Interface]
@@ -45,6 +53,7 @@ EOF
 ```
 
 Nginx代理
+
 ```
 cat> /usr/local/nginx/conf/casdoor.conf <<EOF
 server {
@@ -72,6 +81,7 @@ EOF
 ```
 
 ## yum/dnf
+
 ```shell
 dnf install wireguard-tools
 ```
@@ -121,7 +131,6 @@ Now that the NetworkManager is configured, you are now ready to set up the wireg
 wg-quick up wg0
 ```
 
-
 Now verify the '_**wg-client1**_' interface via the ip command below.  
 现在通过下面的 ip 命令验证“wg-client1”接口。
 
@@ -137,6 +146,7 @@ resolvectl status wg0
 ```
 
 ## 参考
+
 1. https://www.howtoforge.com/how-to-install-wireguard-vpn-on-rocky-linux-9/
 2. https://linuxiac.com/how-to-set-up-wireguard-vpn-server-on-ubuntu/#step-31-generate-publicprivate-keypair
 3. https://www.cyberciti.biz/faq/ubuntu-20-04-set-up-wireguard-vpn-server/

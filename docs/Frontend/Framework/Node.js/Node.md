@@ -156,16 +156,20 @@ fs.open() 打开文件
 
 > + w+ 读写文件,没有新建
     >
+
 + a 写,追加文件
->   + a+ 读写, 追加文件
-      > 回调函数
+
+> + a+ 读写, 追加文件
+    > 回调函数
 
 `fs.rm(path,[options:{maxRetries:\<integer>},recursive:\<boolean>,retryDelay:\<integer>],[err:\<function>])`
 
 - path: 目录
 - options:
-    - `<integer>`:如果遇到EBUSY、EMFILE、ENFILE、ENOTEMPTY或EPERM错误，Node.js会尝试重试，每次重试的线性回退等待时间延长毫秒。此选项表示重试次数。如果递归选项不为true，则忽略此选项。默认值0
-    - `<boolean>`如果为true，执行递归目录删除。在递归模式下，如果路径不存在，则不报告错误，并在失败时重试操作。默认值:fals.retrybelay
+    - `<integer>`:
+      如果遇到EBUSY、EMFILE、ENFILE、ENOTEMPTY或EPERM错误，Node.js会尝试重试，每次重试的线性回退等待时间延长毫秒。此选项表示重试次数。如果递归选项不为true，则忽略此选项。默认值0
+    - `<boolean>`如果为true，执行递归目录删除。在递归模式下，如果路径不存在，则不报告错误，并在失败时重试操作。默认值:
+      fals.retrybelay
     - `<integer>`重试之间等待的时间(毫秒)。如果递归选项不为真，则忽略此选项。默认值:100
 - Err 错误回调
 

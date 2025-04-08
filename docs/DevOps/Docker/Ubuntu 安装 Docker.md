@@ -3,6 +3,7 @@ https://docs.docker.com/engine/install/ubuntu/
 ## 国内源安装
 
 https://developer.aliyun.com/mirror/docker-ce
+
 ```
 # step 1: 安装必要的一些系统工具
 sudo apt-get update
@@ -26,11 +27,13 @@ sudo apt-get -y install docker-ce
 ```
 
 删除未使用
+
 ```shell
 docker image prune -a
 ```
 
 不包含containerd
+
 ```shell
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker; do sudo apt-get remove $pkg; done
 
@@ -53,6 +56,7 @@ sudo docker run hello-world
 ```
 
 包含containerd:
+
 ```shell
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
 
@@ -76,6 +80,7 @@ sudo docker run hello-world
 ```
 
 ## 源
+
 ```
 
 ```

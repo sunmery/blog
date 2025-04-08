@@ -3,6 +3,7 @@
 进入服务器
 user: 用户名, 默认为`root`
 host: 主机, 例如`192.168.0.158`
+
 ```bash
 ssh <user>@host
 ```
@@ -10,6 +11,7 @@ ssh <user>@host
 1. 创建gitlab的config配置目录
 2. 创建gitlab的data数据目录
 3. 创建gitlab的logs日志目录
+
 ```bash
 mkdir -p /data/gitlab/config
 mkdir -p /data/gitlab/logs
@@ -17,7 +19,7 @@ mkdir -p /data/gitlab/data
 ```
 
 4. 安装Gitlab镜像, 根据需要安装
-客户端搜索`DockerHub`查询GitLab版本或者使用指令`docker search gitlab`查询, 本文使用gitlab最新版`gitlab:latest`镜像
+   客户端搜索`DockerHub`查询GitLab版本或者使用指令`docker search gitlab`查询, 本文使用gitlab最新版`gitlab:latest`镜像
 
 格式:
 -d: 后台运行
@@ -29,6 +31,7 @@ http_port: 使用HTTP的端口,默认为`80`,
 https_port: 使用HTTPS的端口,默认为`443`,
 ssh_port: 使用 SSH克隆项目的端口, 默认为`22`
 -v: 挂载宿主机目录至容器目录
+
 ```bash
 docker run \
 -d \
@@ -47,6 +50,7 @@ gitlab/gitlab-ce:latest
 ```
 
 示例:
+
 ```bash
 mkdir -p /data/gitlab/config
 mkdir -p /data/gitlab/logs
@@ -67,15 +71,18 @@ docker run -d \
 gitlab/gitlab-ce:latest\
 ```
 
-
 查看密码, 默认的账号是`root`:
+
 ```
 cat /data/gitlab/config/initial_root_password
 ```
+
 ## 配置
 
 ### 降低内存占用
+
 https://zhuanlan.zhihu.com/p/566884380
+
 ```shell
 cat >> $config/gitlab.rb <<EOF
 # 禁用 puma cluster 模式， 可以减少 100-400 MB占用  
@@ -95,9 +102,11 @@ EOF
 
 docker restart gitlab
 ```
+
 ### 基本配置
 
 修改配置文件
+
 ```bash
 vi /data/gitlab/config/gitlab.rb
 ```
@@ -108,6 +117,7 @@ gitlab_rails['gitlab_ssh_host']: 服务器URL
 gitlab_rails['gitlab_shell_ssh_port']: Gitlab SSH地址端口
 
 示例:
+
 ```rb
 external_url 'http://192.168.0.152'
 gitlab_rails['gitlab_ssh_host'] = '192.168.0.152' 
@@ -121,17 +131,20 @@ gitlab_rails['gitlab_shell_ssh_port'] = 2222 # Gitlab SSH地址
 #### 修改gitlab配置
 
 修改配置文件
+
 ```bash
 vi /data/gitlab/config/gitlab.rb
 ```
 
 PROT: 端口
+
 ```rb
 external_url 'http://192.168.0.152:<PROT>'
 nginx['listen_port'] = <PROT>
 ```
 
 #### 修改docker配置
+
 如果Docker容器已经启动80端口,则更改Docker容器配置
 参考 [[修改容器端口]]
 
@@ -142,6 +155,7 @@ nginx['listen_port'] = <PROT>
 > 此方法为临时方法,gitlab重新读取配置文件后失效
 
 将`gitlab.yml`文件的`port`改成你想设置的端口
+
 ```bash
 vi /data/gitlab/data/gitlab-rails/etc/gitlab.yml
 ```
@@ -150,7 +164,7 @@ vi /data/gitlab/data/gitlab-rails/etc/gitlab.yml
 
 修改以下注释部分, 替换成你的邮箱
 
-> 如果修改完不生效, 尝试替换字段 `gitlab_rails['smtp_address']` 的值为 `"smtp.exmail.qq.com"` 
+> 如果修改完不生效, 尝试替换字段 `gitlab_rails['smtp_address']` 的值为 `"smtp.exmail.qq.com"`
 
 ```rb
 gitlab_rails['smtp_enable'] = true
@@ -170,11 +184,13 @@ user['git_user_email'] ="xiconz@qq.com" # 邮箱
 #### 测试邮件发送
 
 格式:
+
 ```bash
 Notify.test_email('exam@163.com','邮件标题','邮件内容').deliver_now
 ```
 
 进入控制台发送测试邮件
+
 ```bash
 gitlab-rails console
 Notify.test_email('exam@163.com','邮件标题','邮件内容').deliver_now
@@ -183,47 +199,57 @@ Notify.test_email('exam@163.com','邮件标题','邮件内容').deliver_now
 ### 配置SSH密钥
 
 检查密钥是否存在
+
 ```bash
 ls -alh ~/.ssh
 ```
 
-不存在生成密钥: 
+不存在生成密钥:
+
 ```bash
 ssh-keygen -t ed25519
 ```
 
 或者:
+
 ```shell
 ssh-keygen -t ed25519 -C "gitlab" -f ~/.ssh/gitlab_rsa
 ```
+
 ### **在Gitlab添加本机的`xxx.pub`秘钥**
+
 ![[img/Pasted image 20240214134828.png]]
 
 ### 添加私钥到本机SSH
 
 添加私钥，指向私钥文件
+
 ```bash
 ssh-add ~/.ssh/gitlab_rsa
 ```
 
 失败使用:
+
 ```bash
 ssh-agent bash
 ```
 
 检查添加成功
+
 ```bash
 ssh-add -l
 ```
 
 #### 验证是否可以连接
+
 ```bash
 ssh -T git@192.168.0.152 -p 2222
 ```
+
 大写-T 指向主机
 小写-p指向端口
 选择-i指向密钥文件
- -i ~/.ssh/gitlabpullweb_rsa 
+-i ~/.ssh/gitlabpullweb_rsa
 
 成功提示: `Welcome to GitLab, @wangbin!`
 
@@ -232,25 +258,30 @@ ssh -T git@192.168.0.152 -p 2222
 > 如果忘记密码或者非手动修改密码时这个密码才有效
 
 账号: root
+
 ```bash
 sudo docker exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
 ```
 
 ## 常用指令
 
->需要进入gitlab容器执行操作
+> 需要进入gitlab容器执行操作
 
-- gitlab-ctl diff-config: 比较配置 
+- gitlab-ctl diff-config: 比较配置
 - gitlab-ctl reconfigure: 重新加载配置
 - gitlab-ctl restart: 重启
 - gitlab-ctl status: 查看状态
 
-> gitlab-ctl reconfigure这个命令的作用，就是用gitlab.rb这个配置文件，来配置所有的组件，所以，当你更改了Gitlab的配置，就需要用这个命令来重新生成其他组件的配置文件。而如果没有更改过gitlab.rb，也就是配置没有更改，比如说，只更新了证书，那么就可以直接使用gitlab-ctl restart重启各种服务就行了。
+> gitlab-ctl
+>
+reconfigure这个命令的作用，就是用gitlab.rb这个配置文件，来配置所有的组件，所以，当你更改了Gitlab的配置，就需要用这个命令来重新生成其他组件的配置文件。而如果没有更改过gitlab.rb，也就是配置没有更改，比如说，只更新了证书，那么就可以直接使用gitlab-ctl
+> restart重启各种服务就行了。
 
 ## [可选]Gitlab-Runner
 
 1. 安装gitlab-runner
-[参考](https://docs.gitlab.com/runner/install/docker.html)
+   [参考](https://docs.gitlab.com/runner/install/docker.html)
+
 ```bash
 mkdir -p /data/gitlab-runner/runner3/config
 
@@ -264,8 +295,9 @@ gitlab/gitlab-runner:latest
 ```
 
 2. 注册CICD通道
-[参考](https://docs.gitlab.com/runner/register/index.html#docker)
-`/data/gitlab-runner/confi`替换为你的`gitlab-runner/config`配置文件路径
+   [参考](https://docs.gitlab.com/runner/register/index.html#docker)
+   `/data/gitlab-runner/confi`替换为你的`gitlab-runner/config`配置文件路径
+
 ```bash
 docker run \
 -it \
@@ -280,11 +312,12 @@ cat /data/gitlab-runner/config/config.toml
 ```
 
 4. (可选)添加Docker镜像加速
-关键字: `extra_hosts`
-[参考](https://docs.gitlab.com/runner/configuration/advanced-configuration.html) 
-在`vi /<gitlab_runner_path>/config.toml`文件的`[runners.docker]`下添加
+   关键字: `extra_hosts`
+   [参考](https://docs.gitlab.com/runner/configuration/advanced-configuration.html)
+   在`vi /<gitlab_runner_path>/config.toml`文件的`[runners.docker]`下添加
 
 语法:
+
 ```
 [runners.docker]
 	...
@@ -292,6 +325,7 @@ cat /data/gitlab-runner/config/config.toml
 ```
 
 示例:
+
 ```
 [runners.docker]
 	...
@@ -301,6 +335,7 @@ cat /data/gitlab-runner/config/config.toml
 5. 重启读取配置文件
 
 docker runner 容器内:
+
 ```shell
 gitlab-runner verify # 验证配置文件
 gitlab-runner restart
@@ -308,23 +343,27 @@ gitlab-runner list # 查看注册的 runer 列表
 ```
 
 容器外:
+
 ```bash
 docker restart gitlab-runner
 ```
 
 6. 查看运行状态
+
 ```bash
 docker logs gitlab-runner
 ```
 
 7. 测试是否可以运行
-进入容器
+   进入容器
+
 ```shell
 docker exec -it xxx sh
 gitlab-runner run
 ```
 
 遇到登录问题需要修改配置文件
+
 ```yml
   image: docker:stable  
   stage: build  
@@ -342,12 +381,13 @@ gitlab-runner run
     - test
 ```
 
-gitlab界面查看是否有这个CICD通道. 
+gitlab界面查看是否有这个CICD通道.
 项目 -> 设置 -> CI/CD-> Runner -> 分配项目的 runner 是否与你注册时输入的步骤相关
 ![[Pasted image 20230223154159.png]]
 
 .gitlab-ci.yml
 [文档](https://docs.gitlab.com/ee/ci/yaml/index.html)
+
 ```
 stages:
   - init
@@ -415,15 +455,18 @@ job_deploy:
 ```
 
 ### submodules
+
 [官方文档](https://docs.gitlab.com/ee/ci/git_submodules.html)
 
 gitlab环境变量添加
+
 ```
 GIT_SUBMODULE_STRATEGY: recursive
 ```
 
 # 命令修改root密码
-#执行命令  
+
+#执行命令
 
 ```
 gitlab-rails console -e production      # 然后以此执行下面命令（需要提前查询用户的id号）

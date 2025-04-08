@@ -1,4 +1,5 @@
 `middleware/cors.go`
+
 ```go
 package utils
 
@@ -52,6 +53,7 @@ func Cors() gin.HandlerFunc {
 
 **main.go**
 Gin应用中间件
+
 ```go
 gin.SetMode(gin.ReleaseMode) 
 server := gin.Default()
@@ -59,6 +61,7 @@ server.Use(middleware.Cors())
 ```
 
 ## 参考
+
 1. [博客园](https://www.cnblogs.com/-wenli/p/15708870.html)
 2. [掘金](https://juejin.cn/post/6987205879653204004)
 3. [简书](https://www.jianshu.com/p/ae260870a0ca)

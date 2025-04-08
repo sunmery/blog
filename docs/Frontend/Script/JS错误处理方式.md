@@ -74,7 +74,8 @@
 异常处理的方式:
 
 1. 使用`try catch`捕捉异常
-2. 使用`throw [new <ErrorType>]` 抛出异常, `ErrorType`可以为任意类型, 也可以是上面提到的6种类型, 使用`throw`抛出的异常类型如下所示:
+2. 使用`throw [new <ErrorType>]` 抛出异常, `ErrorType`可以为任意类型, 也可以是上面提到的6种类型, 使用`throw`
+   抛出的异常类型如下所示:
     1. `throw new Error('You threw an exception!')`
     2. `throw new TypeError('You threw an exception!')`
     3. `throw 'You threw an exception!'`

@@ -1,8 +1,8 @@
-
 到集群查看kubeconfig
 [# K8s生成kubeconfig访问集群](https://juejin.cn/post/7285540804735205430)
 
 示例, 获取k8s命名空间
+
 ```go
 package main
 

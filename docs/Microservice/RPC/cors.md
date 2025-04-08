@@ -45,6 +45,7 @@ mux.Handle("/", middleware.GrpcCORS(grpcMux))
 ```
 
 完整:
+
 ```go
 func runGatewayServer(cfg *config.Config, store db.Store) {
 	// rpc服务

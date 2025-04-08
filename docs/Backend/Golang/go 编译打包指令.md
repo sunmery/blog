@@ -1,21 +1,24 @@
-
 ```
 CGO_ENABLED : 0/1
 CGO 表示golang中的工具，CGO_ENABLED=0 表示CGO禁用，交叉编译中不能使用CGO的
 ```
 
 打包为Linux
-1. 
+
+1.
+
 ```shell
 CGO_ENABLED=0 CC=x86_64-unknown-linux-gnu-gcc CXX=x86_64-unknown-linux-gnu-g++ GOOS=linux GOARCH=amd64 go build -o app .
 ```
 
-2.  禁止交叉编译
+2. 禁止交叉编译
+
 ```
 CC=x86_64-unknown-linux-gnu-gcc CXX=x86_64-unknown-linux-gnu-g++ GOOS=linux GOARCH=amd64 go build -o app .
 ```
 
 打包为Windows
+
 ```shell
 CGO_ENABLED=1 CC=x86_64-w64-mingw32-gcc CXX=x86_64-w64-mingw32-g++ GOOS=windows GOARCH=amd64 go build .
 ```

@@ -25,12 +25,14 @@ chmod 777 /data/mongodb/databases
    -e MONGO_INITDB_ROOT_PASSWORD=msdnmm 设置mongodb的root密码
 
 放行端口
+
 ```shell
 firewall-cmd --zon=public --add-port 27017/tcp --premanent
 firewall-cmd --reload
 ```
 
 运行示例
+
 ```shell
 docker run \
 -d \
@@ -44,11 +46,13 @@ docker run \
 ```
 
 ## 社区版/企业版
+
 [Mongo](https://www.mongodb.com/compatibility/docker)
 [示例](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-enterprise-with-docker/)
+
 1. 运行docker
 
-> mac: 
+> mac:
 > 添加此条命令： --platform linux/amd64
 
 ```bash
@@ -66,32 +70,40 @@ mongodb/mongodb-enterprise-server //企业版
 ```
 
 2. 修改配置文件,不修改默认只为127.0.0.1(Docker本地)
-[Mongodb](https://www.mongodb.com/docs/v4.4/core/security-mongodb-configuration/)
-进入mongodb容器修改
-使用`,`分割多IP
+   [Mongodb](https://www.mongodb.com/docs/v4.4/core/security-mongodb-configuration/)
+   进入mongodb容器修改
+   使用`,`分割多IP
+
 ```shell
 mongod --bind_ip 192.168.0.152,139.198.165.102
 ```
+
 开通全部IP
+
 - net.bindIpAll
 - 0.0.0.0 IPV4
 - ::,0.0.0.0 IPV6+IPV4
+
 ```shell
 mongod --bind_ip net.bindIpAll
 ```
 
 > 另类方式
+
 ```
 find / -name "mongd.conf"
 ```
 
-3.  修改为放行的端口, 示例为`net.bindIpAll`,即`0.0.0.0`
+3. 修改为放行的端口, 示例为`net.bindIpAll`,即`0.0.0.0`
+
 ```
 bindIp: net.bindIpAll
 ```
+
 ![[Pasted image 20230224143009.png]]
 
 4. 查看是否正确
+
 ```shell
 docker exec -it mongo bash
 cat /etc/mongod.conf
@@ -106,7 +118,8 @@ mongo admin
 ```
 
 7. 创建root账户
-[参考](https://www.mongodb.com/docs/manual/reference/method/db.createUser/)
+   [参考](https://www.mongodb.com/docs/manual/reference/method/db.createUser/)
+
 ```shell
 use admin
 db.createUser(
@@ -125,7 +138,8 @@ mongo -u <用户>
 ```
 
 9. 创建用户
-[角色权限参考](https://www.mongodb.com/docs/manual/reference/built-in-roles/#std-label-built-in-roles)
+   [角色权限参考](https://www.mongodb.com/docs/manual/reference/built-in-roles/#std-label-built-in-roles)
+
 ```shell
 db.createUser(
 	{
@@ -154,6 +168,7 @@ Q&A: 需要开放端口?
 
 错误: CPU不支持AVX
 检查当前电脑是否支持CPU的AVX指令
+
 1. 进入`WSL`的命令行模式
 2. 查看`/proc/cpuinfo`的`tags`字段是否包含`avx`,如果没有,则电脑不支持
 

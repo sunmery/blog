@@ -1,12 +1,15 @@
 # 中间件
+
 > 又名为消费者, 中间层
 
 ## 原理
+
 - 客户端 -> 中间件 -> 路由
 - 客户端发送`HTTP`到达路由之前经过中间件处理
 - 类似于`express`的中间件, 使用`next()`, 客户端发送HTTP先经过这个中间件处理,之后在`next`下一步到达路由
 
 ## 使用
+
 0. 创建`file.middleware.ts`文件
 1. 使用`@Injectable`装饰
 2. 需要实现中间件类型(class)`implements NestMiddleware`
@@ -24,14 +27,15 @@
 - 参数为对象时:
 - path 路由路径, 不带`/`
 - method 处理请求方法的某一个
-	- GET: RequestMethod.GET, 从`@nestjs/common`导入
-	- ALL: RequestMethod.ALL
+    - GET: RequestMethod.GET, 从`@nestjs/common`导入
+    - ALL: RequestMethod.ALL
 
-可选链: 
+可选链:
 exclued() 排除路由
 inclued()
 
 1. `forRoutes`例子
+
 ```js
 configure (consumer: MiddlewareConsumer) {
 		consumer

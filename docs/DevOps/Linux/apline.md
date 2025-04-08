@@ -1,14 +1,17 @@
 安装
+
 ```
 docker pull apline
 ```
 
 运行
+
 ```
 docker run -it apline /bin/sh
 ```
 
 换源
+
 ```
  sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 ```
@@ -16,6 +19,7 @@ docker run -it apline /bin/sh
 常用组件
 ssh, scp: openssh-client  
 sshpass: sshpass
+
 ```
 apk update  
 apk add sshpass  
@@ -27,6 +31,7 @@ apk info -e sshpass openssh-client scp ssh
 Dockerfile:
 打包和推送镜像
 你需要将以下命令替换为你自己的仓库信息
+
 ```shell
 cat > Dockerfile <<EOF
 # 使用 alpine:latest 作为基础镜像

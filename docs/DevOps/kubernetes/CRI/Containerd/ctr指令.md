@@ -9,11 +9,11 @@
 - `ctr images check`：检查现有镜像，确保所有内容在本地可用。
 - `ctr images export`：导出镜像。
 - `ctr images import`：导入镜像。
-- `ctr images list` 或 `ctr images ls`：列出 containerd 已知的镜像。
+- `ctr images list`或`ctr images ls`：列出 containerd 已知的镜像。
 - `ctr images pull`：从远程仓库拉取镜像。
 - `ctr images push`：推送镜像到远程仓库。
 - `ctr images prune`：清理未使用的镜像。
-- `ctr images delete`、`ctr images remove` 或 `ctr images rm`：通过引用删除一个或多个镜像。
+- `ctr images delete`、`ctr images remove`或`ctr images rm`：通过引用删除一个或多个镜像。
 - `ctr images tag`：给镜像打标签。
 - `ctr images label`：为镜像设置和清除标签。
 - `ctr images convert`：转换镜像格式。
@@ -32,6 +32,7 @@
 - `help, h`: 显示命令列表或单个命令的帮助信息
 
 全局选项：
+
 - `--debug`: 在日志中启用调试输出
 - `--address value, -a value`: containerd 的 gRPC 服务器地址（默认值为 "/run/containerd/containerd.sock"）
 - `--timeout value`: ctr 命令的总超时时间（默认值为 0 秒）
@@ -40,10 +41,9 @@
 - `--help, -h`: 显示帮助信息
 - `--version, -v`: 打印版本信息
 
-
-
 拉镜像
 `docker pull <image>:[tag]`
+
 ```shell
 ctr images pull <image>:[tag]
 ```
@@ -55,6 +55,7 @@ ctr images pull --user <username>:<password> <image_name>
 ```
 
 对应 docker ps
+
 ```sh
 crt image ls/list
 ```

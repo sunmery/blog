@@ -19,7 +19,8 @@ pnpm i react-router-dom
    <Link to="/">Home</Link>
    ```
 
-3. 展示路由. 使用`Routes` 元素包裹`Route`元素, `Route`元素使用`path`属性指向`Link`元素的`to`属性的地址, 这里可以写逻辑. 然后使用`element`指向要渲染的路由组件
+3. 展示路由. 使用`Routes` 元素包裹`Route`元素, `Route`元素使用`path`属性指向`Link`元素的`to`属性的地址, 这里可以写逻辑.
+   然后使用`element`指向要渲染的路由组件
 
 ```jsx
 import {Home} from './Home';

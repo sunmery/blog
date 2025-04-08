@@ -1,7 +1,9 @@
 ## 编写 Dockerfile
+
 1. 最简单方式是在项目根目录编写`Dockerfile`
 
 `Dockerfile`
+
 ```Dockerfile
 FROM node:16-alpine AS builder
 
@@ -52,18 +54,22 @@ CMD ["nginx", "-g", "daemon off;"]
 ```
 
 2. 构建 Docker 镜像
+
 > 将`image`: `web`  # 这里需要替换成你使用 `Docker build`的名字
 
 语法:
+
 ```shell
 docker build [--progress=plain] [--no-cache] -t <image_name> <path>
 ```
 
 例: 在当前目录构建所有文件, 镜像名为`web`, 不使用`Docker`缓存, 显示构建过程的详细信息
+
 - --progress=plain: 构建过程中显示的详细信息的格式
 - --no-cache : 不使用缓存
 - web : 构建的镜像名
 - . : 当前目录所有文件
+
 ```shell
 docker build --progress=plain --no-cache -t web .
 ```
@@ -71,6 +77,7 @@ docker build --progress=plain --no-cache -t web .
 > 如果不在当前目录, 使用选项`-f`
 
 例:
+
 ```shell
 docker-compose -f ./build/ci/frontent/docker-compose.yml up -d
 ```
@@ -78,6 +85,7 @@ docker-compose -f ./build/ci/frontent/docker-compose.yml up -d
 ## 编写 Nginx 配置文件
 
 创建 `nginx` 的目录, `html`与`conf`目录是必要的, 其他为可选
+
 ```shell
 mkdir -p /home/nginx/html
 mkdir -p /home/nginx/conf
@@ -90,6 +98,7 @@ mkdir -p /home/nginx/log
 1. 创建`docker-compose.yml`文件:
 
 `docker-compose.yml`
+
 ```yml
 version: '3'
 services:
@@ -108,18 +117,25 @@ services:
 
 ```
 
-2. 部署: 
+2. 部署:
+
 ```shell
 docker-compose up -d 
 ```
 
-## 选项 
+## 选项
+
 一些选项参考:
+
 - down: 停止运行
+
 ```shell
 docker-compose -f ./build/ci/frontent/docker-compose.yml down
 ```
-- --build: `--build`：这是 `docker-compose up` 命令的另一个选项，它表示在启动容器之前需要构建镜像。如果在之前的构建中没有更改过镜像，`docker-compose` 将重用现有的镜像，但使用 `--build` 选项可以强制进行镜像构建，以确保使用最新的代码和配置。
+
+- --build: `--build`：这是 `docker-compose up` 命令的另一个选项，它表示在启动容器之前需要构建镜像。如果在之前的构建中没有更改过镜像，
+  `docker-compose` 将重用现有的镜像，但使用 `--build` 选项可以强制进行镜像构建，以确保使用最新的代码和配置。
+
 ```shell
 docker-compose up -d --build
 ```

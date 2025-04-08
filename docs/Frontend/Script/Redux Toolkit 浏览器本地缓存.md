@@ -1,9 +1,12 @@
 ## 核心
-利用`Redux Toolkit`内置的`subscribe`订阅函数来监听`configureStore`的 `reducer`对象的变化, 
+
+利用`Redux Toolkit`内置的`subscribe`订阅函数来监听`configureStore`的 `reducer`对象的变化,
 如果状态发生改变,那么就存储到浏览器的存储(localStorage本地存储 or sessionStorage会话存储)
 
 ## 格式
+
 store总配置文件`index`
+
 ```ts
 import { configureStore } from '@reduxjs/toolkit'
 import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore'
@@ -25,6 +28,7 @@ export type AppDispatch = typeof store.dispatch
 ```
 
 `slice`
+
 ```ts
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
@@ -46,7 +50,9 @@ export default profileSlice.reducer
 ```
 
 ## 示例
+
 store总配置文件
+
 ```ts
 import { configureStore } from '@reduxjs/toolkit'
 import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore'
@@ -83,6 +89,7 @@ export type AppDispatch = typeof store.dispatch
 ```
 
 用户状态 `feat/user/profile`
+
 ```ts
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'

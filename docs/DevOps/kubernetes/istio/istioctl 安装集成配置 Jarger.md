@@ -1,12 +1,19 @@
 ## 前言
-- 这教程是istio的Jarger的配置, 是istio写的Jarger配置文件, 不是Jarger官网的配置, 它是比较好集成了Jarger, 当然也只是简单的配置, 不包括性能和安全性问题
+
+- 这教程是istio的Jarger的配置, 是istio写的Jarger配置文件, 不是Jarger官网的配置, 它是比较好集成了Jarger, 当然也只是简单的配置,
+  不包括性能和安全性问题
 - 适用于使用Jarger搭配istio
 - istio有helm和istioctl安装方式, 这里使用istioctl安装istio, 理由是比较简单安装
+
 ## 安装
+
 https://istio.io/latest/zh/docs/setup/install/istioctl/
 
 ## 配置
-1. 修改[github](https://raw.githubusercontent.com/istio/istio/release-1.19/samples/addons/jaeger.yaml)的配置文件, 把`ClusterIP`替换为`NodePort`, 启用Web UI
+
+1. 修改[github](https://raw.githubusercontent.com/istio/istio/release-1.19/samples/addons/jaeger.yaml)的配置文件, 把
+   `ClusterIP`替换为`NodePort`, 启用Web UI
+
 ```yml
 apiVersion: apps/v1
 kind: Deployment
@@ -130,8 +137,11 @@ spec:
   selector:
     app: jaeger
 ```
+
 ## 测试
+
 查看Web UI的端口, 假设istio安装在istio-system这个命名空间:
+
 ```bash
 kubectl get svc -n istio-system -owide
 ```
@@ -143,6 +153,7 @@ Web UI的端口为`30976`, 浏览器访问即可:
 ![[../images/Pasted image 20231105153801.png]]
 
 ## 资料
+
 1. https://istio.io/latest/docs/ops/integrations/jaeger/
 2. https://istio.io/latest/zh/docs/setup/install/istioctl/
 3. https://github.com/jaegertracing/jaeger

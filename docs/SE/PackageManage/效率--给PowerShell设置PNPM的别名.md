@@ -1,7 +1,8 @@
 ## 前置条件
 
 1. 当前PC拥有任意一种终端,`cmder`,`Window PowerShell`, `PowerShell`, `warp`
-   推荐使用`PowerShell 7` [链接](https://docs.microsoft.com/zh-cn/powershell/scripting/whats-new/what-s-new-in-powershell-70?view=powershell-7.2)
+   推荐使用
+   `PowerShell 7` [链接](https://docs.microsoft.com/zh-cn/powershell/scripting/whats-new/what-s-new-in-powershell-70?view=powershell-7.2)
 2. 当前PC拥有`PNPM`,检查是否安装了`PNPM`
 
 ```shell

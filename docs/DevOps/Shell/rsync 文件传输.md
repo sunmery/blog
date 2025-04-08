@@ -1,10 +1,13 @@
 ## 参数
+
 - -e, --rsh=COMMAND 指定使用rsh、ssh方式进行数据同步
 - --exclude=PATTERN 指定排除不需要传输的文件模式
-例子: 上传并排除目录到服务
+  例子: 上传并排除目录到服务
+
 ```shell
 rsync -avz --exclude={client/node_modules/,client/dist-electron/,client/dist-production} -e "ssh -i /Users/art/alicloud.pem" . root@47.120.5:/home/tiktok/web
 ```
+
 - --include=PATTERN 指定不排除而需要传输的文件模式
 - --exclude-from=FILE 排除FILE中指定模式的文件
 - --include-from=FILE 不排除FILE指定模式匹配的文件

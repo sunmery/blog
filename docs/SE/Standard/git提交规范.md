@@ -1,8 +1,11 @@
 `0## 标准流程
+
 1. https://zhuanlan.zhihu.com/p/689467888
 
 ## build
+
 **影响构建组件的修改, 如增加了依赖,删除依赖,项目版本迭代**
+
 - :heavy_plus_sign: 添加依赖
 - :heavy_minus_sign: 删除依赖
 - :arrow_up: 升级依赖包
@@ -12,12 +15,16 @@
 - :tada: 开始/发布项目
 
 ## docs
+
 **文档修改**
+
 - :memo: 添加更新文档
 
 ## feat
+
 **添加了新功能/特性**
-- :sparkles: 新特性 
+
+- :sparkles: 新特性
 - :chart_with_upwards_trend: 添加分析跟踪或描点
 - :globe_with_meridians: 国际化支持
 - :boom: 破坏性更改
@@ -29,22 +36,27 @@
 - :bricks: 添加基础建设(工程化)
 - :thread: 添加多线程/并发代码
 - :safety_vest: 添加与验证相关的代码
-## fix 
+
+## fix
+
 **错误修改**
+
 - :pencil2: 修复拼写问题
 - :bug: 修复Bug
-- :lock: 修复安全问题 
+- :lock: 修复安全问题
 - :rotating_light: 修复编辑器/lint/警告
 - :goal_net: 捕获错误
 - :adhesive_bandage: 修复一个简单问题
 - :necktie: 添加业务逻辑
 - :thread: 修复多线程/并发代码
 - :fire: 删除代码
+
 ## perf
+
 **优化,提升性能/体验**
 
-- :zap: 提高性能  
-- :art: 改进代码  
+- :zap: 提高性能
+- :art: 改进代码
 - :arrow_down: 降级/降级锁包
 - :recycle: 重构代码
 - :poop: 改进垃圾代码
@@ -65,36 +77,45 @@
 - :ambulance: 关键的修复
 
 ## refactor
+
 **即不是新增功能，也不是修改bug的代码变动`**
 
 - :building_construction: 架构更改
 - :recycle: 重构
 
-## revert 
+## revert
+
 **还原之前的修改**
+
 - :rewind:  恢复之前的修改
 
-## style 
+## style
+
 **样式更改**
-- :lipstick: UI页面添加或更新 
+
+- :lipstick: UI页面添加或更新
 - :iphone: CSS响应式设计
 - :dizzy: 添加更新动画
+
 ## test
+
 **添加,修改现有测试代码**
 
 - :white_check_mark: 添加成功的测试
 - :test_tube: 添加更新失败的测试
 
 ## chore
+
 **构建过程或辅助工具的变动构建流程, 辅助工具的更改, 例如修改webpack配置, env环境变量**
+
 - :closed_lock_with_key: 添加env密钥参数
 - :construction_worker: CI工具的修改
-- :construction_worker: 添加更新CI构建 
+- :construction_worker: 添加更新CI构建
 - :green_heart: 修复CI打包
 - :wrench: 添加或更新env配置文件
 - :hammer: 添加scripts脚本指令
 - :construction: 页面维护中
-- :see_no_evil: `.gitignore`添加不提交的文件/目录 
+- :see_no_evil: `.gitignore`添加不提交的文件/目录
 - :twisted_rightwards_arrows: 合并分支
 - :package: 添加或更新已经打包好的文件
 - :page_facing_up: 添加更新协议文件
@@ -112,5 +133,6 @@
 - :stethoscope: 添加测试成功的代码
 
 ## 参考
+
 1. [GitHub](https://github.com/conventional-changelog/commitlint/#what-is-commitlint)
 2. [gitmoji](https://gitmoji.dev/)

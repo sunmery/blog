@@ -5,6 +5,7 @@ go get -u go.mongodb.org/mongo-driver/bson
 ```
 
 ## Test
+
 ```go
 package test
 
@@ -74,8 +75,8 @@ const URI = "mongodb://root:msdnmm@192.168.0.152:27017/"
 ```
 
 2. 创建客户端
-[mongodb](https://www.mongodb.com/docs/drivers/go/current/fundamentals/connection/)
-**语法**:
+   [mongodb](https://www.mongodb.com/docs/drivers/go/current/fundamentals/connection/)
+   **语法**:
 
 ```go
 mongo.Connect(context,options.Client().ApplyURI(uri)) (client, err)
@@ -120,6 +121,7 @@ coll := Client.Database("golang").Collection("users")
 ## Use
 
 ### 单结果查询FindOne()
+
 [find](https://www.mongodb.com/docs/drivers/go/current/fundamentals/crud/read-operations/query-document/)
 **语法:**
 
@@ -141,7 +143,7 @@ Decode:
 **返回值**:
 
 1. 失败信息
-查询失败返回`mongo.ErrNoDocuments`
+   查询失败返回`mongo.ErrNoDocuments`
 
 **使用**:
 
@@ -153,6 +155,7 @@ Decode:
 **前提:**
 
 向数据库插入如下指令:
+
 ```mongodb
 use golang_server
 db.users.insertOne({
@@ -286,7 +289,9 @@ func main(){
 ## 查询
 
 ### 返回指定字段
+
 关键字: `SetProjection`
+
 ```go
 filter := bson.D{{}}
 opts := options.Find().SetProjection(bson.D{{"name", 1},{"number",1}})
@@ -294,9 +299,11 @@ cursor, err := dbBasic.Find(context.TODO(), filter, opts)
 ```
 
 ### 排序
+
 语法:
 key: 要排列的字段
 0/1: 倒序/正序排列
+
 ```go
 filter := bson.D{{<query>:<value>}}
 opt := options.Find().SetSort(bson.D{{<key>:<0/1>}}) // 选项
@@ -307,6 +314,7 @@ cursor, err := db.Client.
 ```
 
 示例: 查询`im`数据库的`message_basic`文档中的`created_at`, 对`created_at`进行`正序排序`
+
 ```go
 import "go.mongodb.org/mongo-driver/mongo/options"
 func MessageList(c *gin.Context) {
@@ -336,6 +344,7 @@ func MessageList(c *gin.Context) {
 ```
 
 ### 查询全部
+
 [mongodb](https://raw.githubusercontent.com/mongodb/docs-golang/master/source/includes/usage-examples/code-snippets/find.go)
 返回值:  `[]map(string)any`
 
@@ -375,13 +384,16 @@ func MessageList(c *gin.Context) {
 ```
 
 ### 查询数组是否包含某个值
+
 关键语法: `$in`
+
 ```go
 result := db.FindOne(context.Background(), bson.D{{"user_identity", bson.D{{"$in", userIdentity4}}}}).Decode(&user)
 ```
 
 示例:
 数据库插入数据
+
 ```sql
 db.user_room.insertOne({
  "user_identity":["bc83108c977248daad2f3f815d25cfe5","d22e9e82fab041cc8f8d57d51d6b802d"]
@@ -389,6 +401,7 @@ db.user_room.insertOne({
 ```
 
 golnag查询
+
 ```go
 type UserRoom struct {
 	RoomIdentity []string   `bson:"room_identity"`
@@ -409,7 +422,9 @@ fmt.Println("user:", user)
 ```
 
 ## 插入
+
 [inset](https://www.mongodb.com/docs/drivers/go/current/fundamentals/crud/write-operations/upsert/)
+
 ```go
 coll := client.Database("tea").Collection("ratings")
 docs := []interface{}{
@@ -445,7 +460,9 @@ MongoDB中的JSON文档存储在名为BSON(二进制编码的JSON)
 - E：D里面的一个元素。
 
 ## 更新
+
 ### 更新某个字段的值
+
 ```go
 update := bson.D{{"$set", bson.D{{"avatar", args[1]}}}}
 	db.Mongo.Database("im").
@@ -454,4 +471,5 @@ update := bson.D{{"$set", bson.D{{"avatar", args[1]}}}}
 ```
 
 ## 删除
+
 [delete](https://www.mongodb.com/docs/drivers/go/current/fundamentals/crud/write-operations/delete/)

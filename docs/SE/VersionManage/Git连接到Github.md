@@ -27,26 +27,31 @@ git config --global user.email "your_email@example.com"
 ```
 
 ### 创建密钥
+
 使用`ED25519`算法生成密钥
 [深入了解](https://docs.github.com/zh/authentication/connecting-to-github-with-ssh/checking-for-existing-ssh-keys)
+
 ```git
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
+
 1. 输入文件路径（多配置文件的需求）
 2. 输入一个密码
 3. 输入重复密码
 
 ### 多密钥配置
+
 在`~/.ssh`目录创建`config`文件
 
 - Host： 主机，任意名
 - HostName： 主机名，固定
 - PreferredAuthentications： 认证方式，可选一种或多种，使用逗号分隔
-	- publickey：公钥，服务器使用公钥与本地私钥对比
-	- password： 密码
+    - publickey：公钥，服务器使用公钥与本地私钥对比
+    - password： 密码
 - IdentityFile： 密钥文件路径
 
 示例：
+
 ```config
 Host git
     HostName github.com
@@ -55,10 +60,13 @@ Host git
 ```
 
 ### 保护密钥
+
 [使用ssh-agent保护密钥](https://learn.microsoft.com/zh-cn/windows-server/administration/openssh/openssh_keymanagement)
 使用任意一种终端加密：
 将`<id_ed25519-path>`替换成你的实际`id_ed25519`文件路径
+
 - 使用`powershell 7`操作：
+
 ```pwsh
 # 获取ssh-agent的Windows服务，
 # 并将其启动类型设置为手动，
@@ -75,9 +83,11 @@ Get-Service ssh-agent
 ssh-add <id_ed25519-path>
 ```
 
-- 使用`git bash`内置shell[操作](https://docs.github.com/zh/authentication/connecting-to-github-with-ssh/working-with-ssh-key-passphrases)
+- 使用`git bash`
+  内置shell[操作](https://docs.github.com/zh/authentication/connecting-to-github-with-ssh/working-with-ssh-key-passphrases)
 
 生成文件如：
+
 - id_ed25519 私钥
 - id_ed2519_pub 公钥
 

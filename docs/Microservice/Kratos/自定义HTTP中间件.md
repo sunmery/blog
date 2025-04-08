@@ -1,4 +1,5 @@
 在 `server` 的`http.go`编写如下代码:
+
 ```go
 var opts = []http.ServerOption{
 		http.Middleware(

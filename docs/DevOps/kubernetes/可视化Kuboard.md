@@ -1,4 +1,5 @@
 安装配置的yml
+
 ```yaml
 # kuboard.yaml
 ---
@@ -41,11 +42,13 @@ spec:
 ```
 
 应用
+
 ```shell
 kubectl apply -f kuboard.yaml
 ```
 
 查看端口
+
 ```shell
 kubectl get svc
 ```

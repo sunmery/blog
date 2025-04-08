@@ -1,4 +1,5 @@
 ## 新机安装
+
 ```shell
 sudo apt update -y
 sudo apt full-upgrade -y
@@ -8,6 +9,7 @@ sudo reboot
 ```
 
 ### 更新
+
 - sudo apt update 更新系统的软件包
 - sudo apt upgrade 更新已安装的软件包
 - sudo do-release-upgrade 更新系统版本
@@ -16,6 +18,7 @@ sudo reboot
 - sudo apt-mark unhold 软件包名称 :解除某个软件包的保留状态(使其可以被正常升级或移除)
 
 更新源出现问题:
+
 ```
 Reading package lists... Done
 E: Method https has died unexpectedly!
@@ -26,6 +29,7 @@ E: Sub-process https received signal 4.
 解决方案:
 https://www.cnblogs.com/guangdelw/p/17616268.html
 临时: 添加`GNUTLS_CPUID_OVERRIDE=0x1`
+
 ```
 GNUTLS_CPUID_OVERRIDE=0x1 apt update -y
 ```
@@ -33,6 +37,7 @@ GNUTLS_CPUID_OVERRIDE=0x1 apt update -y
 环境变量:
 https://blog.csdn.net/qq_31173341/article/details/130557810
 长期使用需要在/etc/environment文件中添加GNUTLS_CPUID_OVERRIDE=0x1
+
 ```shell
 cat >> /etc/environment <<EOF
 GNUTLS_CPUID_OVERRIDE=0x1
@@ -40,7 +45,6 @@ EOF
 ```
 
 ### 源
-
 
 Ubuntu采用apt作为软件安装工具，其镜像源列表记录在/etc/apt/source.list文件中。
 
@@ -87,5 +91,6 @@ deb-src https://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted unive
 ```
 
 ## 资料
+
 1. https://developer.aliyun.com/mirror/ubuntu
 2. https://blog.csdn.net/fansnn/article/details/131236270

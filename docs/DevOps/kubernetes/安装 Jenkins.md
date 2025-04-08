@@ -1,4 +1,3 @@
-
 [教程](https://www.yoyoask.com/?p=9642)
 
 ```yml
@@ -47,7 +46,7 @@ spec:
         - name: init-container
           image: busybox
           imagePullPolicy: IfNotPresent
-          command: ["sh"]
+          command: [ "sh" ]
           args:
             [
               "-c",

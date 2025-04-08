@@ -1,5 +1,3 @@
-
-
 Ubuntu采用apt作为软件安装工具，其镜像源列表记录在/etc/apt/source.list文件中。
 
 首先将source.list复制为source.list.bak备份。
@@ -45,5 +43,6 @@ deb-src https://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted unive
 ```
 
 ## 资料
+
 1. https://developer.aliyun.com/mirror/ubuntu
 2. https://blog.csdn.net/fansnn/article/details/131236270
