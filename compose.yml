@@ -1,0 +1,20 @@
+services:
+  nginx:
+    image: ccr.ccs.tencentyun.com/sumery/blog # 这里需要替换成你的镜像名
+    container_name: nginx
+    build:
+      context: .
+      dockerfile: .
+      target: final
+    ports:
+      - '80:80'
+      - '443:443'
+      - '443:443/udp'
+    # 环境变量
+    environment:
+      DOMAIN: example.com # 这里需要替换成你的域名
+    restart: on-failure:4 # 重启策略，最多重启n次
+    privileged: true # 允许容器使用宿主机的网络和文件系统
+    volumes:
+      - /home/docker/nginx/conf:/etc/nginx/conf.d
+      - /home/docker/nginx/ssl:/etc/nginx/ssl:ro
