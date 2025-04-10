@@ -110,7 +110,23 @@ prlctl register --regenerate-src-uuid /Users/lisa/Public/Linux/Ubuntu/node2.pvm/
 #### HTTP(S)
 
 别名
+linux:
+```bash
+USER_PATH="/root"
+SHELL_FILE="${USER_PATH}/.bashrc"
+MAC_IP="127.0.0.1"
 
+sudo cat >> $SHELL_FILE <<EOF
+alias proxy="export http_proxy='http://$MAC_IP:7890';export https_proxy='https://$MAC_IP:7890'"
+
+alias unproxy="unset http_proxy; unset https_proxy; unset all_proxy; echo 'Unset proxy successfully'"
+EOF
+
+source $SHELL_FILE
+cat $SHELL_FILE
+```
+
+mac:
 ```shell
 USER_PATH="/root"
 SHELL_FILE="${USER_PATH}/.bashrc"
@@ -119,9 +135,9 @@ SHELL_FILE="${USER_PATH}/.bashrc"
 MAC_IP="192.168.3.220"
 
 sudo cat >> $SHELL_FILE <<EOF
-alias vpnon="export http_proxy='http://$MAC_IP:7890';export https_proxy='https://$MAC_IP:7890'"
+alias proxy="export http_proxy='http://$MAC_IP:7890';export https_proxy='https://$MAC_IP:7890'"
 
-alias vpnoff="unset http_proxy; unset https_proxy; unset all_proxy; echo 'Unset proxy successfully'"
+alias unproxy="unset http_proxy; unset https_proxy; unset all_proxy; echo 'Unset proxy successfully'"
 EOF
 
 source $SHELL_FILE

@@ -29,3 +29,7 @@
 **/build
 LICENSE
 README.md
+**/.obsidian
+**/.docusaurus
+**/.idea
+**/.vscode
