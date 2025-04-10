@@ -1,13 +1,10 @@
 # 启用BuildKit语法
 # syntax=docker/dockerfile:1
 
-# 多平台构建参数声明
-ARG TARGETPLATFORM
-ARG BUILDPLATFORM
 ARG NODE_VERSION=node:22-alpine AS builder
 
 # 构建阶段
-FROM --platform=$BUILDPLATFORM $NODE_VERSION AS builder
+FROM $NODE_VERSION AS builder
 ARG PACK_VERSION=latest
 WORKDIR /src
 RUN npm config set registry https://registry.npmjs.org
