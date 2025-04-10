@@ -3,7 +3,7 @@
 1. 使用自定义values.yaml文件替换chats的值
 
 ```shell
-helm upgrade --install argo argo-cd-6.7.18.tgz -f values.yaml -n cicd --create-namespace
+helm upgrade --install argo argo-cd-6.7.18.tgz -f values.yaml -n cicd --create-namespace --reuse-values
 ```
 
 ### [CLI](https://helm.sh/docs/helm/helm_install/)

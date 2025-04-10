@@ -14,7 +14,6 @@ services:
     environment:
       DOMAIN: example.com # 这里需要替换成你的域名
     restart: on-failure:4 # 重启策略，最多重启n次
-    privileged: true # 允许容器使用宿主机的网络和文件系统
     volumes:
       - /home/docker/nginx/conf:/etc/nginx/conf.d
       - /home/docker/nginx/ssl:/etc/nginx/ssl:ro

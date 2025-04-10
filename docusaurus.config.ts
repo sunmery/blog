@@ -159,7 +159,7 @@ const config: Config = {
                             html: `备案号: <a href="https://beian.miit.gov.cn" target="_parent">桂ICP备2022004535号-5</a>`
                         },
                         {
-                            html: `公安联网备案信息: <img src="img/beian.png" alt="备案图标"/>`
+                            html: `公安联网备案信息: <a href="https://beian.mps.gov.cn/#/query/webSearch?code=45060002450628" rel="noreferrer" target="_blank">桂公网安备45060002450628号</a>`
                         }
                     ]
                 }
