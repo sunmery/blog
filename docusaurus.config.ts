@@ -21,6 +21,18 @@ const config: Config = {
     organizationName: 'GitHub', // Usually your GitHub org/user name.
     projectName: 'mandala/blog', // Usually your repo name.
 
+    // 统计数据
+    headTags: [
+        // Declare some json-ld structured data
+        {
+            tagName: 'script',
+            attributes: {
+                src: 'https://cloud.umami.is/script.js',
+                'data-website-id': "9cd4126f-5d30-48a4-b6f4-8396b8ce50d8"
+            },
+        },
+    ],
+
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
 
@@ -28,7 +40,7 @@ const config: Config = {
     // useful metadata like html lang. For example, if your site is Chinese, you
     // may want to replace "en" with "zh-Hans".
     i18n: {
-        defaultLocale: 'en',
+        defaultLocale: 'zh-Hans',
         locales: ['en'],
     },
 
