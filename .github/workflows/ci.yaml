@@ -110,5 +110,7 @@ jobs:
           username: ${{ secrets.USER }}
           password: ${{ secrets.PASSWORD }}
           script: |
+            ls
+            cd /home/docker/nginx
             docker compose pull
             docker compose up -d
