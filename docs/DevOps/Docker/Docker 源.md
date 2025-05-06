@@ -27,6 +27,7 @@ systemctl restart docker
 ```json
 {
   "registry-mirrors": [
+     "https://docker.1ms.run",
     "https://646f636b6572.boown.com",
     "https://docker.rainbond.cc",
     "https://dockerproxy.cn",
@@ -53,6 +54,7 @@ systemctl restart docker
 cat > /etc/docker/daemon.json <<EOF
 {
 "registry-mirrors": [
+    "https://docker.1ms.run",
     "https://646f636b6572.boown.com",
     "https://docker.rainbond.cc",
     "https://dockerproxy.cn",

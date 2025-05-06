@@ -13,3 +13,6 @@ git clone --branch master --depth 1 https://gh-proxy.com/https://github.com/nelv
 ```bahs
 tailscale down
 ```
+
+Tun ac注意事项
+https://github.com/nelvko/clash-for-linux-install/issues/100#issuecomment-2782680205

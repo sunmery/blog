@@ -41,9 +41,11 @@ sudo sed -i 's/ports.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources
 ## 设置密钥登录
 
 ```bash
+sudo sed -i 's/#PubkeyAuthentication no/PubkeyAuthentication yes/g' /etc/ssh/sshd_config
 sudo sed -i 's/PubkeyAuthentication no/PubkeyAuthentication yes/g' /etc/ssh/sshd_config
-
 cat /etc/ssh/sshd_config | grep PubkeyAuthentication
+systemctl restart ssh
+systemctl restart sshd
 ```
 
 ## 静态IP
@@ -114,7 +116,7 @@ linux:
 ```bash
 USER_PATH="/root"
 SHELL_FILE="${USER_PATH}/.bashrc"
-MAC_IP="127.0.0.1"
+MAC_IP="localhost"
 
 sudo cat >> $SHELL_FILE <<EOF
 alias proxy="export http_proxy='http://$MAC_IP:7890';export https_proxy='https://$MAC_IP:7890'"
