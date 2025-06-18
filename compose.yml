@@ -1,7 +1,7 @@
 services:
-  nginx:
+  blog:
     image: ccr.ccs.tencentyun.com/sumery/blog # 这里需要替换成你的镜像名
-    container_name: nginx
+    container_name: blog
     build:
       context: .
       dockerfile: .
