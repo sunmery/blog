@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Mandala Blog
 
-## 介绍
+## Introduction
 <!-------------self-introduction start------------->
 
 <h3>
@@ -18,9 +18,8 @@ sidebar_position: 1
   </section>
 </a>
 
-- 😄 Read more about my [Blog](http://www.lookeke.com/)
-- 👯 Follow me on [掘金](https://juejin.cn/user/2172290708810744)
-- 🌱 I’m currently learning Golang C++
+- 😄 Read more about my [Blog](http://apikv.com/) or [Docs](./docs)
+- 🌱 I’m currently learning Golang React
 - 🔭 I’m currently working on DevOps
 - 📫 How to reach me: xiconz@qq.com
 
@@ -39,17 +38,14 @@ sidebar_position: 1
 
 ### Back-end Language
 - Golang
-- C++
 
 ## 🗄️Microservice 微服务生态
 
 ### Observability 可观测性
 - OpenTelemetry: 指标, 日志, 链路
-- kiali: 链路地图
 - Jaeger: 分布式链路追踪
 - Prometheus: 指标采集
 - Grafana: 遥测数据可视化
-- EFK: 日志存储/查询
 
 ### Data Serialization Formats 数据序列化格式
 - protobuf: 二进制JSON存储
@@ -69,6 +65,7 @@ sidebar_position: 1
 ### RPC 远程过程调用
 - gRPC
 - Kratos
+- Connect-go
 
 ### safety 安全性
 #### Authentication 认证
@@ -76,6 +73,7 @@ sidebar_position: 1
 
 #### Authorization 授权
 - Casbin
+- Casdoor
 
 ### Database and Cache 数据库与缓存
 - PostgresQL
@@ -89,7 +87,6 @@ sidebar_position: 1
 
 #### CD
 - Argocd
-- Jenkins
 
 ## Front-end ecosystem
 
@@ -122,15 +119,3 @@ sidebar_position: 1
 - ![npm](https://custom-icon-badges.demolab.com/badge/-npm-%23CB3837?logo=npm&logoColor=white)
 - ![Yarn](https://custom-icon-badges.demolab.com/badge/-Yarn-%232C8EBB?logo=Yarn&logoColor=white)
 - ![pnpm](https://custom-icon-badges.demolab.com/badge/-pnpm-%23F69220?logo=pnpm&logoColor=white)
-
-## ⭐ Github Star
-
-<img width="500px"  alt="GitHub Stats" src="https://github-readme-stats.vercel.app/api?username=sunmery&count_private=true&show_icons=true"/>
-
-## GitHub status
-
-<img width="100%" alt="game gif" src="https://qnycdn.volcanoblog.cn/github-contribution-grid-snake.svg"/>
-
-## GitHub Commit
-
-[![lookeke's github activity graph](https://activity-graph.herokuapp.com/graph?username=lookeke&theme=react-dark)](https://github.com/ashutosh00710/github-readme-activity-graph)
