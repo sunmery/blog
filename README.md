@@ -6,7 +6,7 @@
   <img src="https://emojis.slackmojis.com/emojis/images/1588866973/8934/hellokittydance.gif?1588866973" alt="Hi" width="30" />
 </h3>
 
-- 😄 Read more about my [Vercel blog](https://blog-gamma-two-81.vercel.app/) or [Website](http://apikv.com/) or [Docs](./docs)
+- 😄 Read more about my [Vercel blog](https://blog-gamma-two-81.vercel.app/) or [Website](http://www.apikv.com/) or [Docs](./docs)
 - 🌱 I’m currently learning Golang
 - 🔭 I’m currently working on Microservices and Cloud Native
 
