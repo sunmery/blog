@@ -1,0 +1,1 @@
+https://tinybeer.github.io/2024/05/24/gofumpt/

@@ -30,6 +30,8 @@ sudo passwd root
 
 ```
 sudo sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+
+sudo systemctl restart ssh
 ```
 
 ## 使用国内源
@@ -137,7 +139,7 @@ SHELL_FILE="${USER_PATH}/.bashrc"
 MAC_IP="192.168.3.220"
 
 sudo cat >> $SHELL_FILE <<EOF
-alias proxy="export http_proxy='http://$MAC_IP:7890';export https_proxy='https://$MAC_IP:7890'"
+alias proxy="export http_proxy='$MAC_IP:7890';export https_proxy='$MAC_IP:7890'"
 
 alias unproxy="unset http_proxy; unset https_proxy; unset all_proxy; echo 'Unset proxy successfully'"
 EOF

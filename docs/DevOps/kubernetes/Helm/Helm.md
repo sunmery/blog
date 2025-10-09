@@ -4,6 +4,8 @@
 
 ```shell
 helm upgrade --install argo argo-cd-6.7.18.tgz -f values.yaml -n cicd --create-namespace --reuse-values
+
+helm pull kafka-ui/kafka-ui --untar
 ```
 
 ### [CLI](https://helm.sh/docs/helm/helm_install/)
