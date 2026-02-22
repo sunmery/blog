@@ -29,7 +29,7 @@ function HomepageHeader() {
 }
 
 
-export default function Home(): JSX.Element {
+export default function Home() {
 
     const {siteConfig} = useDocusaurusContext();
     return (

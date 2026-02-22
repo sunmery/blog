@@ -1,10 +1,11 @@
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
+import { ComponentType } from "react";
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
+  Svg: ComponentType<React.ComponentProps<'svg'>>;
   description: JSX.Element;
 };
 
@@ -52,7 +53,7 @@ function Feature({title, Svg, description}: FeatureItem) {
   );
 }
 
-export default function HomepageFeatures(): JSX.Element {
+export default function HomepageFeatures() {
   return (
       <>
         <summary className={styles.summary}>
