@@ -16,7 +16,8 @@ RUN pnpm build
 RUN ls -l
 
 # 生产镜像阶段
-FROM ccr.ccs.tencentyun.com/sumery/nginx-http3:latest AS final
+# FROM ccr.ccs.tencentyun.com/sumery/nginx-http3:latest AS final
+FROM harbor.apikv.com:5443/sumery/nginx-http3:latest AS final
 
 COPY --from=builder /src/build /etc/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/nginx.conf

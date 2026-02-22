@@ -22,52 +22,52 @@ env:
   HTTPS_PORT: 443
 jobs:
 
-  frontend-build-dist:
-    # 将作业配置为在最新版本的Ubuntu Linux运行程序上运行,
-    # 注意此处不是Docker Hub中的ubuntu:latest, 而是Github中自己的虚拟主机。
-    runs-on: ubuntu-24.04
-    # 默认值配置
-    defaults:
-      # 运行在jobs中
-      run:
-        # 默认的shell解释器
-        shell: bash
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - uses: pnpm/action-setup@v2
-        with:
-          version: latest
-
-      - # 设置Node版本, 最低为20
-        name: Setup node version
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'pnpm'
-          cache-dependency-path: '**/pnpm-lock.yaml'
-
-      # - name: Test frontend
-      #   # 自动下载pnpm
-      #   # 注意：pnpm 缓存支持需要 pnpm 版本 >= 6.10.0
-      #   run: |
-      #     npm install -g pnpm@latest
-      #     #pnpm test
-
-      - name: Build frontend
-        # 自动下载pnpm
-        # 注意：pnpm 缓存支持需要 pnpm 版本 >= 6.10.0
-        run: |
-          # npm install -g pnpm@latest
-          #pnpm test
-          # 只安装锁文件的依赖. pnpm 实现的等效npm ci, 即只根据pnpm-lock.yaml的依赖进行安装
-          pnpm install --frozen-lockfile
-          pnpm build
+#  frontend-build-dist:
+#    # 将作业配置为在最新版本的Ubuntu Linux运行程序上运行,
+#    # 注意此处不是Docker Hub中的ubuntu:latest, 而是Github中自己的虚拟主机。
+#    runs-on: ubuntu-24.04
+#    # 默认值配置
+#    defaults:
+#      # 运行在jobs中
+#      run:
+#        # 默认的shell解释器
+#        shell: bash
+#
+#    steps:
+#      - name: Checkout repo
+#        uses: actions/checkout@v4
+#
+#      - uses: pnpm/action-setup@v2
+#        with:
+#          version: latest
+#
+#      - # 设置Node版本, 最低为20
+#        name: Setup node version
+#        uses: actions/setup-node@v4
+#        with:
+#          node-version: '20'
+#          cache: 'pnpm'
+#          cache-dependency-path: '**/pnpm-lock.yaml'
+#
+#      # - name: Test frontend
+#      #   # 自动下载pnpm
+#      #   # 注意：pnpm 缓存支持需要 pnpm 版本 >= 6.10.0
+#      #   run: |
+#      #     npm install -g pnpm@latest
+#      #     #pnpm test
+#
+#      - name: Build frontend
+#        # 自动下载pnpm
+#        # 注意：pnpm 缓存支持需要 pnpm 版本 >= 6.10.0
+#        run: |
+#          # npm install -g pnpm@latest
+#          #pnpm test
+#          # 只安装锁文件的依赖. pnpm 实现的等效npm ci, 即只根据pnpm-lock.yaml的依赖进行安装
+#          pnpm install --frozen-lockfile
+#          pnpm build
 
   frontend-build-image:
-    needs: frontend-build-dist
+#    needs: frontend-build-dist
     runs-on: ubuntu-24.04
     defaults:
       run:
@@ -94,14 +94,14 @@ jobs:
         name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy
-        uses: appleboy/scp-action@master  # 使用社区 action 来通过 SCP 传输文件
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          password: ${{ secrets.PASSWORD }}
-          source: "compose.yml"
-          target: "/home/docker/nginx"
+#      - name: Deploy
+#        uses: appleboy/scp-action@master  # 使用社区 action 来通过 SCP 传输文件
+#        with:
+#          host: ${{ secrets.HOST }}
+#          username: ${{ secrets.USER }}
+#          password: ${{ secrets.PASSWORD }}
+#          source: "compose.yml"
+#          target: "/home/docker/blog"
 
       - name: Load and run Docker image on the server
         uses: appleboy/ssh-action@master  # 使用社区 action 来通过 SSH 连接服务器并执行命令
@@ -111,6 +111,6 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             ls
-            cd /home/docker/nginx
+            cd /home/docker/blog
             docker compose pull
             docker compose up -d
