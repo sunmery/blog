@@ -301,7 +301,7 @@ nginx: configuration file /usr/local/nginx/conf/nginx.conf test is successful
 lsof -i:443
 ```
 
-![[images/Pasted image 20231204143830.png]]
+![[Pasted image 20231204143830.png]]
 
 3. 浏览器测试
    使用以下浏览器来进行测试
@@ -319,7 +319,7 @@ lsof -i:443
   ![[Pasted image 20231023130723.png]]
 
 4. 如果是公有云厂商的服务器, 需要打开`443`的`UDP`和`TCP`端口, 取决于你的开放的端口, 默认为443
-   ![[images/Pasted image 20231204144538.png]]
+   ![[Pasted image 20231204144538.png]]
 5. 当你部署到公网之后, 访问[http3check.net](https://www.http3check.net/)上输入域名进行测试
 
 ## 参考
