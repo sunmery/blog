@@ -1,5 +1,5 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 
@@ -108,8 +108,12 @@ const config: Config = {
                     position: 'left'
                 },
                 {
-                    to: '/docs/Mac',
+                    to: '/docs/OS/Mac',
                     label: 'Mac',
+                    position: 'left'
+                }, {
+                    to: '/docs/OS/Windows',
+                    label: 'Windows',
                     position: 'left'
                 },
                 {
@@ -128,7 +132,7 @@ const config: Config = {
                     position: 'left'
                 },
                 {
-                    to: '/docs/Windows',
+                    to: '/docs/OS/Windows',
                     label: 'Windows',
                     position: 'left'
                 },
@@ -163,7 +167,7 @@ const config: Config = {
             //     }
             //   ],
             style: 'dark',
-            copyright: `Copyright © 2022 - ${new Date().getFullYear()} Sunery.`,
+            copyright: `Copyright © 2022 - ${new Date().getFullYear()} Sumery.`,
             links: [
                 {
                     items: [
